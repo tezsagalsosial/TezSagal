@@ -23,7 +23,7 @@ if '/doctor/' in BASE_DIR:
     PROD = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'n7t$#=i*_lu+sy4)rw!he^1i8@dp_%)yy5v*u$#1@(fi1w^)yb'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if not PROD else False
@@ -33,9 +33,9 @@ ALLOWED_HOSTS = ['www.tezsagal.com','tezsagal.com','tezsagal.az','www.tezsagal.a
 
 # Email confirimation
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'info@tezsagal.com'
-EMAIL_HOST_PASSWORD = 'tezsagalinfo12345'
-EMAIL_PORT = 587
+EMAIL_HOST_USER = '
+EMAIL_HOST_PASSWORD = 
+EMAIL_PORT = 
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -54,7 +54,7 @@ LOGIN_URL = '/az/account/'
 # Milli kart Transaction registration
 
 MID = 'tezsagal' # base Merchant ID
-PAYMENT_SECRET_KEY = 'JKAO84NA93HD0372KS2LHW3UDFSDF20A' # value is given by Millikart
+PAYMENT_SECRET_KEY = '' # value is given by Millikart
 
 TEST_MILLI_KART_PAYMENT_HTTP = 'http://test.millikart.az:8513/gateway/payment/register'
 TEST_MILLI_KART_PAYMENT_HTTPS = 'https://test.millikart.az:7444/gateway/payment/register'
