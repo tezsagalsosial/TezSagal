@@ -1,0 +1,84 @@
+ {% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} Tezsagal.az || {% trans 'Pasient' %} {% endblock %}
+
+
+{% block content %}
+        <!--Page Title-->
+        <section style="margin-top: 20px;">
+			<div class="container">
+                <div class="sec-title text-center">
+                    <h2><span>{% trans 'Pasientlər' %}</span></h2>
+
+                </div>
+            </div>
+        </section>
+        <!--Page Title Ends-->
+
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-sm-12 col-xs-12">
+						<div class="service-sidebar">
+							<ul class="service-catergory">
+								<li><a href="{% url 'base:dashboard' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Şəxsi məlumatlar' %}</a>{% if doctor.step_1 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-education' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Təhsil' %}</a>{% if doctor.step_2 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-work' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'İş təcrübəsi' %}</a>{% if doctor.step_3 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-activity' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Nailiyyətlər' %}</a>{% if doctor.step_4 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-meet-date' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Görüş vaxtı cədvəl' %}</a>{% if doctor.step_5 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li class="active"><a href="{% url 'base:dashboard-pasient' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Pasientlər' %}</a></li>
+                                <li><a href="{% url 'base:dashboard-sponsor' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Sponsor ödənişi' %}</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-8 col-sm-12 col-xs-12">
+						<div class="outer-box">
+							<!-- <div class="img-box"><img src="images/resources/Map.png" alt=""></div> -->
+							<div class="form-box default-form">
+                                <div class="table-responsive">
+                                  <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th>#</th>
+                                        <th>Adı</th>
+                                        <th>Soyadı</th>
+                                        <th>tarix</th>
+                                        <th>istəklər</th>
+                                        <th>status</th>
+                                      </tr>
+                                    </thead>
+                                      <tbody>
+                                        {% for x in data %}
+                                            {% if x.is_accept != 'reject' %}
+                                                <tr>
+                                                    <td>{{ x.user.id }}</td>
+                                                    <td>{{ x.user.first_name }}</td>
+                                                    <td>{{ x.user.last_name }}</td>
+                                                    <td>{{ x.meet_time|date:"d/m/Y " }}{{ x.tarix }}</td>
+                                                    <td>
+                                                    {% if x.status %}
+                                                        sdsd
+                                                    {% else %}
+                                                        {% if x.is_accept == 'waiting' %}
+                                                            <a class="btn btn-success" href="{% url 'base:doctor_meeting_accept' x.id 'accept' %}">{% trans 'Qəbul Et' %}</a> / <a class="btn btn-danger" href="{% url 'base:doctor_meeting_accept' x.id 'reject' %}">{% trans 'İmtina Et' %}</a>
+                                                        {% else %}
+                                                            salam
+                                                        {% endif %}
+                                                    {% endif %}
+                                                    </td>
+                                                    <td>{% if x.status %}<button class="btn btn-success">Tamamlandı</button>{% else %}<form method="post" enctype="multipart/form-data">{% csrf_token %}<input type="hidden" name="user_id" value="{{ x.user.id }}"> <button type="submit" class="btn btn-success">Tamamla</button></form>{% endif %}</td>
+                                                </tr>
+                                            {% endif %}
+                                      {% endfor %}
+                                      </tbody>
+                                  </table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+{% endblock %}

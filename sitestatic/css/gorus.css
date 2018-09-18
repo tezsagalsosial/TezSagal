@@ -1,0 +1,54 @@
+/*.modcont{
+	width: 100%;
+}*/
+.modal-header{
+	background-color: #20bdb7;
+}
+
+.input{
+	width: 100%;
+	height: 40px;
+	margin-top: 40px;
+	border:1px solid #20bdb7;
+
+}
+#hide{
+	display:none;
+}
+.doctor{
+	margin-left: 40px;
+}
+ul li {
+	list-style: none;
+}
+.foot{
+	margin-top: 20px;
+}
+/*.foot button{
+	
+	border-radius: 5px;
+}*/
+/*.geri button{
+	width: 100px;
+	height: 40px;
+	background: #F4FBD8;
+	color:#1D8EB5;
+	font-family: tahoma;
+}*/
+/*.davam{
+	text-align: right;
+}*/
+/*.davam button{
+	background-color: #1D8EB5;
+	width: 100px;
+	height: 40px;
+	color:white;
+	font-family: tahoma;
+}*/
+.btnPrevious{
+	text-align: left;
+	font-size: 2em !important;
+}
+.btnNext{
+	font-size: 2em;
+}

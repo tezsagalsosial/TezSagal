@@ -1,0 +1,187 @@
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} Tezsagal.az || {% trans 'My Kabinet' %} {% endblock %}
+
+
+{% block content %}
+        <!--Page Title-->
+        <section style="margin-top: 20px;">
+			<div class="container">
+                <div class="sec-title text-center">
+                    <h2><span>{% trans 'My Kabinet' %}</span></h2>
+					<p>{% trans 'Hörmətli' %} {{ request.user.first_name }} {% trans 'həkim' %}, {% trans 'zəhmət olmasa asağıdakı bölmələri doldurun.' %}</p>
+                </div>
+            </div>
+        </section>
+        <!--Page Title Ends-->
+
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-sm-12 col-xs-12">
+						<div class="service-sidebar">
+							<ul class="service-catergory">
+								<li><a href="{% url 'base:dashboard' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Şəxsi məlumatlar' %}</a>{% if doctor.step_1 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-education' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Təhsil' %}</a>{% if doctor.step_2 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-work' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'İş təcrübəsi' %}</a>{% if doctor.step_3 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li class="active"><a href="{% url 'base:dashboard-activity' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Nailiyyətlər' %}</a>{% if doctor.step_4 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-meet-date' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Görüş vaxtı cədvəl' %}</a>{% if doctor.step_5 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-pasient' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Pasientlər' %}</a></li>
+                                <li><a href="{% url 'base:dashboard-sponsor' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Sponsor ödənişi' %}</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-8 col-sm-12 col-xs-12">
+						<div class="outer-box">
+							<!-- <div class="img-box"><img src="images/resources/Map.png" alt=""></div> -->
+							<div class="form-box default-form">
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                <h3>{% trans 'Nailiyyətlər' %}</h3>
+                                <br>
+                                  <br>
+                                    <ul class="nav nav-pills">
+                                  <li class="active"><a data-toggle="pill" href="#home">Aze</a></li>
+                                  <li><a data-toggle="pill" href="#menu1">Rus</a></li>
+                                  <li><a data-toggle="pill" href="#menu2">Geo</a></li>
+                                </ul>
+                                    <br>
+                                    <br>
+                                    <div class="tab-content">
+                                    <div id="home" class="tab-pane fade in active">
+                                        <textarea name="goals_az" class="form-control textarea required dash per-inf" placeholder="{% trans 'Nailiyyətləriniz haqqında məlumat' %}" aria-required="true">{{ doctor.goals_az|default:"" }}</textarea>
+                                    </div>
+                                    <div id="menu1" class="tab-pane fade">
+                                        {% language 'ru' %}
+                                            <textarea name="goals_ru" class="form-control textarea required dash per-inf" placeholder="{% trans 'Naliyyətləriniz haqqında məlumat' %}" aria-required="true">{{ doctor.goals_ru|default:"" }}</textarea>
+                                        {% endlanguage %}
+                                    </div>
+                                    <div id="menu2" class="tab-pane fade">
+                                        {% language 'ka' %}
+                                            <textarea name="goals_ka" class="form-control textarea required dash per-inf" placeholder="{% trans 'Naliyyətləriniz haqqında məlumat' %}" aria-required="true">{{ doctor.goals_ka|default:"" }}</textarea>
+                                        {% endlanguage %}
+                                    </div>
+                                    </div>
+
+                                     <br>
+                                    <br>
+                                    <div class="col-md-6 col-6 col-xs-12 next-button">
+                                    <input type="submit" class="thm-btn btn btn-primary" value="{% trans 'Sonrakı' %}">
+                                    </div>
+                                    <br>
+                                </form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+{% endblock %}
+{% block footer-script %}
+    {{ block.super }}
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=i8k5q1vmbxa6lk22kwq5c8d73uqzq9tkmytirpqe2bsyqp62"></script>
+    <script>tinymce.init({
+        selector:'textarea' ,
+        menubar: false,
+        plugins: [
+        'advlist autolink lists link image charmap print preview anchor textcolor',
+        'searchreplace visualblocks code fullscreen'
+        ],
+        toolbar: ' undo redo | bold italic  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+        content_css: [
+            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+            '//www.tinymce.com/css/codepen.min.css']
+        })
+    </script>
+    <script>
+        $('.xestelik').select2({
+            placeholder: "{% trans 'Müalicə etdiyiniz xəstəliklər' %}",
+        });
+         $('.erazi').select2({
+            placeholder: "{% trans 'Yaşadığınız ərazi' %}",
+        });
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+        $('.shekil1').click(function (e) {
+            e.preventDefault();
+            $('.settings-image').click();
+        });
+        function change_img(image_path) {
+        if (image_path.files && image_path.files[0]) { // if have input file
+                var reader = new FileReader(); // read file
+
+                reader.onload = function (e) {
+                    $('.change_src_img').attr('src', e.target.result); // Append file to obj src
+                };
+
+                reader.readAsDataURL(image_path.files[0]);
+            }
+            var form = new FormData();
+            var file = image_path.files[0]; // Get user profile image avatar
+            console.log(image_path.getAttribute("name"));
+            form.append(image_path.getAttribute("name"),file); // Append image file
+            $.ajax({
+                  url: "{% url 'base:upload-picture' %}",
+                  type: "POST",
+                  processData: false,
+                  contentType: false,
+                  data: form,
+                  success: function(data) {
+                   //$('.messages').removeClass('hide').addClass('show');
+                  //  $('.msg').append(data.message);
+                    $('.message').text("");
+                    /*if (data != '/?reg_suc=True') {
+                        $.each(JSON.parse(data),function(key,input){
+                            $('.'+key).html(input[0]);
+                        });
+                    }
+                    else  {
+                        window.location.href = '/?reg_suc=True';
+                    }*/
+                    console.log(data);
+                    /*$('#register input').val('');
+                    $('#ajaxloader').hide();*/
+                  },
+                  error: function(xhr,errmsg,err) {
+                    /*$('.messages').removeClass('hide').addClass('show');
+                    $('.msg').append(xhr.responseText);
+                    $('#register input').val('');
+                    $('#ajaxloader').hide();*/
+
+                    console.log(xhr.status + ": " + xhr.responseText);
+
+                  } // end error: function
+                }); // end ajax func
+        } // change_img end
+
+    </script>
+{% endblock %}

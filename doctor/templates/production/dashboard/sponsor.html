@@ -1,0 +1,232 @@
+  {% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} Tezsagal.az || {% trans 'My Kabinet' %} {% endblock %}
+
+{% block aditional-css %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css">
+    <style>
+        select{
+           color: black !important;
+           background-color: white !important;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+        <!--Page Title-->
+        <section style="margin-top: 20px;">
+			<div class="container">
+                <div class="sec-title text-center">
+                    <h2><span>{% trans 'My Kabinet' %}</span></h2>
+					{% comment %}<p>{% trans 'Hörmətli' %} {{ request.user.first_name }} {% trans 'həkim' %}, {% trans 'zəhmət olmasa asağıdakı bölmələri doldurun.' %}</p>{% endcomment %}
+                </div>
+            </div>
+        </section>
+        <!--Page Title Ends-->
+
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-sm-12 col-xs-12">
+						<div class="service-sidebar">
+							<ul class="service-catergory">
+								<li><a href="{% url 'base:dashboard' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Şəxsi məlumatlar' %}</a>{% if doctor.step_1 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-education' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Təhsil' %}</a>{% if doctor.step_2 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-work' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'İş təcrübəsi' %}</a>{% if doctor.step_3 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-activity' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Nailiyyətlər' %}</a>{% if doctor.step_4 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-meet-date' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Görüş vaxtı cədvəl' %}</a>{% if doctor.step_5 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-pasient' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Pasientlər' %}</a></li>
+                                <li class="active"><a href="{% url 'base:dashboard-sponsor' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Sponsor ödənişi' %}</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-8 col-sm-12 col-xs-12">
+						<div class="outer-box">
+							<!-- <div class="img-box"><img src="images/resources/Map.png" alt=""></div> -->
+							<div class="form-box default-form">
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                <h3>{% trans 'Sponsor ödənişi' %}</h3>
+                                    <br>
+                                    <label for="mdp-demo">{% trans 'Sizə uyğun olan qiymətləri seçin' %} </label>
+                                    <br>
+                                    <br>
+                                    <label for="start_date">{% trans 'Axtarışda yer' %}</label>
+                                    <br>
+                                    <select name="place" class="start_date reqem" onchange="change_value(this);">
+                                        <option value="1">{% trans '1-ci yer' %}</option>
+                                        <option value="2">{% trans '2-ci yer' %}</option>
+                                        <option value="3">{% trans '3-cü yer' %}</option>
+                                    </select>
+                                    <br>
+                                    <label for="end_date">{% trans 'Məbləğ' %}</label>
+                                    <br>
+                                    <select name="money" class="mebleg reqem">
+
+                                    </select>
+
+                                    <br>
+                                    {% comment %}<label for="">{% trans 'Qeydiyyat üçün ödənişin məbləği' %}: 81 AZN</label>{% endcomment %}
+                                    <br>
+
+
+                                    <div class="col-md-6 col-6 col-xs-12 next-button">
+                                    <input type="submit" class="thm-btn btn btn-primary" value="{% trans 'Ödəniş et' %}">
+                                    </div>
+                                    <br>
+                                </form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+{% endblock %}
+{% block footer-script %}
+    {{ block.super }}
+
+    <script>
+        $('.mebleg').append("" +
+                    "<option value='5000'>1 gün – 5 azn</option>" +
+                    "<option value='9950'>2 gün – 9.95 azn</option>" +
+                    "<option value='1485'>3 gün – 14.85 azn</option>" +
+                    "<option value='1970'>4 gün – 19.7 azn</option>" +
+                    "<option value='2450'>5 gün – 24.5 azn</option>" +
+                    "<option value='2925'>6 gün – 29.25 azn</option>" +
+                    "<option value='3395'>7 gün – 33.95 azn</option>" +
+                    "<option value='3860'>8 gün – 38.6 azn</option>" +
+                    "<option value='4320'>9 gün – 43.2 azn</option>" +
+                    "<option value='4775'>10 gün – 47.75 azn</option>" +
+                    "<option value='5225'>11 gün – 52.25 azn</option>" +
+                    "<option value='5670'>12 gün – 56.7 azn</option>" +
+                    "<option value='6110'>13 gün – 61.1 azn</option>" +
+                    "<option value='6545'>14 gün – 65.45 azn</option>" +
+                    "<option value='6975'>15 gün – 69.75 azn</option>" +
+                    "<option value='7400'>16 gün – 74 azn</option>" +
+                    "<option value='7820'>17 gün – 78.2 azn</option>" +
+                    "<option value='8235'>18 gün – 82.35 azn</option>" +
+                    "<option value='8645'>19 gün – 86.45 azn</option>" +
+                    "<option value='9050'>20 gün – 90.5 azn</option>" +
+                    "<option value='9450'>21 gün – 94.5 azn</option>" +
+                    "<option value='9845'>22 gün – 98.45 azn</option>" +
+                    "<option value='10235'>23 gün – 102.35 azn</option>" +
+                    "<option value='1062'>24 gün – 106.2 azn</option>" +
+                    "<option value='1100'>25 gün – 110 azn</option>" +
+                    "<option value='11375'>26 gün – 113.75 azn</option>" +
+                    "<option value='11745'>27 gün – 117.45 azn</option>" +
+                    "<option value='12110'>28 gün – 121.10 azn</option>" +
+                    "<option value='12470'>29 gün – 124.70 azn</option>" +
+                    "<option value='12825'>30 gün – 128.25 azn</option>" +
+                    "<option value='13175'>31 gün – 131.75 azn</option>" +
+                    "");
+        function change_value(t) {
+            if($(t).val() == '1') {
+                $('.mebleg').append("" +
+                    "<option value='5000'>1 gün – 5 azn</option>" +
+                    "<option value='9950'>2 gün – 9.95 azn</option>" +
+                    "<option value='1485'>3 gün – 14.85 azn</option>" +
+                    "<option value='1970'>4 gün – 19.7 azn</option>" +
+                    "<option value='2450'>5 gün – 24.5 azn</option>" +
+                    "<option value='2925'>6 gün – 29.25 azn</option>" +
+                    "<option value='3395'>7 gün – 33.95 azn</option>" +
+                    "<option value='3860'>8 gün – 38.6 azn</option>" +
+                    "<option value='4320'>9 gün – 43.2 azn</option>" +
+                    "<option value='4775'>10 gün – 47.75 azn</option>" +
+                    "<option value='5225'>11 gün – 52.25 azn</option>" +
+                    "<option value='5670'>12 gün – 56.7 azn</option>" +
+                    "<option value='6110'>13 gün – 61.1 azn</option>" +
+                    "<option value='6545'>14 gün – 65.45 azn</option>" +
+                    "<option value='6975'>15 gün – 69.75 azn</option>" +
+                    "<option value='7400'>16 gün – 74 azn</option>" +
+                    "<option value='7820'>17 gün – 78.2 azn</option>" +
+                    "<option value='8235'>18 gün – 82.35 azn</option>" +
+                    "<option value='8645'>19 gün – 86.45 azn</option>" +
+                    "<option value='9050'>20 gün – 90.5 azn</option>" +
+                    "<option value='9450'>21 gün – 94.5 azn</option>" +
+                    "<option value='9845'>22 gün – 98.45 azn</option>" +
+                    "<option value='10235'>23 gün – 102.35 azn</option>" +
+                    "<option value='1062'>24 gün – 106.2 azn</option>" +
+                    "<option value='1100'>25 gün – 110 azn</option>" +
+                    "<option value='11375'>26 gün – 113.75 azn</option>" +
+                    "<option value='11745'>27 gün – 117.45 azn</option>" +
+                    "<option value='12110'>28 gün – 121.10 azn</option>" +
+                    "<option value='12470'>29 gün – 124.70 azn</option>" +
+                    "<option value='12825'>30 gün – 128.25 azn</option>" +
+                    "<option value='13175'>31 gün – 131.75 azn</option>" +
+                    "");
+            }
+            else if ($(t).val() == '2') {
+                $('.mebleg').html("" +
+                    "<option value='4000'>1 gün – 4 azn</option>" +
+                    "<option value='7960'>2 gün – 7.96 azn</option>" +
+                    "<option value='1188'>3 gün – 11.88 azn</option>" +
+                    "<option value='1576'>4 gün – 15.76 azn</option>" +
+                    "<option value='1960'>5 gün – 19.6 azn</option>" +
+                    "<option value='2340'>6 gün – 23.40 azn</option>" +
+                    "<option value='2716'>7 gün – 27.16 azn</option>" +
+                    "<option value='3088'>8 gün – 30.88 azn</option>" +
+                    "<option value='3456'>9 gün – 34.56 azn</option>" +
+                    "<option value='3820'>10 gün – 38.2 azn</option>" +
+                    "<option value='4180'>11 gün – 41.8 azn</option>" +
+                    "<option value='4536'>12 gün – 45.36 azn</option>" +
+                    "<option value='4888'>13 gün – 48.88 azn</option>" +
+                    "<option value='5236'>14 gün – 52.36 azn</option>" +
+                    "<option value='5580'>15 gün – 55.8 azn</option>" +
+                    "<option value='5920'>16 gün – 59.2 azn</option>" +
+                    "<option value='6256'>17 gün – 62.56 azn</option>" +
+                    "<option value='6588'>18 gün – 65.88 azn</option>" +
+                    "<option value='6916'>19 gün – 69.16 azn</option>" +
+                    "<option value='7240'>20 gün – 72.4 azn</option>" +
+                    "<option value='7560'>21 gün – 75.6 azn</option>" +
+                    "<option value='7876'>22 gün – 78.76 azn</option>" +
+                    "<option value='8188'>23 gün – 81.88 azn</option>" +
+                    "<option value='8496'>24 gün – 84.96 azn</option>" +
+                    "<option value='8800'>25 gün –  88 azn</option>" +
+                    "<option value='9100'>26 gün – 91 azn</option>" +
+                    "<option value='9396'>27 gün – 93.96 azn</option>" +
+                    "<option value='9688'>28 gün – 96.88 azn</option>" +
+                    "<option value='9976'>29 gün – 99.76 azn</option>" +
+                    "<option value='1026'>30 gün – 102.6 azn</option>" +
+                    "<option value='1054'>31 gün – 105.4 azn</option>" +
+                    "");
+            }
+            else {
+                $('.mebleg').html("" +
+                    "<option value='3000'>1 gün – 3 azn</option>" +
+                    "<option value='5970'>2 gün – 5.97 azn</option>" +
+                    "<option value='8910'>3 gün – 8.91 azn</option>" +
+                    "<option value='1182'>4 gün – 11.82 azn</option>" +
+                    "<option value='1470'>5 gün – 14.7 azn</option>" +
+                    "<option value='1755'>6 gün – 17.55 azn</option>" +
+                    "<option value='2037'>7 gün – 20.37 azn</option>" +
+                    "<option value='2316'>8 gün – 23.16 azn</option>" +
+                    "<option value='2592'>9 gün – 25.92 azn</option>" +
+                    "<option value='2865'>10 gün – 28.65 azn</option>" +
+                    "<option value='3135'>11 gün – 31.35 azn</option>" +
+                    "<option value='3402'>12 gün – 34.02 azn</option>" +
+                    "<option value='3666'>13 gün – 36.66 azn</option>" +
+                    "<option value='3927'>14 gün – 39.27 azn</option>" +
+                    "<option value='4185'>15 gün – 41.85 azn</option>" +
+                    "<option value='4440'>16 gün – 44.4 azn</option>" +
+                    "<option value='4692'>17 gün – 46.92 azn</option>" +
+                    "<option value='4941'>18 gün – 49.41 azn</option>" +
+                    "<option value='5187'>19 gün – 51.87 azn</option>" +
+                    "<option value='5430'>20 gün – 54.3 azn</option>" +
+                    "<option value='5670'>21 gün – 56.7 azn</option>" +
+                    "<option value='5907'>22 gün – 59.07 azn</option>" +
+                    "<option value='6141'>23 gün – 61.41 azn</option>" +
+                    "<option value='6372'>24 gün – 63.72 azn</option>" +
+                    "<option value='6600'>25 gün –  66 azn</option>" +
+                    "<option value='6825'>26 gün – 68.25 azn</option>" +
+                    "<option value='7047'>27 gün – 70.47 azn</option>" +
+                    "<option value='7266'>28 gün – 72.66 azn</option>" +
+                    "<option value='7482'>29 gün – 74.82 azn</option>" +
+                    "<option value='7695'>30 gün – 76.95 azn</option>" +
+                    "<option value='7905'>31 gün – 79.05 azn</option>" +
+                    "");
+            }
+        }
+    </script>
+{% endblock %}

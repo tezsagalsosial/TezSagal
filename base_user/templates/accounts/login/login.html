@@ -1,0 +1,99 @@
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% load static %}
+{% load base_account %}
+{% block title %} Tezsagal.az || {% trans 'Daxil ol' %} {% endblock %}
+
+
+{% block content %}
+        <!--Page Title-->
+        <section class="page-title">
+        	<div class="container">
+            	<div class="row clearfix">
+                    <div class="col-md-12 col-sm-12 col-xs-12 pull-left">
+                        <h1 class="text-center"><a class="color-white" href="{% url 'account:login' %}">{% trans 'Daxil ol' %}</a> /  <a class="color-white" href="{% url 'account:register-normal' %}">{% trans 'Qeydiyyatdan keç' %}</a></h1>
+                    </div>
+                    <div class="overlay"></div>
+                </div>
+            </div>
+        </section>
+        <!--Page Title Ends-->
+
+
+		{% comment %}<section class="feature-style-three">
+			<div class="container">
+				<div class="item-list">
+					<div class="row">
+						<div class="item">
+							<div class="column col-md-4 col-sm-6 col-xs-12">
+								<div class="inner-box">
+									<div class="icon-box"><span class="icon flaticon-pin-1"></span></div>
+									<h3>{% trans 'Ərazi' %}</h3>
+									<div class="text"><p>{{ base_menu_contact.location|not_null }}</p></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="item">
+							<div class="column col-md-4 col-sm-6 col-xs-12">
+								<div class="inner-box">
+									<div class="icon-box"><span class="icon flaticon-cell-phone"></span></div>
+									<h3>{% trans 'Əlaqə nömrələri' %}</h3>
+									<div class="text"><p>{{ base_menu_contact.phone1|not_null }} <br> {{ base_menu_contact.phone2|not_null }}</p></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="item">
+							<div class="column col-md-4 col-sm-6 col-xs-12">
+								<div class="inner-box">
+									<div class="icon-box"><span class="icon flaticon-message"></span></div>
+									<h3>{% trans 'Elektron poçt' %}</h3>
+									<div class="text"><p>{{ base_menu_contact.email1|not_null }} <br>{{ base_menu_contact.email2|not_null }}</p></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>{% endcomment %}
+
+		<section class="contact_us">
+			<div class="container">
+                {% comment %}<div class="sec-title text-center">
+                    <h2></span></h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>{% endcomment %}
+                {% for message in messages %}
+                <div class="sec-title text-danger text-center">
+                    {{ message|safe }}
+                </div>
+                {% endfor %}
+                <div class="default-form-area">
+                    {% block login-form %}
+					<form name="contact_form" class="default-form" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% for field in form.visible_fields %}
+
+                                    <div class="row clearfix">
+                                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3 col-lg-offset-3">
+                                            <div class="form-group style-two">
+                                                {{ field }}
+                                            </div>
+                                        </div>
+                                    </div>
+                           {% endfor %}
+
+						<div class="contact-section-btn text-center">
+							<div class="form-group style-two">
+								<input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
+								<button class="thm-btn thm-color" type="submit" data-loading-text="Please wait...">{% trans 'Daxil ol' %}</button>
+                                <a href="{% url 'account:forget-password' %}" style="margin-top: 10px;" >{% trans 'Şifrəni unutmusuz?' %}</a>
+							</div>
+						</div>
+					</form>
+                    {% endblock %}
+				</div>
+			</div>
+		</section>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'accounts/login/login.html' %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% block login-form %}
+ {% load flatpages %}
+{% get_flatpages as flatpages %}
+<form name="contact_form" class="default-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+
+                <div class="row clearfix">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3 col-lg-offset-3">
+                        <div class="form-group style-two">
+                            {{ field|add_class:"form-control" }}
+                        </div>
+                    </div>
+                </div>
+       {% endfor %}
+
+
+    <div class="contact-section-btn text-center">
+        <div class="form-group style-two">
+{#            <input type="checkbox" required value="" style="float: left;">#}
+{#            {% for page in flatpages %}#}
+{#                {% if page.url == '/user-terms/' %}#}
+{#                    <a target="_blank" href="/{{ LANGUAGE_CODE }}/pages{{ page.url }}">{% trans 'Qaydalarla razıyam' %}</a>#}
+{#                {% endif %}#}
+{#            {% endfor %}#}
+
+{#            <br>#}
+{#            <br>#}
+            <button class="thm-btn thm-color" type="submit" data-loading-text="{% trans 'Zəhmət olmasa gözləyin..' %}">{% trans 'Qeydiyyat' %}</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

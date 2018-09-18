@@ -1,0 +1,1228 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-01 14:32+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\_frontend\index.html:78 .\_frontend\index.html:137
+#: .\doctor\templates\production\base\base_index.html:120
+#: .\doctor\templates\production\base\base_index.html:185
+msgid "Haqqımızda"
+msgstr "ჩვენს შესახებ"
+
+#: .\_frontend\index.html:84 .\_frontend\index.html:142
+#: .\doctor\templates\production\base\base_index.html:126
+#: .\doctor\templates\production\base\base_index.html:190
+#: .\doctor\templates\production\forms\index.html:3
+msgid "Forum"
+msgstr "ფორუმი"
+
+#: .\_frontend\index.html:98 .\_frontend\index.html:145
+#: .\doctor\templates\production\base\base_index.html:140
+#: .\doctor\templates\production\base\base_index.html:193
+#: .\doctor\templates\production\tv\index.html:4
+msgid "Tv"
+msgstr "ტელევიზია"
+
+#: .\_frontend\index.html:121 .\_frontend\index.html:148
+#: .\doctor\templates\development\base\index.html:34
+#: .\doctor\templates\production\base\base_index.html:165
+#: .\doctor\templates\production\base\base_index.html:198
+msgid "Əlaqə"
+msgstr "საკონტაქტო"
+
+#: .\_frontend\index.html:133 .\doctor\templates\development\base\index.html:9
+#: .\doctor\templates\development\base\index.html:33
+#: .\doctor\templates\production\base\base_index.html:12
+#: .\doctor\templates\production\base\base_index.html:181
+msgid "Ana səhifə"
+msgstr "მთავარი"
+
+#: .\_frontend\index.html:163 .\_frontend\index.html:191
+#: .\doctor\templates\production\base\base_index.html:220
+#: .\doctor\templates\production\base\base_index.html:254
+msgid "Profilinizi görün"
+msgstr "თქვენი პროფილის ნახვა"
+
+#: .\_frontend\index.html:165 .\_frontend\index.html:193
+#: .\doctor\templates\production\base\base_index.html:223
+#: .\doctor\templates\production\base\base_index.html:257
+msgid "Çıxış"
+msgstr "გამოყვანა"
+
+#: .\_frontend\index.html:204 .\base_user\templates\accounts\login\login.html:5
+#: .\base_user\templates\accounts\login\login.html:14
+#: .\base_user\templates\accounts\login\login.html:92
+#: .\base_user\templates\register\register_normal.html:4
+#: .\base_user\templates\register\register_normal.html:13
+#: .\base_user\templates\register\register_normal.html:91
+#: .\doctor\templates\production\base\base_index.html:268
+msgid "Daxil ol"
+msgstr "შესვლა"
+
+#: .\_frontend\index.html:211
+#: .\base_user\templates\accounts\registration\register_doctor.html:34
+#: .\base_user\templates\accounts\registration\register_normal.html:32
+#: .\doctor\templates\production\base\base_index.html:270
+msgid "Qeydiyyat"
+msgstr "რეგისტრაცია"
+
+#: .\_frontend\index.html:302
+#: .\doctor\templates\production\base\base_index.html:1021
+msgid "Müəllif hüquqları qorunur"
+msgstr "საავტორო უფლებები დაცულია"
+
+#: .\_frontend\index.html:394
+#: .\doctor\templates\production\base\base_index.html:1114
+msgid "Xəstəliyə görə axtarış"
+msgstr "დაავადების ძიება"
+
+#: .\_frontend\index.html:397
+#: .\doctor\templates\production\base\base_index.html:1117
+msgid "Məkan/Şəhər/Ölkə"
+msgstr "საიდან / ქალაქი / ქვეყანა"
+
+#: .\base_user\admin.py:23
+msgid "Personal info"
+msgstr "პირადი ინფორმაცია"
+
+#: .\base_user\admin.py:26
+msgid "Permissions"
+msgstr "ნებართვები"
+
+#: .\base_user\admin.py:28
+msgid "Important dates"
+msgstr "მნიშვნელოვანი თარიღები"
+
+#: .\base_user\forms.py:20
+msgid "The two password fields didn't match."
+msgstr "ორი პაროლის ველი არ ემთხვევა."
+
+#: .\base_user\forms.py:22 .\base_user\forms.py:51
+msgid "Password"
+msgstr "პაროლი"
+
+#: .\base_user\forms.py:24
+msgid "Password confirmation"
+msgstr ""
+
+#: .\base_user\forms.py:26
+msgid "Enter the same password as above, for verification."
+msgstr ""
+
+#: .\base_user\forms.py:53
+msgid ""
+"Raw şifrələr bazada saxlanmır, onları heç cürə görmək mümkün deyil bu "
+"istifadəçinin şifrəsidir, lakin siz onu dəyişə bilərsiziniz  <a href=\"../"
+"password/\">bu form</a>. vasitəsilə"
+msgstr ""
+
+#: .\base_user\forms.py:88
+msgid "E-poçt"
+msgstr "ელ.ფოსტა"
+
+#: .\base_user\forms.py:90 .\base_user\forms.py:117 .\base_user\forms.py:180
+#: .\base_user\templates\register\register_normal.html:83
+msgid "Şifrə"
+msgstr "პაროლი"
+
+#: .\base_user\forms.py:105 .\base_user\forms.py:164 .\base_user\forms.py:222
+msgid "Parol"
+msgstr "პაროლი"
+
+#: .\base_user\forms.py:106 .\base_user\forms.py:165 .\base_user\forms.py:223
+msgid "Parol yeniden"
+msgstr "გაიმეორეთ პაროლი"
+
+#: .\base_user\forms.py:111 .\base_user\forms.py:170
+msgid "Ad"
+msgstr "სახელი"
+
+#: .\base_user\forms.py:113 .\base_user\forms.py:172
+msgid "Soyad"
+msgstr "გვარი"
+
+#: .\base_user\forms.py:115 .\base_user\forms.py:178
+#: .\base_user\templates\register\register_normal.html:75
+msgid "Email"
+msgstr "ელ.ფოსტა"
+
+#: .\base_user\forms.py:119 .\base_user\forms.py:182
+msgid "Şifrənin təsdiqi"
+msgstr "დაადასტურეთ პაროლი"
+
+#: .\base_user\forms.py:129 .\base_user\forms.py:192
+msgid "Şifrə təstiqlənməsi alınmadı"
+msgstr "პაროლის გამორთვა ვერ მოხერხდა"
+
+#: .\base_user\forms.py:150 .\base_user\forms.py:217
+msgid "Password beraber deyil"
+msgstr "პაროლი არ არის თქვენთან ერთად"
+
+#: .\base_user\forms.py:160 .\base_user\forms.py:161 .\base_user\forms.py:174
+msgid "Ata adı"
+msgstr "მამის სახელი"
+
+#: .\base_user\forms.py:176
+msgid "Diplom nömrəsi"
+msgstr "დიპლომის ნომერი"
+
+#: .\base_user\forms.py:228
+#: .\base_user\templates\accounts\forget_password\forget_form.html:12
+msgid "Təhlükəsizlik kodu"
+msgstr "უსაფრთხოების კოდი"
+
+#: .\base_user\forms.py:230
+msgid "Yeni Şifrə"
+msgstr "ახალი პაროლი"
+
+#: .\base_user\forms.py:232
+msgid "Yeni Şifrənin təsdiqi"
+msgstr "ახალი პაროლის დადასტურება"
+
+#: .\base_user\forms.py:242
+msgid "Şifrə təsdiqlənməsi alınmadı"
+msgstr "პაროლის დადასტურება ვერ მოხერხდა"
+
+#: .\base_user\models.py:29
+msgid "username"
+msgstr "სახელი"
+
+#: .\base_user\models.py:30
+msgid ""
+"Tələb olunur. 75 simvol və ya az. Hərflər, Rəqəmlər və @/./+/-/_ simvollar."
+msgstr ""
+"საჭიროა. 75 სიმბოლო ან ნაკლები. წერილები, ციფრები, და @ / / / / - / _ "
+"სიმბოლოები."
+
+#: .\base_user\models.py:33
+msgid "Düzgün istifadəçi adı daxil edin."
+msgstr "გთხოვთ, შეიყვანოთ სწორი სახელი."
+
+#: .\base_user\models.py:36
+msgid "first name"
+msgstr "პირველი სახელი"
+
+#: .\base_user\models.py:37
+msgid "last name"
+msgstr "გვარი"
+
+#: .\base_user\models.py:38
+msgid "email address"
+msgstr "ელ.ფოსტის მისამართი"
+
+#: .\base_user\models.py:56
+msgid "staff status"
+msgstr "შტაბის სტატუსი"
+
+#: .\base_user\models.py:57
+msgid "Designates whether the user can log into this admin site."
+msgstr "განსაზღვრავს თუ არა მომხმარებელს შეუძლია შესვლა ამ admin საიტი."
+
+#: .\base_user\models.py:59
+msgid "active"
+msgstr "აქტიური"
+
+#: .\base_user\models.py:60
+msgid ""
+"Designates whether this user should be treated as active. Unselect this "
+"instead of deleting accounts."
+msgstr ""
+
+#: .\base_user\models.py:62
+msgid "date joined"
+msgstr ""
+
+#: .\base_user\templates\accounts\forget_password\forget.html:10
+msgid "Email adresinizi daxil edin"
+msgstr "შეიყვანეთ თქვენი ელექტრონული ფოსტის მისამართი"
+
+#: .\base_user\templates\accounts\forget_password\forget.html:18
+msgid "Bərpa et"
+msgstr "აღდგენა"
+
+#: .\base_user\templates\accounts\forget_password\forget_form.html:31
+#: .\base_user\templates\accounts\registration\register_doctor.html:34
+#: .\base_user\templates\accounts\registration\register_normal.html:32
+msgid "Zəhmət olmasa gözləyin.."
+msgstr "გთხოვთ დაელოდოთ."
+
+#: .\base_user\templates\accounts\forget_password\forget_form.html:31
+msgid "Şifrəni dəyiş"
+msgstr "პაროლის შეცვლა"
+
+#: .\base_user\templates\accounts\login\login.html:14
+#: .\base_user\templates\register\register_normal.html:13
+msgid "Qeydiyyatdan keç"
+msgstr "დარეგისტრირდით"
+
+#: .\base_user\templates\accounts\login\login.html:93
+msgid "Şifrəni unutmusuz?"
+msgstr "დავიწყებული პაროლი?"
+
+#: .\base_user\templates\accounts\registration\register.html:4
+msgid "Qeydiyyat et"
+msgstr "დარეგისტრირდით"
+
+#: .\base_user\templates\accounts\registration\register.html:11
+msgid "Bölmələr"
+msgstr "განყოფილებები"
+
+#: .\base_user\templates\accounts\registration\register.html:16
+msgid "Həkim qeydiyyatı"
+msgstr "ექიმის რეგისტრაცია"
+
+#: .\base_user\templates\accounts\registration\register.html:23
+msgid "İstifadəçi qeydiyyatı"
+msgstr "მომხმარებელი რეგისტრაცია"
+
+#: .\base_user\templates\accounts\registration\register_doctor.html:26
+#, fuzzy
+#| msgid "Qayadalarla razıyam"
+msgid "Qayadalarla razıyam"
+msgstr "მე ვეთანხმები შენს"
+
+#: .\base_user\templates\accounts\registration\register_normal.html:26
+#: .\doctor\templates\production\dashboard\meet_date.html:158
+#, fuzzy
+#| msgid "Qayadalarla razıyam"
+msgid "Qaydalarla razıyam"
+msgstr "მე ვეთანხმები შენს"
+
+#: .\base_user\templates\accounts\success\success_index.html:4
+msgid "Təşəkkür edirik"
+msgstr "გმადლობთ"
+
+#: .\base_user\views.py:91
+#, python-format
+msgid ""
+"%s, saytda qeydiyyatdan keçdiyiniz üçün təşəkkür edirik. Qeydiyyatınızın "
+"təsdiqlənməsi üçün zəhmət olmasa, %s poçt ünvanınızı yoxlayın."
+msgstr ""
+"%s მადლობა რეგისტრაციისათვის საიტზე. შენი რეგისტრაციაგთხოვთ, შეამოწმოთ "
+"თქვენი %s ელფოსტის მისამართი დამტკიცებისათვის."
+
+#: .\base_user\views.py:128
+#, fuzzy, python-format
+#| msgid ""
+#| "Təşəkkür edirik %s, Qeydiyyatiniz uğurla tamamlanda zəhmət olmasa %s "
+#| "poçtunuzu yoxlayın."
+msgid ""
+"Təşəkkür edirik Hörmətli %s, Qeydiyyatınız uğurla tamamlandı zəhmət olmasa "
+"adminin təsdiqindən sonra %s poçtunuzu yoxlayın, və profilinizi doldurun"
+msgstr " გმადლობთ %s, დარეგისტრირდით წარმატებით %s შეამოწმეთ თქვენი ელ."
+
+#: .\base_user\views.py:162
+#, fuzzy, python-format
+#| msgid "Zəhmət olmasa %s elektron poçtunuzu yoxlayin"
+msgid "Zəhmət olmasa %s elektron poçtunuzu yoxlayın"
+msgstr "გთხოვთ, შეამოწმოთ ელფოსტა %s სთვის"
+
+#: .\base_user\views.py:167
+#, python-format
+msgid "%s adında email sistemdə yoxdur"
+msgstr "%s ელ-ფოსტის სისტემაში არ არსებობს"
+
+#: .\doctor\templates\development\main_index\home.html:15
+#: .\doctor\templates\development\testing\index.html:15
+#: .\doctor\templates\production\base\base_index.html:728
+msgid "Axtarış"
+msgstr "ძიება"
+
+#: .\doctor\templates\development\main_index\home.html:50
+#: .\doctor\templates\development\testing\index.html:50
+#: .\doctor\templates\production\base\base_index.html:763
+msgid "Həkimini tap"
+msgstr "იპოვეთ ექიმი"
+
+#: .\doctor\templates\production\base\base_index.html:219
+#: .\doctor\templates\production\base\base_index.html:253
+#: .\doctor\templates\production\dashboard\activities.html:4
+#: .\doctor\templates\production\dashboard\activities.html:12
+#: .\doctor\templates\production\dashboard\dashboard_base.html:4
+#: .\doctor\templates\production\dashboard\dashboard_base.html:14
+#: .\doctor\templates\production\dashboard\education.html:4
+#: .\doctor\templates\production\dashboard\education.html:13
+#: .\doctor\templates\production\dashboard\meet_date.html:6
+#: .\doctor\templates\production\dashboard\meet_date.html:22
+#: .\doctor\templates\production\dashboard\register_payment.html:4
+#: .\doctor\templates\production\dashboard\register_payment.html:12
+#: .\doctor\templates\production\dashboard\sponsor.html:6
+#: .\doctor\templates\production\dashboard\sponsor.html:22
+#: .\doctor\templates\production\dashboard\work_experience.html:4
+#: .\doctor\templates\production\dashboard\work_experience.html:12
+msgid "Şəxsi kabinet"
+msgstr "კერძო კაბინეტი"
+
+#: .\doctor\templates\production\base\base_index.html:221
+#: .\doctor\templates\production\base\base_index.html:255
+#: .\doctor\templates\production\dashboard\add_blog.html:4
+#: .\doctor\templates\production\dashboard\add_blog.html:25
+#: .\doctor\templates\production\dashboard\my_blogs.html:4
+#: .\doctor\templates\production\dashboard\my_blogs.html:25
+msgid "Blog yarat"
+msgstr "დღიურები"
+
+#: .\doctor\templates\production\blog\index.html:77
+msgid "Rəy yaz"
+msgstr "დაწერე მიმოხილვა"
+
+#: .\doctor\templates\production\dashboard\activities.html:13
+#: .\doctor\templates\production\dashboard\dashboard_base.html:15
+#: .\doctor\templates\production\dashboard\education.html:14
+#: .\doctor\templates\production\dashboard\meet_date.html:23
+#: .\doctor\templates\production\dashboard\register_payment.html:13
+#: .\doctor\templates\production\dashboard\work_experience.html:13
+msgid "Hörmətli"
+msgstr "ძვირფასო"
+
+#: .\doctor\templates\production\dashboard\activities.html:13
+#: .\doctor\templates\production\dashboard\dashboard_base.html:15
+#: .\doctor\templates\production\dashboard\education.html:14
+#: .\doctor\templates\production\dashboard\meet_date.html:23
+#: .\doctor\templates\production\dashboard\register_payment.html:13
+#: .\doctor\templates\production\dashboard\work_experience.html:13
+msgid "həkim"
+msgstr "ექიმი"
+
+#: .\doctor\templates\production\dashboard\activities.html:13
+#: .\doctor\templates\production\dashboard\dashboard_base.html:15
+#: .\doctor\templates\production\dashboard\education.html:14
+#: .\doctor\templates\production\dashboard\meet_date.html:23
+#: .\doctor\templates\production\dashboard\register_payment.html:13
+#: .\doctor\templates\production\dashboard\work_experience.html:13
+msgid "zəhmət olmasa asağıdakı bölmələri doldurun."
+msgstr "გთხოვთ შეავსოთ ქვემოთ მოცემული სექციები."
+
+#: .\doctor\templates\production\dashboard\activities.html:25
+#: .\doctor\templates\production\dashboard\dashboard_base.html:29
+#: .\doctor\templates\production\dashboard\education.html:26
+#: .\doctor\templates\production\dashboard\meet_date.html:35
+#: .\doctor\templates\production\dashboard\pasient_list.html:25
+#: .\doctor\templates\production\dashboard\register_payment.html:25
+#: .\doctor\templates\production\dashboard\sponsor.html:36
+#: .\doctor\templates\production\dashboard\work_experience.html:25
+msgid "Şəxsi məlumatlar"
+msgstr "პირადი ინფორმაცია"
+
+#: .\doctor\templates\production\dashboard\activities.html:26
+#: .\doctor\templates\production\dashboard\dashboard_base.html:32
+#: .\doctor\templates\production\dashboard\education.html:27
+#: .\doctor\templates\production\dashboard\education.html:42
+#: .\doctor\templates\production\dashboard\meet_date.html:36
+#: .\doctor\templates\production\dashboard\pasient_list.html:26
+#: .\doctor\templates\production\dashboard\register_payment.html:26
+#: .\doctor\templates\production\dashboard\sponsor.html:37
+#: .\doctor\templates\production\dashboard\work_experience.html:26
+msgid "Təhsil"
+msgstr "განათლება"
+
+#: .\doctor\templates\production\dashboard\activities.html:27
+#: .\doctor\templates\production\dashboard\dashboard_base.html:35
+#: .\doctor\templates\production\dashboard\education.html:28
+#: .\doctor\templates\production\dashboard\meet_date.html:37
+#: .\doctor\templates\production\dashboard\pasient_list.html:27
+#: .\doctor\templates\production\dashboard\register_payment.html:27
+#: .\doctor\templates\production\dashboard\sponsor.html:38
+#: .\doctor\templates\production\dashboard\work_experience.html:27
+#: .\doctor\templates\production\dashboard\work_experience.html:41
+msgid "İş təcrübəsi"
+msgstr "სამუშაო გამოცდილება"
+
+#: .\doctor\templates\production\dashboard\activities.html:28
+#: .\doctor\templates\production\dashboard\activities.html:41
+#: .\doctor\templates\production\dashboard\dashboard_base.html:38
+#: .\doctor\templates\production\dashboard\education.html:29
+#: .\doctor\templates\production\dashboard\meet_date.html:38
+#: .\doctor\templates\production\dashboard\pasient_list.html:28
+#: .\doctor\templates\production\dashboard\register_payment.html:28
+#: .\doctor\templates\production\dashboard\sponsor.html:39
+#: .\doctor\templates\production\dashboard\work_experience.html:28
+#, fuzzy
+#| msgid "Nəaliyyətlər"
+msgid "Nailiyyətlər"
+msgstr "მოქმედებები"
+
+#: .\doctor\templates\production\dashboard\activities.html:29
+#: .\doctor\templates\production\dashboard\dashboard_base.html:41
+#: .\doctor\templates\production\dashboard\education.html:30
+#: .\doctor\templates\production\dashboard\meet_date.html:39
+#: .\doctor\templates\production\dashboard\pasient_list.html:29
+#: .\doctor\templates\production\dashboard\register_payment.html:29
+#: .\doctor\templates\production\dashboard\sponsor.html:40
+#: .\doctor\templates\production\dashboard\work_experience.html:29
+msgid "Görüş vaxtı cədvəl"
+msgstr "შეხვედრის დროის გრაფიკი"
+
+#: .\doctor\templates\production\dashboard\activities.html:30
+#: .\doctor\templates\production\dashboard\dashboard_base.html:44
+#: .\doctor\templates\production\dashboard\education.html:31
+#: .\doctor\templates\production\dashboard\meet_date.html:40
+#: .\doctor\templates\production\dashboard\pasient_list.html:12
+#: .\doctor\templates\production\dashboard\pasient_list.html:30
+#: .\doctor\templates\production\dashboard\register_payment.html:30
+#: .\doctor\templates\production\dashboard\sponsor.html:41
+#: .\doctor\templates\production\dashboard\work_experience.html:30
+#, fuzzy
+#| msgid "Pasiyentlər"
+msgid "Pasientlər"
+msgstr "პაციენტები"
+
+#: .\doctor\templates\production\dashboard\activities.html:31
+#: .\doctor\templates\production\dashboard\dashboard_base.html:46
+#: .\doctor\templates\production\dashboard\education.html:32
+#: .\doctor\templates\production\dashboard\meet_date.html:41
+#: .\doctor\templates\production\dashboard\pasient_list.html:31
+#: .\doctor\templates\production\dashboard\register_payment.html:31
+#: .\doctor\templates\production\dashboard\sponsor.html:42
+#: .\doctor\templates\production\dashboard\sponsor.html:52
+#: .\doctor\templates\production\dashboard\work_experience.html:31
+msgid "Sponsor ödənişi"
+msgstr "სპონსორი გადახდა"
+
+#: .\doctor\templates\production\dashboard\activities.html:53
+#, fuzzy
+#| msgid "Nəaliyyətlər"
+msgid "Nailiyyətləriniz haqqında məlumat"
+msgstr "მოქმედებები"
+
+#: .\doctor\templates\production\dashboard\activities.html:57
+#: .\doctor\templates\production\dashboard\activities.html:62
+#, fuzzy
+#| msgid "Nəaliyyətlər"
+msgid "Naliyyətləriniz haqqında məlumat"
+msgstr "მოქმედებები"
+
+#: .\doctor\templates\production\dashboard\activities.html:70
+#: .\doctor\templates\production\dashboard\dashboard_base.html:269
+#: .\doctor\templates\production\dashboard\education.html:74
+#: .\doctor\templates\production\dashboard\work_experience.html:73
+msgid "Sonrakı"
+msgstr "შემდეგი"
+
+#: .\doctor\templates\production\dashboard\activities.html:101
+#: .\doctor\templates\production\dashboard\education.html:106
+#: .\doctor\templates\production\dashboard\work_experience.html:104
+msgid "Müalicə etdiyiniz xəstəliklər"
+msgstr "ავადმყოფობა მკურნალობს"
+
+#: .\doctor\templates\production\dashboard\activities.html:104
+#: .\doctor\templates\production\dashboard\dashboard_base.html:305
+#: .\doctor\templates\production\dashboard\education.html:109
+#: .\doctor\templates\production\dashboard\work_experience.html:107
+msgid "Yaşadığınız ərazi"
+msgstr "თქვენ ცხოვრობთ"
+
+#: .\doctor\templates\production\dashboard\add_blog.html:12
+#: .\doctor\templates\production\dashboard\my_blogs.html:12
+#, fuzzy
+#| msgid "Qrup yarat"
+msgid "Forum yarat"
+msgstr "შექმენით ჯგუფი"
+
+#: .\doctor\templates\production\dashboard\add_blog.html:26
+#: .\doctor\templates\production\dashboard\my_blogs.html:26
+msgid "Mənim bloglarım"
+msgstr "ჩემი ბლოგები"
+
+#: .\doctor\templates\production\dashboard\add_blog.html:50
+msgid "Paylaş"
+msgstr "გაზიარება"
+
+#: .\doctor\templates\production\dashboard\dashboard_base.html:57
+msgid "Əsas məlumatlar"
+msgstr "ძირითადი ინფორმაცია"
+
+#: .\doctor\templates\production\dashboard\dashboard_base.html:70
+#: .\doctor\templates\production\dashboard\dashboard_base.html:85
+#: .\doctor\templates\production\dashboard\dashboard_base.html:100
+msgid "Profil şəkli"
+msgstr "პროფილის ფოტო"
+
+#: .\doctor\templates\production\dashboard\dashboard_base.html:73
+#: .\doctor\templates\production\dashboard\dashboard_base.html:88
+#: .\doctor\templates\production\dashboard\dashboard_base.html:103
+msgid "Şəkil yüklə"
+msgstr "ფოტო ატვირთვა"
+
+#: .\doctor\templates\production\dashboard\dashboard_base.html:146
+msgid "Əlaqə nömrəsi"
+msgstr "საკონტაქტო ნომერი"
+
+#: .\doctor\templates\production\dashboard\dashboard_base.html:149
+#: .\doctor\templates\production\doctor\details.html:130
+msgid "Qəbul qiyməti"
+msgstr "მისაღები ფასი"
+
+#: .\doctor\templates\production\dashboard\dashboard_base.html:161
+msgid "Facebook linki"
+msgstr "Facebook ლინკი"
+
+#: .\doctor\templates\production\dashboard\dashboard_base.html:165
+msgid "Twitter linki"
+msgstr "Twitter ბმული"
+
+#: .\doctor\templates\production\dashboard\dashboard_base.html:169
+msgid "Instagram linki"
+msgstr "Instagram ბმული"
+
+#: .\doctor\templates\production\dashboard\dashboard_base.html:174
+#: .\doctor\templates\production\doctor\details.html:129
+msgid "Danışdığı dillər"
+msgstr "ენები ლაპარაკობენ"
+
+#: .\doctor\templates\production\dashboard\dashboard_base.html:187
+#: .\doctor\templates\production\dashboard\dashboard_base.html:190
+#: .\doctor\templates\production\dashboard\dashboard_base.html:206
+#: .\doctor\templates\production\dashboard\dashboard_base.html:209
+#: .\doctor\templates\production\dashboard\dashboard_base.html:231
+#: .\doctor\templates\production\dashboard\dashboard_base.html:234
+#, fuzzy
+#| msgid "Müalicə etdiyiniz xəstəliklər"
+msgid "Müalicə etdiyi xəstəliklər"
+msgstr "ავადმყოფობა მკურნალობს"
+
+#: .\doctor\templates\production\dashboard\dashboard_base.html:193
+#: .\doctor\templates\production\dashboard\dashboard_base.html:198
+#: .\doctor\templates\production\dashboard\dashboard_base.html:213
+#: .\doctor\templates\production\dashboard\dashboard_base.html:218
+#: .\doctor\templates\production\dashboard\dashboard_base.html:237
+#: .\doctor\templates\production\dashboard\dashboard_base.html:242
+msgid "Özünüz haqqında qısa məlumat"
+msgstr "მოკლე ინფორმაცია თქვენს შესახებ"
+
+#: .\doctor\templates\production\dashboard\dashboard_base.html:253
+#, fuzzy
+#| msgid "Işlədiyiniz ərazi"
+msgid "İşlədiyiniz ərazi"
+msgstr "ტერიტორია, რომელიც მუშაობს"
+
+#: .\doctor\templates\production\dashboard\dashboard_base.html:256
+msgid "Medikal Hospital Nəsrəddin Tusi küç."
+msgstr "სამედიცინო საავადმყოფოს Nasreddin Tusi str"
+
+#: .\doctor\templates\production\dashboard\dashboard_base.html:302
+#, fuzzy
+#| msgid "İxtisası"
+msgid "İxtisas"
+msgstr "სპეციალობა"
+
+#: .\doctor\templates\production\dashboard\education.html:54
+#: .\doctor\templates\production\dashboard\education.html:55
+#: .\doctor\templates\production\dashboard\education.html:59
+#: .\doctor\templates\production\dashboard\education.html:60
+#: .\doctor\templates\production\dashboard\education.html:65
+#: .\doctor\templates\production\dashboard\education.html:66
+msgid "Təhsiliniz haqqında məlumat"
+msgstr "გაეცანით თქვენს განათლებას"
+
+#: .\doctor\templates\production\dashboard\meet_date.html:51
+#, fuzzy
+#| msgid "Görüş vaxtı cədvəl"
+msgid "Görüş vaxtı cədvəli"
+msgstr "შეხვედრის დროის გრაფიკი"
+
+#: .\doctor\templates\production\dashboard\meet_date.html:53
+msgid "Sizə uyğun olan tarixləri seçin"
+msgstr "აირჩიეთ თარიღები, რომელიც შეესაბამება თქვენ"
+
+#: .\doctor\templates\production\dashboard\meet_date.html:55
+msgid "tarix seçin"
+msgstr "თარიღი"
+
+#: .\doctor\templates\production\dashboard\meet_date.html:57
+msgid "saatdan"
+msgstr "საათი"
+
+#: .\doctor\templates\production\dashboard\meet_date.html:104
+msgid "saatadək"
+msgstr "საათიდან"
+
+#: .\doctor\templates\production\dashboard\meet_date.html:164
+msgid "Tamamla"
+msgstr "სრული"
+
+#: .\doctor\templates\production\dashboard\pasient_list.html:4
+#: .\doctor\templates\production\meet_doctor\meet_done.html:47
+#, fuzzy
+#| msgid "Pasiyentlər"
+msgid "Pasient"
+msgstr "პაციენტები"
+
+#: .\doctor\templates\production\dashboard\pasient_list.html:64
+#, fuzzy
+#| msgid "Qəbul qiyməti"
+msgid "Qəbul Et"
+msgstr "მისაღები ფასი"
+
+#: .\doctor\templates\production\dashboard\pasient_list.html:64
+msgid "İmtina Et"
+msgstr ""
+
+#: .\doctor\templates\production\dashboard\register_payment.html:41
+msgid "Ödəniş statusu"
+msgstr "გადახდის სტატუსი"
+
+#: .\doctor\templates\production\dashboard\register_payment.html:44
+msgid "Ödənişiniz uğurla tamamlandı"
+msgstr "თქვენი გადახდა წარმატებით დასრულდა"
+
+#: .\doctor\templates\production\dashboard\sponsor.html:54
+msgid "Sizə uyğun olan qiymətləri seçin"
+msgstr "აირჩიეთ ფასები, რომელიც შეესაბამება თქვენ"
+
+#: .\doctor\templates\production\dashboard\sponsor.html:57
+#, fuzzy
+#| msgid "Axtarış"
+msgid "Axtarışda yer"
+msgstr "ძიება"
+
+#: .\doctor\templates\production\dashboard\sponsor.html:60
+#, fuzzy
+#| msgid "1 ci yer"
+msgid "1-ci yer"
+msgstr "1 ადგილი"
+
+#: .\doctor\templates\production\dashboard\sponsor.html:61
+#, fuzzy
+#| msgid "2 ci yer"
+msgid "2-ci yer"
+msgstr "მე -2 ადგილი"
+
+#: .\doctor\templates\production\dashboard\sponsor.html:62
+#, fuzzy
+#| msgid "3 ci yer"
+msgid "3-cü yer"
+msgstr "მე -3 ადგილი"
+
+#: .\doctor\templates\production\dashboard\sponsor.html:65
+msgid "Məbləğ"
+msgstr "თანხა"
+
+#: .\doctor\templates\production\dashboard\sponsor.html:78
+msgid "Ödəniş et"
+msgstr "გადახდის გადახდა"
+
+#: .\doctor\templates\production\dashboard\work_experience.html:53
+#: .\doctor\templates\production\dashboard\work_experience.html:54
+#: .\doctor\templates\production\dashboard\work_experience.html:58
+#: .\doctor\templates\production\dashboard\work_experience.html:59
+#: .\doctor\templates\production\dashboard\work_experience.html:64
+#: .\doctor\templates\production\dashboard\work_experience.html:65
+#, fuzzy
+#| msgid "Iş təcrübəsi haqqında məlumat"
+msgid "İş təcrübəniz haqqında məlumat"
+msgstr "გაეცანით მუშაობის გამოცდილებას"
+
+#: .\doctor\templates\production\doctor\details.html:120
+#: .\doctor\templates\production\search\index.html:219
+msgid "Reytinq göstəricisi"
+msgstr "რეიტინგის მაჩვენებელი"
+
+#: .\doctor\templates\production\doctor\details.html:133
+msgid "Telefon"
+msgstr "ტელეფონი"
+
+#: .\doctor\templates\production\doctor\details.html:136
+#, fuzzy
+#| msgid "İş yeri"
+msgid "İşlədiyi yer"
+msgstr "სამუშაო ადგილი"
+
+#: .\doctor\templates\production\doctor\details.html:145
+#: .\doctor\templates\production\search\index.html:251
+msgid "Görüş üçün saytda qeydiyyatdan keçin"
+msgstr "დარეგისტრირდით სტატისტიკა საიტზე"
+
+#: .\doctor\templates\production\doctor\details.html:147
+#, fuzzy
+#| msgid "Görüş vaxtı cədvəl"
+msgid "Görüş istə"
+msgstr "შეხვედრის დროის გრაფიკი"
+
+#: .\doctor\templates\production\doctor\details.html:205
+#: .\doctor\templates\production\doctor\details.html:334
+msgid "Rəylər"
+msgstr ""
+
+#: .\doctor\templates\production\doctor\details.html:212
+msgid "Ortalama reytinq"
+msgstr ""
+
+#: .\doctor\templates\production\doctor\details.html:225
+msgid "Ofis və personal dəyərləndirmə"
+msgstr ""
+
+#: .\doctor\templates\production\doctor\details.html:237
+msgid "Ödəmə hesabının hazırlanması prosesi"
+msgstr ""
+
+#: .\doctor\templates\production\doctor\details.html:250
+msgid "Ziyarətdən sonrakı izləmə"
+msgstr ""
+
+#: .\doctor\templates\production\doctor\details.html:263
+msgid "Təcrübə qərargahında nəzakət"
+msgstr ""
+
+#: .\doctor\templates\production\doctor\details.html:275
+msgid "Sizə vaxt ayırmağa istəkli olmaq"
+msgstr ""
+
+#: .\doctor\templates\production\doctor\details.html:287
+msgid "Diaqnozun düzgünlüyü"
+msgstr ""
+
+#: .\doctor\templates\production\doctor\details.html:373
+msgid "Xəritədə Bax"
+msgstr ""
+
+#: .\doctor\templates\production\main_index\home.html:27
+#, fuzzy
+#| msgid "İxtisası"
+msgid "İxtisası seçin"
+msgstr "სპეციალობა"
+
+#: .\doctor\templates\production\main_index\home.html:36
+#, fuzzy
+#| msgid "tarix seçin"
+msgid "Şəhəri seçin"
+msgstr "თარიღი"
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:116
+#: .\doctor\templates\production\meet_doctor\add_review.html:368
+msgid "Ümumi"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:130
+#: .\doctor\templates\production\meet_doctor\add_review.html:370
+msgid "Sizinlə vaxt keçirmək istəyi"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:155
+#: .\doctor\templates\production\meet_doctor\add_review.html:372
+#: .\templates\test.html:2
+msgid "Diaqnoz dəqiqliyi"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:173
+#: .\doctor\templates\production\meet_doctor\add_review.html:374
+#: .\templates\test.html:20
+msgid "İşçi heyətinin nəzakəti"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:199
+#: .\doctor\templates\production\meet_doctor\add_review.html:376
+msgid "Ziyarətdən sonra izləmə"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:217
+msgid "Görüşə alınmanın sadəliyi qeydə "
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:244
+#: .\doctor\templates\production\meet_doctor\add_review.html:380
+msgid "Ofisin xarici görünüşü və atmosferi"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:262
+#: .\doctor\templates\production\meet_doctor\add_review.html:382
+msgid "Ödəmə hesabının hazırlanma prosesi"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:303
+msgid "Rəy Bildir"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:368
+#: .\doctor\templates\production\meet_doctor\add_review.html:370
+#: .\doctor\templates\production\meet_doctor\add_review.html:372
+#: .\doctor\templates\production\meet_doctor\add_review.html:374
+#: .\doctor\templates\production\meet_doctor\add_review.html:376
+#: .\doctor\templates\production\meet_doctor\add_review.html:378
+#: .\doctor\templates\production\meet_doctor\add_review.html:380
+#: .\doctor\templates\production\meet_doctor\add_review.html:382
+msgid "mütləq seçilməlidir"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:378
+msgid "Görüşə alınmanın sadəliyi qeydə"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:395
+msgid "Uğurlu"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:409
+msgid "Mesaj"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:429
+#: .\doctor\templates\production\meet_doctor\add_review.html:433
+msgid "Təkrar cəhd edin"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:447
+msgid "Xaiş edirik rəyinizi bir cümlə ilə ifadə edin"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\add_review.html:451
+#, fuzzy
+#| msgid "Görüş üçün saytda qeydiyyatdan keçin"
+msgid "Rəy yazmaq üçün saytda qeydiyyatdan keçin"
+msgstr "დარეგისტრირდით სტატისტიკა საიტზე"
+
+#: .\doctor\templates\production\meet_doctor\meet.html:44
+msgid "Görüş istəyin"
+msgstr "სთხოვეთ შეხვედრას"
+
+#: .\doctor\templates\production\meet_doctor\meet.html:64
+#, fuzzy
+#| msgid "Həkimi əvvəldən görmüsünüz ?"
+msgid "Həkimi əvvəl görmüsünüz ?"
+msgstr "გინახავთ ექიმი?"
+
+#: .\doctor\templates\production\meet_doctor\meet.html:65
+msgid "Bəli"
+msgstr "დიახ"
+
+#: .\doctor\templates\production\meet_doctor\meet.html:66
+msgid "Xeyr"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\meet.html:72
+msgid "Ödənişin növünü seçin"
+msgstr "აირჩიეთ გადახდის ტიპის"
+
+#: .\doctor\templates\production\meet_doctor\meet.html:73
+msgid "Nağd"
+msgstr ""
+
+#: .\doctor\templates\production\meet_doctor\meet.html:74
+msgid "Kartla"
+msgstr "ბარათი"
+
+#: .\doctor\templates\production\meet_doctor\meet.html:79
+msgid "Uyğun zamanı seçin"
+msgstr "აირჩიეთ შესაბამისი დრო"
+
+#: .\doctor\templates\production\meet_doctor\meet.html:85
+msgid "Ziyarətinizin səbəbini yazın"
+msgstr "დაწერე თქვენი ვიზიტის მიზეზი"
+
+#: .\doctor\templates\production\meet_doctor\meet.html:97
+msgid "İrəlİ"
+msgstr "გმადლობთ"
+
+#: .\doctor\templates\production\meet_doctor\meet_done.html:38
+msgid "Görüş təsdiqi üçün necə məlumat almaq istəyirsiniz?"
+msgstr "გვინდა ვიცოდე, როგორ მივიღო დანიშვნა?"
+
+#: .\doctor\templates\production\meet_doctor\meet_done.html:39
+#, fuzzy
+#| msgid "Email"
+msgid "E-mail"
+msgstr "ელ.ფოსტა"
+
+#: .\doctor\templates\production\meet_doctor\meet_done.html:40
+msgid "SMS"
+msgstr "SMS"
+
+#: .\doctor\templates\production\meet_doctor\meet_done.html:41
+msgid "Zəng"
+msgstr "ზარი"
+
+#: .\doctor\templates\production\meet_doctor\meet_done.html:57
+msgid "Son"
+msgstr "ბოლო"
+
+#: .\doctor\templates\production\search\index.html:61
+msgid "Qiymət"
+msgstr "ფასი"
+
+#: .\doctor\templates\production\search\index.html:63
+#, fuzzy
+#| msgid "tarix seçin"
+msgid "qiyməti seçin"
+msgstr "თარიღი"
+
+#: .\doctor\templates\production\search\index.html:65
+#: .\doctor\templates\production\search\index.html:67
+#: .\doctor\templates\production\search\index.html:96
+msgid "Bütün"
+msgstr ""
+
+#: .\doctor\templates\production\search\index.html:68
+#, fuzzy
+#| msgid "40-50 manat"
+msgid "0-50 manat"
+msgstr "40-50 მანტესი"
+
+#: .\doctor\templates\production\search\index.html:70
+#, fuzzy
+#| msgid "90-100 manat"
+msgid "50-100 manat"
+msgstr "90-100 მანტესი"
+
+#: .\doctor\templates\production\search\index.html:72
+#, fuzzy
+#| msgid "90-100 manat"
+msgid "100+ manat"
+msgstr "90-100 მანტესი"
+
+#: .\doctor\templates\production\search\index.html:76
+msgid "Cinsi"
+msgstr ""
+
+#: .\doctor\templates\production\search\index.html:78
+#, fuzzy
+#| msgid "göstəricini seçin"
+msgid "cinsi seçin"
+msgstr "აირჩიეთ ინდიკატორი"
+
+#: .\doctor\templates\production\search\index.html:81
+#: .\doctor\templates\production\search\index.html:83
+msgid "Hər İkisi "
+msgstr ""
+
+#: .\doctor\templates\production\search\index.html:84
+msgid "Kişi"
+msgstr ""
+
+#: .\doctor\templates\production\search\index.html:86
+msgid "Qadın"
+msgstr ""
+
+#: .\doctor\templates\production\search\index.html:92
+#: .\doctor\templates\production\search\index.html:94
+msgid "göstəricini seçin"
+msgstr "აირჩიეთ ინდიკატორი"
+
+#: .\doctor\templates\production\search\index.html:97
+#, python-format
+msgid "20 %%"
+msgstr "20 %%"
+
+#: .\doctor\templates\production\search\index.html:98
+#, python-format
+msgid "40 %%"
+msgstr "40 %%"
+
+#: .\doctor\templates\production\search\index.html:99
+#, python-format
+msgid "60 %%"
+msgstr "60 %%"
+
+#: .\doctor\templates\production\search\index.html:100
+#, python-format
+msgid "80 %%"
+msgstr "80 %%"
+
+#: .\doctor\templates\production\search\index.html:101
+#, python-format
+msgid "100 %%"
+msgstr "100 %%"
+
+#: .\doctor\templates\production\search\index.html:140
+msgid "Sertifikat"
+msgstr "სერთიფიკატი"
+
+#: .\doctor\templates\production\search\index.html:142
+#, fuzzy
+#| msgid "Online məsləhət"
+msgid "Onlayn məsləhət"
+msgstr "ონლაინ რჩევა"
+
+#: .\doctor\templates\production\search\index.html:145
+msgid "Verified"
+msgstr "გადამოწმებული"
+
+#: .\doctor\templates\production\search\index.html:161
+#: .\doctor\templates\production\search\index.html:164
+#: .\doctor\templates\production\search\index.html:167
+msgid "Burada sizin reklam ola bilər"
+msgstr "აქ თქვენ შეგიძლიათ თქვენი რეკლამა"
+
+#: .\doctor\templates\production\search\index.html:209
+msgid "Profil göstəricisi"
+msgstr "პროფილის მაჩვენებელი"
+
+#: .\doctor\templates\production\search\index.html:239
+msgid "Özəllik"
+msgstr "სპეციფიკა"
+
+#: .\doctor\templates\production\search\index.html:242
+msgid "Online məsləhət"
+msgstr "ონლაინ რჩევა"
+
+#: .\doctor\templates\production\search\index.html:254
+msgid "GÖRÜŞ İSTƏ"
+msgstr "შეხვედრა"
+
+#: .\doctor\templates\production\search\index.html:260
+msgid "PROFİLİNİ GÖR"
+msgstr "პროფილის ნახვა"
+
+#: .\doctor\templates\production\search\index.html:268
+#, fuzzy
+#| msgid "Axtarışınıza uyğun bir nəticə tapılmadı"
+msgid "Axtarışınıza uyğun həkim tapılmadı"
+msgstr "თქვენი ძიების შედეგები ვერ მოიძებნა"
+
+#: .\doctor\views.py:807
+#, fuzzy
+#| msgid "Ödənişiniz uğurla tamamlandı"
+msgid "Rəyiniz Uğurla Qeyd alındı"
+msgstr "თქვენი გადახდა წარმატებით დასრულდა"
+
+#: .\doctor\views.py:816 .\doctor\views.py:819
+msgid "Xaiş edirik təkrar cəhd edin"
+msgstr ""
+
+#: .\doctor\views.py:822
+msgid "Həkimin Qəbulunda olmadan Rəy yaza bilməzsiziniz"
+msgstr ""
+
+#: .\tezsagal_project\settings.py:164
+msgid "Aze"
+msgstr ""
+
+#: .\tezsagal_project\settings.py:165
+msgid "Geo"
+msgstr ""
+
+#: .\tezsagal_project\settings.py:166
+msgid "Rus"
+msgstr ""
+
+#~ msgid "Ərazi"
+#~ msgstr "ფართობი"
+
+#~ msgid "Əlaqə nömrələri"
+#~ msgstr "საკონტაქტო ნომრები"
+
+#~ msgid "Elektron poçt"
+#~ msgstr "ელ.ფოსტა"
+
+#~ msgid "Blog"
+#~ msgstr "დღიური"
+
+#~ msgid "Həkim hansı cür pasientləri qəbul edir"
+#~ msgstr "რა ტიპის პაციენტი იღებს პაციენტს?"
+
+#, fuzzy
+#~| msgid "İş təcrübəsi"
+#~ msgid "Iş təcrübəsi"
+#~ msgstr "სამუშაო გამოცდილება"
+
+#, fuzzy
+#~| msgid "Təhsiliniz haqqında məlumat"
+#~ msgid "Haqqımda məlumat"
+#~ msgstr "გაეცანით თქვენს განათლებას"
+
+#~ msgid "Dərəcəsi"
+#~ msgstr "ხარისხი"
+
+#, fuzzy
+#~| msgid "Həkim hansı cür pasientləri qəbul edir"
+#~ msgid "Hansı çür pasiyentlər qəbul edir"
+#~ msgstr "რა ტიპის პაციენტი იღებს პაციენტს?"
+
+#, fuzzy
+#~| msgid "Görüş vaxtı cədvəl"
+#~ msgid "Görüş vaxtı"
+#~ msgstr "შეხვედრის დროის გრაფიკი"
+
+#~ msgid "Həkimlərin bloqu"
+#~ msgstr "ექიმების ბლოგი"
+
+#~ msgid "Form"
+#~ msgstr "ფორმა"
+
+#~ msgid "Xeyir"
+#~ msgstr "კარგი არ არის"
+
+#~ msgid "Nəğd"
+#~ msgstr "ნაღდი ფული"
+
+#~ msgid "aralığı seçin"
+#~ msgstr "აირჩიეთ დიაპაზონი"
+
+#~ msgid "1-10 manat"
+#~ msgstr "1-10 მანტესი"
+
+#~ msgid "20-30 manat"
+#~ msgstr "20-30 მანტესი"
+
+#~ msgid "30-40 manat"
+#~ msgstr "30-40 მანტესი"
+
+#~ msgid "50-60 manat"
+#~ msgstr "50-60 მანტესი"
+
+#~ msgid "60-70 manat"
+#~ msgstr "60-70 მანტესი"
+
+#~ msgid "70-80 manat"
+#~ msgstr "70-80 მანტესი"
+
+#~ msgid "80-90 manat"
+#~ msgstr "80-90 მანტესი"
+
+#~ msgid "TV"
+#~ msgstr "TV"
+
+#~ msgid ""
+#~ "Təşəkkür edirik %s, Qeydiyyatiniz uğurla tamamlanda zəhmət olmasa %s "
+#~ "poçtunuzu yoxlayın."
+#~ msgstr " გმადლობთ %s, დარეგისტრირდით წარმატებით %s შეამოწმეთ თქვენი ელ."
+
+#~ msgid "Profilin adı"
+#~ msgstr "მომხმარებლის სახელი"
+
+#, fuzzy
+#~| msgid "Həkimini tap"
+#~ msgid "Həkim Elçin"
+#~ msgstr "იპოვეთ ექიმი"
+
+#~ msgid "Lövhə"
+#~ msgstr "დაფა"
+
+#~ msgid "Treyninq"
+#~ msgstr "ტრენინგი"
+
+#~ msgid "İş cədvəli"
+#~ msgstr "სამუშაო გრაფიკი"
+
+#, fuzzy
+#~| msgid "Haqqımızda"
+#~ msgid "Haqqımda"
+#~ msgstr "ჩვენს შესახებ"
+
+#, fuzzy
+#~| msgid "Əlaqə"
+#~ msgid "Bizimlə Əlaqə"
+#~ msgstr "საკონტაქტო"
+
+#~ msgid "Adınız"
+#~ msgstr "შენი სახელი"
+
+#~ msgid "İsmarıc"
+#~ msgstr "შეტყობინება"
+
+#~ msgid "Göndər"
+#~ msgstr "გაგზავნა"

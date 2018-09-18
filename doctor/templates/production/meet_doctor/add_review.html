@@ -1,0 +1,458 @@
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% load static %}
+{% block aditional-css %}
+    <link rel="stylesheet" href="{% static 'css/tabs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gorus.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
+    <style>
+        .ui-datepicker-inline {
+            width: 100%;
+        }
+
+        .ui-datepicker-header {
+            padding: 20px 10px !important;
+            background: #00c4b9 !important;
+        }
+
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+            padding: 13px;
+            background: #00c4b9;
+            text-align: center;
+        }
+
+        .ui-state-active {
+            background: rgba(255, 235, 59, 0.42) !important;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <style>
+        .patient-form-div textarea {
+            padding: 8px 0 8px 0;
+            border: 1px solid #20bdb7;
+            font-size: 20px;
+            width: 96% !important;
+            text-align: center;
+        }
+
+        /******************************************************************************/
+        input.star {
+            display: none;
+        }
+
+        label.star {
+            float: right;
+            padding: 10px;
+            font-size: 30px;
+            color: #20bdb7;
+            transition: all .2s;
+        }
+
+        input.star:checked ~ label.star:before {
+            content: '\f005';
+            color: #20bdb7;
+            transition: all .25s;
+        }
+
+        input.star-5:checked ~ label.star:before {
+            color: #20bdb7;
+            text-shadow: 0 0 20px #1beae2;
+        }
+
+        input.star-1:checked ~ label.star:before {
+            color: #F62;
+        }
+
+        label.star:hover {
+            transform: rotate(-15deg) scale(1.3);
+        }
+
+        label.star:before {
+            content: '\f006';
+            font-family: FontAwesome;
+        }
+
+        #patient-succes-message {
+            display: none;
+        }
+    </style>
+    <br>
+
+    <br>
+    <br>
+    <br>
+
+    <!-- forum -->
+
+    <!-- birinci seyfe -->
+    <div class="container">
+        {% if doctor.id and show_review_form %}
+            <form method="post" action="{% url 'base:doctor_comment_ajax' doctor.id %}" id="patient-form">
+            {% csrf_token %}
+        {% endif %}
+        <hr>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <ul class="profile">
+                    <li>{{ doctor.id }}
+                        {% if doctor.user.profile_picture %}
+                            <img style="width: 78px" src="/media/{{ doctor.user.profile_picture }}" alt="">
+                        {% else %}
+                            <i class="fa fa-user-md" style="font-size:100px"></i>
+                        {% endif %}
+                    </li>
+                    <li>{{ doctor.user.get_full_name }}</li>
+                    <li>{% for z in doctor.get_xestelik %}{{ z.xestelik.name }}{% if forloop.last %}{% else %},
+                    {% endif %}{% endfor %}</li>
+                    <li>{{ doctor.base_name }}</li>
+                </ul>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <hr>
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 ">
+                        {% trans 'Ümumi' %}
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 patient-form-div">
+                        <input class="star star-5" id="star-5-2" type="radio" name="star" value="5"/>
+                        <label class="star star-5" for="star-5-2"></label>
+                        <input class="star star-4" id="star-4-2" type="radio" name="star" value="4"/>
+                        <label class="star star-4" for="star-4-2"></label>
+                        <input class="star star-3" id="star-3-2" type="radio" name="star" value="3"/>
+                        <label class="star star-3" for="star-3-2"></label>
+                        <input class="star star-2" id="star-2-2" type="radio" name="star" value="2"/>
+                        <label class="star star-2" for="star-2-2"></label>
+                        <input class="star star-1" id="star-1-2" type="radio" name="star" value="1"/>
+                        <label class="star star-1" for="star-1-2"></label>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 ">{% trans 'Sizinlə vaxt keçirmək istəyi' %}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 patient-form-div">
+                        <input class="star star-5" id="star-5-spend_time" type="radio" name="star-spend_time"
+                               value="5"/>
+                        <label class="star star-5" for="star-5-spend_time"></label>
+                        <input class="star star-4" id="star-4-spend_time" type="radio" name="star-spend_time"
+                               value="4"/>
+                        <label class="star star-4" for="star-4-spend_time"></label>
+                        <input class="star star-3" id="star-3-spend_time" type="radio" name="star-spend_time"
+                               value="3"/>
+                        <label class="star star-3" for="star-3-spend_time"></label>
+                        <input class="star star-2" id="star-2-spend_time" type="radio" name="star-spend_time"
+                               value="2"/>
+                        <label class="star star-2" for="star-2-spend_time"></label>
+                        <input class="star star-1" id="star-1-spend_time" type="radio" name="star-spend_time"
+                               value="1"/>
+                        <label class="star star-1" for="star-1-spend_time"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 ">{% trans 'Diaqnoz dəqiqliyi' %}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 patient-form-div">
+                        <input class="star star-5" id="star-5-diagnosis" type="radio"
+                               name="star-diagnosis" value="5"/>
+                        <label class="star star-5" for="star-5-diagnosis"></label>
+                        <input class="star star-4" id="star-4-diagnosis" type="radio"
+                               name="star-diagnosis" value="4"/>
+                        <label class="star star-4" for="star-4-diagnosis"></label>
+                        <input class="star star-3" id="star-3-diagnosis" type="radio"
+                               name="star-diagnosis" value="3"/>
+                        <label class="star star-3" for="star-3-diagnosis"></label>
+                        <input class="star star-2" id="star-2-diagnosis" type="radio"
+                               name="star-diagnosis" value="2"/>
+                        <label class="star star-2" for="star-2-diagnosis"></label>
+                        <input class="star star-1" id="star-1-diagnosis" type="radio"
+                               name="star-diagnosis" value="1"/>
+                        <label class="star star-1" for="star-1-diagnosis"></label>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 ">{% trans 'İşçi heyətinin nəzakəti' %}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 patient-form-div">
+                        <input class="star star-5" id="star-5-working_politeness" type="radio"
+                               name="star-working_politeness" value="5"/>
+                        <label class="star star-5" for="star-5-working_politeness"></label>
+                        <input class="star star-4" id="star-4-working_politeness" type="radio"
+                               name="star-working_politeness" value="4"/>
+                        <label class="star star-4" for="star-4-working_politeness"></label>
+                        <input class="star star-3" id="star-3-working_politeness" type="radio"
+                               name="star-working_politeness" value="3"/>
+                        <label class="star star-3" for="star-3-working_politeness"></label>
+                        <input class="star star-2" id="star-2-working_politeness" type="radio"
+                               name="star-working_politeness" value="2"/>
+                        <label class="star star-2" for="star-2-working_politeness"></label>
+                        <input class="star star-1" id="star-1-working_politeness" type="radio"
+                               name="star-working_politeness" value="1"/>
+                        <label class="star star-1" for="star-1-working_politeness"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                        <hr>
+                    </div>
+                </div>
+                {#                <div class=""></div>#}
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 ">{% trans 'Ziyarətdən sonra izləmə' %}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 patient-form-div">
+                        <input class="star star-5" id="star-5-follow_after_examination" type="radio"
+                               name="star-follow_after_examination" value="5"/>
+                        <label class="star star-5" for="star-5-follow_after_examination"></label>
+                        <input class="star star-4" id="star-4-follow_after_examination" type="radio"
+                               name="star-follow_after_examination" value="4"/>
+                        <label class="star star-4" for="star-4-follow_after_examination"></label>
+                        <input class="star star-3" id="star-3-follow_after_examination" type="radio"
+                               name="star-follow_after_examination" value="3"/>
+                        <label class="star star-3" for="star-3-follow_after_examination"></label>
+                        <input class="star star-2" id="star-2-follow_after_examination" type="radio"
+                               name="star-follow_after_examination" value="2"/>
+                        <label class="star star-2" for="star-2-follow_after_examination"></label>
+                        <input class="star star-1" id="star-1-follow_after_examination" type="radio"
+                               name="star-follow_after_examination" value="1"/>
+                        <label class="star star-1" for="star-1-follow_after_examination"></label>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 ">{% trans 'Görüşə alınmanın sadəliyi qeydə ' %}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 patient-form-div">
+                        <input class="star star-5" id="star-5-registration_status" type="radio"
+                               name="star-registration_status" value="5"/>
+                        <label class="star star-5" for="star-5-registration_status"></label>
+                        <input class="star star-4" id="star-4-registration_status" type="radio"
+                               name="star-registration_status" value="4"/>
+                        <label class="star star-4" for="star-4-registration_status"></label>
+                        <input class="star star-3" id="star-3-registration_status" type="radio"
+                               name="star-registration_status" value="3"/>
+                        <label class="star star-3" for="star-3-registration_status"></label>
+                        <input class="star star-2" id="star-2-registration_status" type="radio"
+                               name="star-registration_status" value="2"/>
+                        <label class="star star-2" for="star-2-registration_status"></label>
+                        <input class="star star-1" id="star-1-registration_status" type="radio"
+                               name="star-registration_status" value="1"/>
+                        <label class="star star-1" for="star-1-registration_status"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+
+                    {#                <div class=""></div>#}
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 ">{% trans 'Ofisin xarici görünüşü və atmosferi' %}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 patient-form-div">
+                        <input class="star star-5" id="star-5-office_status" type="radio" name="star-office_status"
+                               value="5"/>
+                        <label class="star star-5" for="star-5-office_status"></label>
+                        <input class="star star-4" id="star-4-office_status" type="radio" name="star-office_status"
+                               value="4"/>
+                        <label class="star star-4" for="star-4-office_status"></label>
+                        <input class="star star-3" id="star-3-office_status" type="radio" name="star-office_status"
+                               value="3"/>
+                        <label class="star star-3" for="star-3-office_status"></label>
+                        <input class="star star-2" id="star-2-office_status" type="radio" name="star-office_status"
+                               value="2"/>
+                        <label class="star star-2" for="star-2-office_status"></label>
+                        <input class="star star-1" id="star-1-office_status" type="radio" name="star-office_status"
+                               value="1"/>
+                        <label class="star star-1" for="star-1-office_status"></label>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 ">{% trans 'Ödəmə hesabının hazırlanma prosesi' %}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 patient-form-div">
+                        <input class="star star-5" id="star-5-prepare_paying_process" type="radio"
+                               name="star-prepare_paying_process" value="5"/>
+                        <label class="star star-5" for="star-5-prepare_paying_process"></label>
+                        <input class="star star-4" id="star-4-prepare_paying_process" type="radio"
+                               name="star-prepare_paying_process" value="4"/>
+                        <label class="star star-4" for="star-4-prepare_paying_process"></label>
+                        <input class="star star-3" id="star-3-prepare_paying_process" type="radio"
+                               name="star-prepare_paying_process" value="3"/>
+                        <label class="star star-3" for="star-3-prepare_paying_process"></label>
+                        <input class="star star-2" id="star-2-prepare_paying_process" type="radio"
+                               name="star-prepare_paying_process" value="2"/>
+                        <label class="star star-2" for="star-2-prepare_paying_process"></label>
+                        <input class="star star-1" id="star-1-prepare_paying_process" type="radio"
+                               name="star-prepare_paying_process" value="1"/>
+                        <label class="star star-1" for="star-1-prepare_paying_process"></label>
+                    </div>
+                </div>
+
+                {#                <div class=""></div>#}
+                <div class="row">
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                        <hr>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 patient-form-div">
+                                    <textarea rows="3" id="t_message" name="message"
+                                              placeholder="Fikirləriniz"></textarea>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                <hr>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 patient-form-div">
+                <a class="btn btn-info" id="patient-btn"
+                   style="width: 100% !important;cursor: pointer;"
+                        {% if doctor %}
+                   onclick="CommentForm()"
+                        {% endif %}>{% trans 'Rəy Bildir' %}</a>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                {#                <hr>#}
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 patient-succes-message"
+                 id="patient-succes-message">
+            </div>
+        </div>
+
+        {% if doctor %}</form>{% endif %}
+    </div>
+
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}
+{% block footer-script %}
+    {{ block.super }}
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css"></script>
+    {#    <script async defer#}
+    {#    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc2KAE8d9QEtMDLQTLayqzba7yFT-uO6o">#}
+    {#    </script>#}
+
+    {% if doctor.id and show_review_form %}
+        <script>
+
+            var comment_list_id = $("#comment-list-id");
+            var t_message = $("#t_message");
+            var patientForm = $('#patient-form');
+            var patient_succes_message = $('#patient-succes-message');
+            var patientButton = $('#patient-btn');
+            function cn_message_tester(p1) {
+                var input = $(p1);
+                if (input.val().trim().length < 3) {
+                    input.removeClass("valid").addClass("invalid");
+                    bool = false;
+                } else {
+                    input.removeClass("invalid").addClass("valid");
+                    bool = true;
+                }
+                return bool;
+            }
+            t_message.focusout(function () {
+                cn_message_tester($(this));
+            });
+            if ($('input[name="star"]').is(':checked')) {
+
+            } else {
+                patientButton.removeClass("cursor-button");
+            }
+            patient_succes_message.hide();
+            function CommentForm() {
+                var check_user = {% if request.user.is_authenticated %}1{% else %}0{% endif %};
+                if (check_user == 1) {
+                    cn_message_tester(t_message);
+                    if (!$('input[name="star"]').is(':checked')) {
+                        alert('{% trans 'Ümumi' %} {% trans 'mütləq seçilməlidir' %}')
+                    } else if (!$('input[name="star-spend_time"]').is(':checked')) {
+                        alert('{% trans 'Sizinlə vaxt keçirmək istəyi' %} {% trans 'mütləq seçilməlidir' %}')
+                    } else if (!$('input[name="star-diagnosis"]').is(':checked')) {
+                        alert('{% trans 'Diaqnoz dəqiqliyi' %} {% trans 'mütləq seçilməlidir' %}')
+                    } else if (!$('input[name="star-working_politeness"]').is(':checked')) {
+                        alert('{% trans 'İşçi heyətinin nəzakəti' %} {% trans 'mütləq seçilməlidir' %}')
+                    } else if (!$('input[name="star-follow_after_examination"]').is(':checked')) {
+                        alert('{% trans 'Ziyarətdən sonra izləmə' %} {% trans 'mütləq seçilməlidir' %}')
+                    } else if (!$('input[name="star-registration_status"]').is(':checked')) {
+                        alert('{% trans 'Görüşə alınmanın sadəliyi qeydə' %} {% trans 'mütləq seçilməlidir' %}')
+                    } else if (!$('input[name="star-office_status"]').is(':checked')) {
+                        alert('{% trans 'Ofisin xarici görünüşü və atmosferi' %} {% trans 'mütləq seçilməlidir' %}')
+                    } else if (!$('input[name="star-prepare_paying_process"]').is(':checked')) {
+                        alert('{% trans 'Ödəmə hesabının hazırlanma prosesi' %} {% trans 'mütləq seçilməlidir' %}')
+                    }
+                    else {
+                        if (cn_message_tester(t_message)) {
+                            patientButton.hide();
+                            $.ajax({
+                                url: patientForm.attr('action'),
+                                type: patientForm.attr('method'),
+                                dataType: 'json',
+                                data: patientForm.serialize(),
+                                success: function (json) {
+                                    if (json['message_code'] == 1) {
+                                        swal({
+                                                title: '{% trans 'Uğurlu' %}!',
+                                                text: json['message'],
+                                                type: 'success',
+                                                timer: 3000
+                                            }
+                                        );
+                                        setTimeout(function(){
+                                            window.location.replace(json['return_url']);
+                                        }, 4000);
+                                        {#                                        alert(json['message']);#}
+                                        {#                                    comment_list_id.prepend(json['content']);#}
+                                        patient_succes_message.addClass('alert alert-success').removeClass('alert alert-danger');
+                                    } else {
+                                        swal(
+                                            '{% trans 'Mesaj' %}!',
+                                            json['message'],
+                                            'info'
+                                        );
+                                        {#                                        alert(json['message']);#}
+                                        patient_succes_message.removeClass('alert alert-success').addClass('alert alert-danger');
+                                    }
+                                    document.getElementById("patient-succes-message").innerHTML = json['message'];
+                                    {#                                    patient_succes_message.show();#}
+                                    setTimeout(function () {
+                                        patient_succes_message.fadeOut();
+                                        patientButton.show();
+                                    }, 4000);
+                                    patientForm.each(function () {
+                                        this.reset();
+                                    });
+                                },
+                                error: function (xhr, err) {
+                                    swal(
+                                        'Xəta!',
+                                        '{% trans 'Təkrar cəhd edin' %}!',
+                                        'error'
+                                    );
+                                    patient_succes_message.removeClass('alert alert-success').addClass('alert alert-danger');
+                                    document.getElementById("patient-succes-message").innerHTML = "{% trans 'Təkrar cəhd edin' %}!";
+                                    patient_succes_message.show();
+                                    setTimeout(function () {
+                                        patient_succes_message.fadeOut();
+                                        patientButton.show();
+                                    }, 4000);
+                                    patientForm.each(function () {
+                                        this.reset();
+                                    });
+                                    alert('error');
+                                }
+                            });
+                            return false;
+                        } else {
+                            alert('{% trans 'Xaiş edirik rəyinizi bir cümlə ilə ifadə edin' %}')
+                        }
+                    }
+                } else {
+                    alert('{% trans 'Rəy yazmaq üçün saytda qeydiyyatdan keçin' %}')
+                }
+            }
+        </script>
+
+    {% endif %}
+{% endblock %}
+

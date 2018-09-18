@@ -1,0 +1,205 @@
+{% extends 'production/base/base_index.html' %}
+
+{% load i18n %}
+{% load static %}
+{% block aditional-css %}
+    <link rel="stylesheet" href="{% static 'css/tabs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gorus.css' %}">
+    <style>
+        .ui-datepicker-inline {
+            width: 100%;
+        }
+
+        .ui-datepicker-header {
+            padding: 20px 10px !important;
+            background: #00c4b9 !important;
+        }
+
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+            padding: 13px;
+            background: #00c4b9;
+            text-align: center;
+        }
+
+        .ui-state-active {
+            background: rgba(255, 235, 59, 0.42) !important;
+        }
+
+        .ui-widget-header .ui-icon {
+            background-image: url('{% static "css/images/icons.png" %}') !important;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- forum -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="doctor_id" value="{{ doctor.id }}">
+        <input type="hidden" name="date" id="doctor_time" value="08/15/2017">
+        <!-- birinci seyfe -->
+        <div class="container">
+            <div class="row ust">
+                <div class="col-md-12 col-sm-12 col-xs-12 b">
+                    <b>{% trans 'Görüş istəyin' %}</b>
+                </div>
+            </div>
+            <div class="row cont">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <ul class="profile prof-mob">
+                        <li>
+                            {% if doctor.user.profile_picture %}
+                                <img style="width: 78px; border-radius: 100%;"
+                                     src="/media/{{ doctor.user.profile_picture }}" alt="">
+                            {% else %}
+                                <i class="fa fa-user-md" style="font-size:100px"></i>
+                            {% endif %}
+                        </li>
+                        <li>{{ doctor.user.get_full_name }}</li>
+                        <li>{% for z in doctor.get_xestelik %}{{ z.xestelik.name }}{% if forloop.last %}{% else %},
+                        {% endif %}{% endfor %}</li>
+                        <li>{{ doctor.base_name }}</li>
+                    </ul>
+                    <div class="col-md-3 col-sm-3 col-xs-12 hekimigor">
+                        <br>
+                        <select name="question" required>
+                            <option value="">{% trans 'Həkimi əvvəl görmüsünüz ?' %}</option>
+                            <option value="1">{% trans 'Bəli' %}</option>
+                            <option value="0">{% trans 'Xeyr' %}</option>
+                        </select>
+                        <br>
+                        <!-- odenisin novunu secmek --><br>
+                        <div class="pay">
+                            <select name="pay" required>
+                                <option value=""> {% trans 'Ödənişin növünü seçin' %}</option>
+                                <option value="1">{% trans 'Nağd' %}</option>
+                                <option value="2">{% trans 'Kartla' %}</option>
+                            </select>
+                        </div>
+                        <br>
+                        <select id="tarix_select" name="tarix" required>
+                            <option value=""> {% trans 'Uyğun zamanı seçin' %}</option>
+
+                        </select>
+                        <br>
+                        <br>
+                        <div>
+                            <textarea class="ziyaret" name="sebeb" required
+                                      placeholder="{% trans 'Ziyarətinizin səbəbini yazın' %}" cols="40"
+                                      rows="5"></textarea>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- gun teyin elemek -->
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-2">
+                    <div id="meet-calendar"></div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-6 offset">
+                    <input class="thm-btn btn-primary btnNext" type="submit" value="{% trans 'İrəlİ' %}">
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}
+
+{% block footer-script %}
+    {{ block.super }}
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css"></script>
+
+    <script type="text/javascript">
+        $('.btnNext').click(function () {
+            $('.nav-tabs > .active').next('li').find('a').trigger('click');
+        });
+
+        $('.btnPrevious').click(function () {
+            $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+        });
+        var start_date = "{{ doctor.start_date }}";
+        var end_date = "{{ doctor.end_date }}";
+        function diff_date(a, b) {
+            var min = a.split(":")[1];
+            var hours = Number(a.split(":")[0]);
+            var output = "";
+            while (Number(hours) < Number(b.split(":")[0])) {
+                output += "<option value='" + hours + ":" + min + "'>" + hours + ":" + min + "</option>";
+                if (min == "00") {
+                    min = "30";
+
+                }
+                else {
+                    min = "00";
+                    hours += 1;
+                }
+            }
+            return output;
+        }
+        function arr_diff(a1, a2) {
+
+            var a = [], diff = [];
+
+            for (var i = 0; i < a1.length; i++) {
+                a[a1[i]] = true;
+            }
+
+            for (var i = 0; i < a2.length; i++) {
+                if (a[a2[i]]) {
+                    delete a[a2[i]];
+                } else {
+                    a[a2[i]] = true;
+                }
+            }
+
+            for (var k in a) {
+                diff.push(Number(k));
+            }
+
+            return diff;
+        };
+        function get_data(start, end) {
+
+        }
+        $('#tarix_select').append(diff_date(start_date, end_date));
+        var date = new Date();
+        var my_dates = [{% for x in doctor.get_doctor_time %}date.setDate({{ x|slice:"3:5" }}){% if forloop.last %}{% else %}, {% endif %}{% endfor %}];
+        var full_date = [date.setDate(01), date.setDate(02), date.setDate(03), date.setDate(04), date.setDate(05), date.setDate(06), date.setDate(07), date.setDate(08), date.setDate(09), date.setDate(10), date.setDate(11), date.setDate(12), date.setDate(13), date.setDate(14), date.setDate(15), date.setDate(16), date.setDate(17), date.setDate(18), date.setDate(19), date.setDate(20), date.setDate(21), date.setDate(22), date.setDate(23), date.setDate(24), date.setDate(25), date.setDate(26), date.setDate(27), date.setDate(28), date.setDate(29), date.setDate(30), date.setDate(31)];
+        var disable_date = arr_diff(full_date, my_dates);
+        var today = new Date();
+        $(document).ready(function () {
+
+            $('#meet-calendar').multiDatesPicker({
+                pickableRange: 1,
+                adjustRangeToDisabled: true,
+                {#	            minDate: 30,#}
+                minDate:  0,
+                maxDate: "+1M +10D", // today
+{#                maxDate: 31,// +30 days from today#}
+                addDisabledDates: disable_date,
+
+                onSelect: function (dateText, inst) {
+                    $('#doctor_time').val(dateText);
+                },
+                removeDates: function (dates, type) {
+                    $('#doctor_time').val("");
+                }
+            });
+        });
+    </script>
+{% endblock %}

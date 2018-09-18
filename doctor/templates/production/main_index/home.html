@@ -1,0 +1,57 @@
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+   <div class="container-fluid">
+    <div class="row">
+    <div class="col-sm-12">
+    <div class="embed-responsive embed-responsive-16by9">
+      <video width="1316" height="414" poster="https://img.youtube.com/vi/u8-VfNBYYTA/maxresdefault.jpg" id="bgvid" playsinline autoplay muted loop>
+  <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
+    <source src="{% static 'videos/tezsagal-2.mp4' %}" type="video/wmv">
+    <source src="{% static 'videos/tezsagal-2.mp4' %}" type="video/mp4">
+    </video>
+    </div>
+    </div>
+    </div>
+   <section class="two-column bg-over">
+			<div class="container">
+               {% comment %} <div class="sec-title text-center">
+                    <h2><span>{% trans 'Axtarış' %}</span></h2>
+
+                </div>{% endcomment %}
+                <div class="row pb97">
+                    <form action="{% url 'base:search' %}" method="get" enctype="multipart/form-data" id="searchForm">
+                        <div class="col-md-5 col-5 col-xs-12">
+                            <select class="js-example-basic-single search1 doct" data-placeholder="{% trans 'İxtisası seçin' %}" name="ilness" multiple="multiple">
+                                {% if ill %}
+                                    {% for xestelik in ill %}
+                                        <option value="{{ xestelik.id }}">{{ xestelik.name }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-4 col-xs-12">
+                            <select class="js-example-basic-single search2 doct" name="area"  multiple="multiple" data-placeholder="{% trans 'Şəhəriseçin' %}">
+                                 {% if country %}
+                                    {% for city in country %}
+                                        <option value="{{ city.id }}">{{ city.name }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-3 col-xs-12">
+                            <div class="link_btn float_left">
+                                <a href="#" class="thm-btn enter-btn" onclick="$('#searchForm').submit()">
+                                    <i class="fa fa-search" aria-hidden="true" ></i></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+			</div>
+		</section>
+
+  </div>
+{% endblock %}

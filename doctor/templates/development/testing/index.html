@@ -1,0 +1,64 @@
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% block content %}
+   <div class="container-fluid">
+    <div class="row">
+    <div class="col-sm-12">
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe src="https://www.youtube.com/embed/u8-VfNBYYTA?autoplay=1&loop=1&controls=0&rel=0&showinfo=0&color=white&iv_load_policy=3&list=PLqDErXhe_iOdAyfnwftkUs1TByFTKCUFq" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div>
+    </div>
+    </div>
+   <section class="two-column bg-over">
+			<div class="container">
+                <div class="sec-title text-center">
+                    <h2><span>{% trans 'Axtarış' %}</span></h2>
+
+                </div>
+                <div class="row">
+                    <form action="{% url 'base:search' %}" method="get" enctype="multipart/form-data" id="searchForm">
+                        <div class="col-md-5 col-5 col-xs-12">
+                            <select class="js-example-basic-single search1 doct" name="ilness" multiple="multiple">
+                                <option value="AL"></option>
+                                <option value="WY">qrip</option>
+                                <option value="WY">bas agrisi</option>
+                                <option value="WY">qurd</option>
+                                <option value="WY">mede agrisi</option>
+                                <option value="WY">soyug deyme</option>
+                                <option value="WY">urek</option>
+                                <option value="WY">revmatizma</option>
+                                <option value="WY">iflic</option>
+                                <option value="WY"></option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-4 col-xs-12">
+                            <select class="js-example-basic-single search2 doct" name="area" multiple="multiple">
+                                <option value="AL" placeholder="Olke, seher ,rayon"></option>
+                                 <option value="WY">Sumqayit</option>
+                                 <option value="WY">Seki</option>
+                                 <option value="WY">Gence</option>
+                                 <option value="WY">Baki</option>
+                                 <option value="WY">Batumi</option>
+                                 <option value="WY">Tiflis</option>
+                                 <option value="WY">Tbilisi</option>
+                                 <option value="WY">Marneuli</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-3 col-xs-12">
+                            <div class="link_btn float_right">
+                                <a href="#" class="thm-btn enter-btn" onclick="$('#searchForm').submit()">
+                                    <i class="fa fa-search" aria-hidden="true" ></i>{% trans 'Həkimini tap' %}</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+			</div>
+		</section>
+
+  </div>
+<div id="vidtop-content">
+
+</div>
+{% endblock %}

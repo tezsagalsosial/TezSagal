@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+
+	<meta charset="UTF-8">
+	<title> Tezsagal.az ||  Ana səhifə </title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/responsive.css ">
+    <link rel="stylesheet" type="text/css" href="css/customize.css">
+	<link rel="stylesheet" type="text/css" href="fonts/flaticon.css" />
+    <link rel="stylesheet" type="text/css" href="css/select2.min.css" />
+
+	<!--favicon-->
+	<link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- facebook share headers -->
+    <meta property="og:url" content="https://tezsagal.az/" />
+    <meta property="og:type" content="doctor" />
+    <meta property="og:title" content="tezsagal.az" />
+    <meta property="og:description" content="Pasientləri və həkimləri eyni məkanda birləşdirən Platforma" />
+    <meta property="og:image" content="https://tezsagal.az/static/images/news/2.jpg" />
+
+</head>
+
+<body>
+	<div class="boxed_wrapper">
+
+		<!-- Menu -->
+		<section class="mainmenu-area stricky {% if user.is_authenticated %}login{% endif %}">
+		    <div class="container">
+		    	<div class="row">
+		    		<div class="col-md-3">
+						<div class="main-logo">
+							<a href="{% url 'base:index' %}" class="tezsagal-logo">
+                                <img src="{% static 'images/logo/logo.png' %}" class="base-logo-img" alt="">Tezsagal
+                            </a>
+						</div>
+					</div>
+					<div class="{% if user.is_authenticated %}col-md-5{% else %}col-md-5{% endif %} menu-column">
+						<nav class="main-menu">
+				            <div class="navbar-header">
+				                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				                    <span class="icon-bar"></span>
+				                    <span class="icon-bar"></span>
+				                    <span class="icon-bar"></span>
+				                    <span class="icon-bar"></span>
+				                </button>
+				            </div>
+				            <div class="navbar-collapse collapse clearfix">
+				                <ul class="navigation clearfix">
+
+				                   {% comment %}<li class="current"><a href="{% url 'base:index' %}">{% trans 'Ana səhifə' %}</a></li>{% endcomment %}
+                                    {% for page in flatpages %}
+                                        {% if page.url == '/about-us/' %}
+                                            <li><a href="/{{ LANGUAGE_CODE }}/pages{{ page.url }}">{% trans 'Haqqımızda' %}</a></li>
+                                        {% endif %}
+
+                                    {% endfor %}
+
+
+									<li><a href="{% url 'base:doctor-blog' %}">{% trans 'Forum' %}</a>
+									{% comment %}<ul>
+										<li><a href="service.html">Services</a></li>
+										<li><a href="dental-implants.html">Dental Implants</a></li>
+										<li><a href="heart-specialist.html">Heart Specialist</a></li>
+										<li><a href="lab-reports.html">Lab Reports</a></li>
+										<li><a href="laboratory-tests.html">Laboratory Tests</a></li>
+										<li><a href="out-patient-service.html">Out Patient Service</a></li>
+
+
+									</ul>{% endcomment %}
+									</li>
+
+									<li class="dropdown"><a href="{% url 'base:doctor-tv' %}">{% trans 'Tv' %}</a>
+									{% comment %}<ul>
+										<li><a href="gallery.html">Gallery</a></li>
+										<li><a href="gallery-two.html">Gallery Two</a></li>
+										<li><a href="team.html">Our Doctors</a></li>
+										<li><a href="doctor-details.html">Doctor Details</a></li>
+										<li><a href="faq.html">Faq</a></li>
+										<li><a href="error.html">Error</a></li>
+
+									 </ul>{% endcomment %}
+									</li>
+
+									{% comment %}<li class="dropdown"><a href="#">{% trans 'Bloqlar' %}</a>
+									<ul>
+
+										<li><a href="blog-grid.html">Blog Grid</a></li>
+										<li><a href="blog-with-sidebar.html">Blog With Sidebar</a></li>
+										<li><a href="blog-details.html">Blog Details</a></li>
+
+									 </ul>
+									</li>{% endcomment %}
+									<li><a href="#" id="contact">{% trans 'Əlaqə' %}</a></li>
+                                    <li class="dropdown"><a href="#"><img src="/static/images/flags/lang_{{ LANGUAGE_CODE }}.png" alt="{{ LANGUAGE_CODE }}"></a>
+									<ul>
+                                        {% for lang in LANGUAGES %}
+                                            <li><a href="/{{ lang.0 }}{{ request.path|slice:"3:" }}">{{ lang.1 }}</a></li>
+                                          {% endfor %}
+                                    </ul>
+                                    </li>
+				                </ul>
+                               <!--  Mobile Menu -->
+				                <ul class="mobile-menu clearfix">
+
+				                   <li class="current"><a href="{% url 'base:index' %}">{% trans 'Ana səhifə' %}</a></li>
+
+								{% for page in flatpages %}
+                                        {% if page.url == '/about-us/' %}
+                                            <li><a href="/{{ LANGUAGE_CODE }}/pages{{ page.url }}">{% trans 'Haqqımızda' %}</a></li>
+                                        {% endif %}
+
+                                    {% endfor %}
+
+								<li><a href="{% url 'base:doctor-blog' %}">{% trans 'Forum' %}</a>
+								</li>
+
+								<li><a href="{% url 'base:doctor-tv' %}">{% trans 'Tv' %}</a>
+								</li>
+
+								<li><a href="#" id="contact">{% trans 'Əlaqə' %}</a>
+								</li>
+								<li class="dropdown"><a href="#"><img style="width: 20px" src="/static/images/flags/lang_{{ LANGUAGE_CODE }}.png" alt="{{ LANGUAGE_CODE }}"></a>
+									<ul>
+                                        {% for lang in LANGUAGES %}
+                                            <li><a href="/{{ lang.0 }}{{ request.path|slice:"3:" }}">{{ lang.1 }}</a></li>
+                                          {% endfor %}
+                                    </ul>
+                                </li>
+                                {% if user.is_authenticated %}
+                                    <li class="dropdown">
+                                       <img class="avatar-img" src="{% static 'images/team/avatar.png' %}" alt="">
+                                       <a href="">{{ request.user.get_full_name }}</a>
+									<ul>
+                                        {% if request.user.usertype == 1 %}
+										<li><a href="{% url 'base:dashboard' %}">{% trans 'Profilinizi görün' %}</a></li>
+                                        {% endif %}
+                                        <li><a href="{% url 'account:logout' %}">{% trans 'Çıxış' %}</a></li>
+                                    </ul>
+                                   </li>
+                                {% endif %}
+				                </ul>
+				            </div>
+				        </nav>
+					</div>
+                    {% if user.is_authenticated %}
+                    <div class="col-md-3 menu-column">
+						<nav class="main-menu">
+				            <div class="navbar-header">
+				                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				                    <span class="icon-bar"></span>
+				                    <span class="icon-bar"></span>
+				                    <span class="icon-bar"></span>
+				                    <span class="icon-bar"></span>
+				                </button>
+				            </div>
+				            <div class="navbar-collapse collapse clearfix">
+				                <ul class="navigation clearfix">
+                                   <li class="dropdown">
+                                       <img class="avatar-img" src="{% static 'images/team/avatar.png' %}" alt="">
+                                       <a href="">{{ request.user.get_full_name }}</a>
+									<ul>
+                                        {% if request.user.usertype == 1 %}
+										<li><a href="{% url 'base:dashboard' %}">{% trans 'Profilinizi görün' %}</a></li>
+                                        {% endif %}
+                                        <li><a href="{% url 'account:logout' %}">{% trans 'Çıxış' %}</a></li>
+                                    </ul>
+                                   </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    {% else %}
+					<div class="col-md-2">
+						<div class="right-area">
+						   <div class="link_btn float_right">
+							   <a href="{% url 'account:login' %}" class="thm-btn mnf120">{% trans 'Daxil ol' %}</a>
+						   </div>
+						</div>
+					</div>
+                    <div class="col-md-2">
+						<div class="right-area">
+						   <div class="link_btn float_right">
+							   <a href="{% url 'account:register' %}" class="thm-btn">{% trans 'Qeydiyyat' %}</a>
+						   </div>
+						</div>
+					</div>
+                    {% endif %}
+
+		    	</div>
+
+		    </div>
+		</section>
+
+		<div class="container-fluid">
+    <div class="row">
+    <div class="col-sm-12">
+    <div class="embed-responsive embed-responsive-16by9">
+      <video width="1316" height="414" poster="https://img.youtube.com/vi/u8-VfNBYYTA/maxresdefault.jpg" id="bgvid" playsinline autoplay muted loop>
+  <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
+    <source src="videos/tezsagal.mp4" type="video/wmv">
+    <source src="videos/tezsagal.mp4" type="video/mp4">
+    </video>
+    </div>
+    </div>
+    </div>
+   <section class="two-column bg-over">
+			<div class="container">
+
+                <div class="row">
+                    <form action="/search" method="get" enctype="multipart/form-data" id="searchForm">
+                        <div class="col-md-5 col-5 col-xs-12">
+                            <select class="js-example-basic-single search1 doct" name="ilness" multiple="multiple">
+                                <option value="AL"></option>
+                                <option value="WY">qrip</option>
+                                <option value="WY">bas agrisi</option>
+                                <option value="WY">qurd</option>
+                                <option value="WY">mede agrisi</option>
+                                <option value="WY">soyug deyme</option>
+                                <option value="WY">urek</option>
+                                <option value="WY">revmatizma</option>
+                                <option value="WY">iflic</option>
+                                <option value="WY"></option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-4 col-xs-12">
+                            <select class="js-example-basic-single search2 doct" name="area" multiple="multiple">
+                                <option value="AL" placeholder="Olke, seher ,rayon"></option>
+                                 <option value="WY">Sumqayit</option>
+                                 <option value="WY">Seki</option>
+                                 <option value="WY">Gence</option>
+                                 <option value="WY">Baki</option>
+                                 <option value="WY">Batumi</option>
+                                 <option value="WY">Tiflis</option>
+                                 <option value="WY">Tbilisi</option>
+                                 <option value="WY">Marneuli</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-3 col-xs-12">
+                            <div class="link_btn float_right">
+                                <a href="#" class="thm-btn enter-btn" onclick="$('#searchForm').submit()">
+                                    <i class="fa fa-search" aria-hidden="true" ></i>Həkimini tap</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+			</div>
+		</section>
+
+  </div>
+
+
+		<footer class="footer bg-style" style="background-image:url(images/background/bg4.jpg);">
+			<div class="container">
+				<div class="footer-upper">
+
+					<div class="row">
+						<div class="item col-md-6 col-sm-6">
+							<div class="footer-widget about-widget">
+								<a href="/" class="tezsagal-logo">
+                                    <img src="images/logo/logo.png" class="base-logo-img base-logo-img-footer" alt="">Tezsagal
+                                </a>
+
+							</div>
+						</div>
+
+
+
+					</div>
+				</div>
+				<!--Footer Bottom-->
+				<div class="footer-bottom">
+					<div class="pull-left"><div class="copyright-text">{% trans 'Müəllif hüquqları qorunur' %} TUKOSA MMC {% now 'Y' %}.</div></div>
+					<div class="pull-right">
+						<div class="social-links pull-right">
+                            {% if base_menu_contact.facebook %}
+                            <a target="_blank" href="{{ base_menu_contact.facebook }}"><span class="fa fa-facebook-f"></span></a>
+                            {% endif %}
+                            {% if base_menu_contact.twitter %}
+                            <a target="_blank" href="{{ base_menu_contact.twitter }}"><span class="fa fa-twitter"></span></a>
+                            {% endif %}
+                            {% if base_menu_contact.linkedin %}
+                            <a target="_blank" href="{{ base_menu_contact.linkedin }}"><span class="fa fa-linkedin"></span></a>
+                            {% endif %}
+                            {% if base_menu_contact.instagram %}
+                            <a target="_blank" href="{{ base_menu_contact.instagram }}"><span class="fa fa-instagram"></span></a>
+                            {% endif %}
+                            {% if base_menu_contact.pinterest %}
+                            <a href="{{ base_menu_contact.pinterest }}"><span class="fa fa-pinterest-p"></span></a>
+                            {% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+
+
+
+	<!-- Scroll Top Button -->
+	<button class="scroll-top tran3s color2_bg">
+		<span class="fa fa-angle-up"></span>
+	</button>
+	<!-- pre loader  -->
+	<div class="preloader"></div>
+
+		<!-- jQuery js -->
+		<script src="js/jquery.js"></script>
+		<!-- bootstrap js -->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- jQuery ui js -->
+		<script src="js/jquery-ui.js"></script>
+		<!-- owl carousel js -->
+		<script src="js/owl.carousel.min.js"></script>
+		<!-- jQuery validation -->
+		<script src="js/jquery.validate.min.js"></script>
+		<!-- google map -->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRvBPo3-t31YFk588DpMYS6EqKf-oGBSI"></script>
+		<script src="js/gmap.js"></script>
+		<!-- mixit up -->
+		<script src="js/wow.js"></script>
+		<script src="js/jquery.mixitup.min.js"></script>
+		<script src="js/jquery.fitvids.js"></script>
+		<script src="js/bootstrap-select.min.js"></script>
+		<script src="js/menuzord.js"></script>
+        <!-- select To js -->
+        <script src="js/select2.min.js"></script>
+
+		<!-- revolution slider js -->
+		<script src="assets/revolution/js/jquery.themepunch.tools.min.js"></script>
+		<script src="assets/revolution/js/jquery.themepunch.revolution.min.js"></script>
+		<script src="assets/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+		<script src="assets/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+		<script src="assets/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+		<script src="assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+		<script src="assets/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+		<script src="assets/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+		<script src="assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+		<script src="assets/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+		<script src="assets/revolution/js/extensions/revolution.extension.video.min.js"></script>
+
+		<!-- fancy box -->
+		<script src="js/jquery.fancybox.pack.js"></script>
+		<script src="js/jquery.polyglot.language.switcher.js"></script>
+		<script src="js/nouislider.js"></script>
+		<script src="js/jquery.bootstrap-touchspin.js"></script>
+		<script src="js/SmoothScroll.js"></script>
+		<script src="js/jquery.appear.js"></script>
+		<script src="js/jquery.countTo.js"></script>
+		<script src="js/jquery.flexslider.js"></script>
+		<script src="js/imagezoom.js"></script>
+		<script src="js/validation.js"></script>
+        <script id="map-script" src="js/default-map.js"></script>
+		<script src="js/custom.js"></script>
+
+	</div>
+    <script type="application/javascript">
+        $(document).ready(function () {
+            $("#contact").click(function() {
+                $('html,body').animate({
+                    scrollTop: $(".second").offset().top},
+                    'slow');
+            });
+            $('.search1').select2({
+                placeholder: "{% trans 'Xəstəliyə görə axtarış' %}",
+            });
+            $('.search2').select2({
+                placeholder: "{% trans 'Məkan/Şəhər/Ölkə' %}",
+            });
+        });
+
+
+    </script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/599b5b7f1b1bed47ceb05dfc/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+
+</html>
+
+
+

@@ -1,0 +1,163 @@
+
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+
+{% block facebook %}
+     <meta property="og:url" content="https://{{ request.get_host }}{{ request.path }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ object.title }}" />
+    <meta property="og:description" content="{{ object.text|striptags|safe }}" />
+    <meta property="og:image" content="https://{{ request.get_host }}/media/{{ object.image }}" />
+{% endblock %}
+ {% block content %}
+     <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=640814552760977";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!--Page Title-->
+        {% comment %}<section class="page-title">
+        	<div class="container">
+            	<div class="row clearfix">
+                    <div class="col-md-6 col-sm-6 col-xs-12 pull-left">
+						<h1>{% trans 'Blog' %} </h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+					</div>
+
+					<div class="overlay"></div>
+                </div>
+            </div>
+        </section>{% endcomment %}
+        <!--Page Title Ends-->
+
+		 <!--Sidebar Page-->
+		<div class="sidebar-page">
+			<div class="container">
+				<div class="row clearfix">
+					<!--Content Side-->
+					<div class="col-md-8 col-sm-12 col-xs-12">
+						<section class="blog-container">
+							<!--Blog Post-->
+							<article class="blog-post style-two">
+								<div class="post-inner">
+									<div class="image-box">
+										<figure><a href="#"><img src="/media/{{ object.image }}" alt=""></a></figure>
+										<div class="date">
+											<h5>{{ object.date|date:'d' }}</h5>
+											<p>{{ object.date|date:'M' }}</p>
+										</div>
+									</div>
+									<div class="post-header">
+										<h2><a href="">{{ object.title }}</a></h2>
+										<ul class="post-info">
+											<li><span class="flaticon-black"></span>&ensp; {{ object.author.user.get_full_name }}</li>
+											<li><span class="flaticon-comments"></span>&ensp; 0  </li>
+
+										</ul>
+									</div>
+									<div class="post-desc">
+                                        {% autoescape off %}
+										    {{ object.text }}
+                                        {% endautoescape %}
+
+									</div>
+
+
+
+
+
+								</div>
+							</article>
+							<!--Comments Area-->
+
+
+							<div class="leave-comment">
+								<div class="section-title">
+									<h3>{% trans 'Rəy yaz' %}</h3>
+								</div>
+
+                            <div class="fb-comments " width="100%"
+                                 data-href="https://{{ request.META.HTTP_HOST }}{% url 'base:doctor-blog' object.slug %}"></div>
+							</div>
+						</section>
+					</div>
+					<!--Content Side-->
+
+					<!--Sidebar-->
+					<div class="col-md-4 col-sm-6 col-xs-12">
+						{% comment %}<aside class="sidebar">
+
+							<div class="sidebar_search">
+								<form action="#">
+									<input type="text" placeholder="Search....">
+									<button class="tran3s color1_bg"><i class="fa fa-search" aria-hidden="true"></i></button>
+								</form>
+							</div> <!-- End of .sidebar_styleOne -->
+
+							<!-- Popular Categories -->
+							<div class="widget popular-categories wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+								<div class="sidebar-title"><h3>Categories</h3></div>
+
+								<ul class="list">
+									<li><a href="#"><span class="icon-left fa fa-chevron-right"></span>Ambulance (6)</a></li>
+									<li><a href="#"><span class="icon-left fa fa-chevron-right"></span>Brain (9)</a></li>
+									<li><a href="#"><span class="icon-left fa fa-chevron-right"></span>Cardinal (3)</a></li>
+									<li><a href="#"><span class="icon-left fa fa-chevron-right"></span>Disease (5)</a></li>
+									<li><a href="#"><span class="icon-left fa fa-chevron-right"></span>Illness (7)</a></li>
+								</ul>
+
+							</div>
+
+							<div class="sidebar_tags wow fadeInUp animated" data-wow-duration="1500ms" style="visibility: visible; animation-name: fadeInUp;">
+								<div class="sidebar-title">
+									<h3>Popular Tags</h3>
+								</div>
+
+								<ul>
+									<li><a href="#" class="tran3s">Amazing</a></li>
+									<li><a href="#" class="tran3s">Clean</a></li>
+									<li><a href="#" class="tran3s">Mobile</a></li>
+									<li><a href="#" class="tran3s">Flat</a></li>
+									<li><a href="#" class="tran3s">Design</a>  </li>
+									<li><a href="#" class="tran3s">Ios</a></li>
+									<li><a href="#" class="tran3s">Themes</a> </li>
+									<li><a href="#" class="tran3s">Clean</a> </li>
+
+								</ul>
+							</div> <!-- End of .sidebar_tags -->
+
+							<div class="widget popular-categories wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+								<div class="sidebar-title"><h3>Archives</h3></div>
+
+								<ul class="list">
+									<li><a href="#"><span class="icon-left fa fa-chevron-right"></span>February 2016 (6)</a></li>
+									<li><a href="#"><span class="icon-left fa fa-chevron-right"></span>September 2016 (9)</a></li>
+									<li><a href="#"><span class="icon-left fa fa-chevron-right"></span>July 2016 (3)</a></li>
+									<li><a href="#"><span class="icon-left fa fa-chevron-right"></span>Augest 2016 (5)</a></li>
+									<li><a href="#"><span class="icon-left fa fa-chevron-right"></span>October 2016 (7)</a></li>
+								</ul>
+
+							</div>
+
+							<div class="call wow fadeInUp" data-wow-duration="1500ms" style="background-image:url(images/resources/call.jpg);">
+
+								<div class="content-box">
+									<div class="overlay">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+										<h2><span class="fa fa-call"></span>Call:  123 4561 5523</h2>
+									</div>
+
+								</div>
+
+							</div>
+						</aside>{% endcomment %}
+					</div>
+					<!--Sidebar-->
+				</div>
+			</div>
+		</div>
+
+{% endblock %}

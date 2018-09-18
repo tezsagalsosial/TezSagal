@@ -1,0 +1,309 @@
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% load static %}
+{% load base_account %}
+{% block aditional-css %}
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+{% block content %}
+<style>
+
+        span.stars, span.stars span {
+            display: block;
+            background: url({% static 'images/resources/stars.png' %}) 0 -16px repeat-x;
+            width: 80px;
+            height: 16px;
+        }
+
+        span.stars span {
+            background-position: 0 0;
+        }
+</style>
+
+
+    <section class="two-column">
+        <div class="container">
+            {% comment %}<div class="sec-title text-center">
+                    <h2><span>{% trans 'Axtarış' %}</span></h2>
+
+                </div>{% endcomment %}
+            <form action="{% url 'base:search' %}" method="get" enctype="multipart/form-data" id="searchForm">
+                <div class="row">
+
+                    <div class="col-md-5 col-5 col-xs-12">
+                        <select class="js-example-basic-single search1 doct" name="ilness" multiple="multiple">
+                            {% if illnes %}
+                                {% for data in illnes %}
+                                    <option value="{{ data }}" selected hidden>{{ data|get_xestelik_name }}</option>
+                                {% endfor %}
+                            {% endif %}
+                            {% if ill %}
+                                {% for xestelik in ill %}
+                                    <option value="{{ xestelik.id }}">{{ xestelik.name }}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-4 col-xs-12">
+                        <select class="js-example-basic-single search2 doct" name="area" multiple="multiple">
+                            {% if areas %}
+                                {% for data in areas %}
+                                    <option value="{{ data }}" selected hidden>{{ data|get_country_name }}</option>
+                                {% endfor %}
+                            {% endif %}
+                            {% if country %}
+                                {% for city in country %}
+                                    <option value="{{ city.id }}">{{ city.name }}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="col-md-3 col-3 col-xs-12">
+                        <div class="link_btn float_left">
+                            <a href="#" class="thm-btn enter-btn" onclick="$('#searchForm').submit()">
+                                <i class="fa fa-search" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row" style="background: #eee;padding: 17px 0px;">
+                    <div class="col-md-2">
+                        <p>{% trans 'Qiymət' %}</p>
+                        <select name="money" class="form-control" id="">
+                            <option value="" hidden>{% trans 'qiyməti seçin' %}</option>
+                            {% if money %}
+                                <option value="{{ money }}" selected hidden>{% if money == '-1' %}{% trans 'Bütün' %}{% else %}{{ money }} manat{% endif %}</option>
+                            {% endif %}
+                            <option value="-1">{% trans 'Bütün' %}</option>
+                            <option value="0-50">{% trans '0-50 manat' %}</option>
+
+                            <option value="50-100">{% trans '50-100 manat' %}</option>
+
+                            <option value="100-100000">{% trans '100+ manat' %}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <p>{% trans 'Cinsi' %}</p>
+                        <select name="gender" class="form-control" id="">
+                            <option value="" hidden>{% trans 'cinsi seçin' %}</option>
+                            {% if gender %}
+                                <option value="{{ gender }}" selected hidden>{% if gender == '1' %}Kişi
+                                    {% elif gender == '0' %}{% trans 'Hər İkisi ' %}{% else %}Qadın{% endif %}</option>
+                            {% endif %}
+                            <option value="0">{% trans 'Hər İkisi ' %}</option>
+                            <option value="1">{% trans 'Kişi' %}</option>
+
+                            <option value="2">{% trans 'Qadın' %}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <p>{% trans 'Profil göstəricisi' %}</p>
+                        <select name="gosterici" class="form-control" id="">
+                            <option value="" hidden>{% trans 'göstəricini seçin' %}</option>
+                            {% if goster %}
+                                <option value="{{ goster }}" selected hidden>{% trans 'göstəricini seçin' %}</option>
+                            {% endif %}
+                            <option {% if goster == '0' %} selected {% endif %} value="0">{% trans 'Bütün' %}</option>
+                            <option {% if goster == '1' %} selected {% endif %}  value="1">{% trans '20 %' %}</option>
+                            <option {% if goster == '2' %} selected {% endif %}  value="2">{% trans '40 %' %}</option>
+                            <option {% if goster == '3' %} selected {% endif %} value="3">{% trans '60 %' %}</option>
+                            <option {% if goster == '4' %} selected {% endif %} value="4">{% trans '80 %' %}</option>
+                            <option {% if goster == '5' %} selected {% endif %}  value="5">{% trans '100 %' %}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <p>{% trans 'Reytinq' %}</p>
+
+                        <fieldset class="rating">
+                            <input {% if rating_f == '5' %}checked {% endif %} type="radio" id="star5" name="rating"
+                                   value="5"/><label class="full" for="star5" title="Awesome - 5 stars"></label>
+                            <input {% if rating_f == '4.5' %}checked {% endif %} type="radio" id="star4half"
+                                   name="rating" value="4.5"/><label class="half" for="star4half"
+                                                                     title="Pretty good - 4.5 stars"></label>
+                            <input {% if rating_f == '4' %}checked {% endif %} type="radio" id="star4" name="rating"
+                                   value="4"/><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                            <input {% if rating_f == '3.5' %}checked {% endif %} type="radio" id="star3half"
+                                   name="rating" value="3.5"/><label class="half" for="star3half"
+                                                                     title="Meh - 3.5 stars"></label>
+                            <input {% if rating_f == '3' %}checked {% endif %} type="radio" id="star3" name="rating"
+                                   value="3"/><label class="full" for="star3" title="Meh - 3 stars"></label>
+                            <input {% if rating_f == '2.5' %}checked {% endif %} type="radio" id="star2half"
+                                   name="rating" value="2.5"/><label class="half" for="star2half"
+                                                                     title="Kinda bad - 2.5 stars"></label>
+                            <input {% if rating_f == '2' %}checked {% endif %} type="radio" id="star2" name="rating"
+                                   value="2"/><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                            <input {% if rating_f == '1.5' %}checked {% endif %} type="radio" id="star1half"
+                                   name="rating" value="1.5"/><label class="half" for="star1half"
+                                                                     title="Meh - 1.5 stars"></label>
+                            <input {% if rating_f == '1' %}checked {% endif %} type="radio" id="star1" name="rating"
+                                   value="1"/><label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                            <input {% if rating_f == '0.5' %}checked {% endif %} type="radio" id="starhalf"
+                                   name="rating" value="0.5"/><label class="half" for="starhalf"
+                                                                     title="Sucks big time - 0.5 stars"></label>
+                        </fieldset>
+
+                    </div>
+                    <br>
+                    <div class="col-md-3">
+                        <ul>
+                            <li class="text-left"><input type="checkbox"
+                                                         style="float:left;"><span>{% trans 'Sertifikat' %}</span></li>
+                            <li class="text-left"><input type="checkbox"
+                                                         style="float:left;"><span>{% trans 'Onlayn məsləhət' %}</span>
+                            </li>
+                            <li class="text-left"><input type="checkbox"
+                                                         style="float:left;"><span>{% trans 'Verified' %}</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <br>
+
+                {% if banner %}
+                    <div class="row banner" style="display: inline;">
+                        {% for x in banner %}
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ban">
+                                <p><img src="/media/{{ x.picture }}" alt=""></p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="row banner" style="display: inline-table;">
+                        <div class="col-sm-4 col-sm-4 col-xs-12 ban">
+                            <p>{% trans 'Burada sizin reklam ola bilər' %}</p>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12 ban ban-mob">
+                            <p>{% trans 'Burada sizin reklam ola bilər' %}</p>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12 ban ban-mob">
+                            <p>{% trans 'Burada sizin reklam ola bilər' %}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            <br>
+            <br>
+            {% if data %}
+                {% for x in data %}
+                    <!-- doctor list -->
+                    <div class="row doctor_list doct_border doct-head">
+                        <div class="col-md-4 col-sm-4 col-xs-12" style="margin: 13px 0px;"><b>
+                            {{ x.user.get_full_name }}<!-- <i class="fa fa-check-circle" style="font-size:24px; margin-left: 80px; color:darkslateblue;"></i> --></b>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12 position-doctor" style="margin: 13px 0px;">
+                            <b>
+                                {% for z in x.get_xestelik %}{{ z.xestelik.name }}{% if forloop.last %}{% else %},
+                                {% endif %}{% endfor %}
+                            </b>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12 position-money"
+                             style="text-align: right; color: #fff; margin: 13px 0px;"><span
+                                style="background: #ff2121;padding: 7px 13px;border-radius: 20px;"
+                                class="reqem">{{ x.qebul_qiymeti|default:"0" }} {{ x.prize_type|default:"azn" }}</span>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12"
+                             style="text-align: right; color: #fff; margin-top: 15px"></div>
+                    </div>
+                    <div class="row doct_border" style="    padding: 13px 0;">
+                        <div class="col-md-3 col-sm-3 col-xs-12 textalingcenter" style="text-align: center">
+                            {% if x.user.profile_picture %}
+                                <img style="max-width: 150px; max-height: 150px;  text-align: center; border-radius: 100%;"
+                                     id="irc_ilrp_mut" src="/media/{{ x.user.profile_picture }}" height="250"
+                                     width="250">
+                            {% else %}
+                                <img style="max-width: 120px; max-height: 120px; text-align: center;" id="irc_ilrp_mut"
+                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb_kkdRW5lXoFVMDu3xHTCFsxLsyk9fNb60tIH5_65-q01zzRPjZeEkA"
+                                     height="250" width="250" style="margin-top: 69px;">
+                            {% endif %}
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <ul>
+                                <li>
+                                    <p style="text-align: left;">{% trans 'Profil göstəricisi' %} {{ x.check_status }}%</p>
+                                </li>
+                                <li>
+                                    <div id="myProgress">
+                                        <div id="myBar"
+                                             style="width: {{ x.check_status }}%;background: #20bdb7">{{ x.check_status }}%
+                                        </div>
+                                    </div>
+                                </li>
+                                <br>
+                                <h5>{% trans 'Reytinq göstəricisi' %}</h5>
+                                <p style="color:#20bdb7; font-size: 30px;">
+                                    <span class="stars">{{ x.rate }}</span>
+                                </p>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <ul>
+                                <li><i class="glyphicon glyphicon-map-marker" style="color:darkslateblue;"><span
+                                        style="color: black;"> {% trans 'Məkan' %}</span></i></li>
+                                <li><span>{{ x.base_name|default:"" }}</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <ul>
+                                <li><i class="fa fa-star"
+                                       style="font-size:24px; color: #FFD700"></i><span> {% trans 'Özəllik' %}</span>
+                                </li>
+                                <li><i class="fa fa-dot-circle-o"
+                                       aria-hidden="true"><span> {% trans 'Online məsləhət' %}</span></i></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <!-- gorus iste profilini  gor -->
+                    <div class="row apply">
+                        <div class="col-md-10 col-sm-10 col-xs-6">
+                            <button class="appoinment" {% if not request.user.is_authenticated %}
+                                    onclick="location.href='{% url 'account:login' %}'"
+                                    {% else %}onclick="location.href='{% url 'base:doctor-meet' %}?doctor={{ x.id }}&user={{ request.user.id }}'"{% endif %}>
+                                <i class="fa fa-calendar" style="font-size:18px;"><span
+                                        style="margin-left: 8px;">{% trans 'GÖRÜŞ İSTƏ' %}</span></i></button>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-6">
+                            <button class="profile_gor"
+                                    onclick="location.href='{% url 'base:doctor-detail' slug=x.user.slug %}'"><i
+                                    class="fa fa-file-text-o" style="font-size:18px; color: white;"><span
+                                    style="margin-left: 8px; color: white;">{% trans 'PROFİLİNİ GÖR' %}</span></i>
+                            </button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                {% endfor %}
+            {% else %}
+                <p class="text-center">{% trans 'Axtarışınıza uyğun həkim tapılmadı' %}</p>
+            {% endif %}
+            <br>
+            <br>
+            <br>
+
+        </div>
+    </section>
+
+
+
+
+{% endblock %}
+{% block footer-script %}
+    {{ block.super }}
+    <script>
+        $.fn.stars = function() {
+            return $(this).each(function() {
+                // Get the value
+                var val = parseFloat($(this).html());
+                // Make sure that the value is in 0 - 5 range, multiply to get width
+                var size = Math.max(0, (Math.min(5, val))) * 16;
+                // Create stars holder
+                var $span = $('<span />').width(size);
+                // Replace the numerical value with stars
+                $(this).html($span);
+            });
+        };
+        $(function() {
+            $('span.stars').stars();
+        });
+    </script>
+{% endblock %}

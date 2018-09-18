@@ -1,0 +1,406 @@
+.doct{
+	width: 100%;
+	height: 60px;
+}
+.search-map{
+	margin-top: 20px;
+}
+#map{
+	width:100%;
+	height: 370px;
+}
+.banner{
+	height: 50px;
+	background-color: #ddd;
+
+}
+.ban{
+	height: 100%;
+	border-right:3px solid #fff;
+}
+.ban p{
+	font-size: 1.5em;
+	text-align: center;
+	margin-top: 13px;
+	font-family: verdana;
+}
+.sozler{
+	color:black;
+	font-family: tahoma;
+}
+li{
+	list-style: none;
+	color:#222222;
+}
+i{
+	font-family: tahoma;
+}
+.doctor_list{
+	border: 1px solid #20bdb7 !important;
+	height: 50px;
+	text-align: center;
+	margin-top: 30px;
+}
+.doctor_list b{
+	margin: 1px 0px;
+	color:#fff;
+	}
+.doct_border{
+	border: 4px solid #20bdb7;
+}
+
+.doct-head{
+	background-color: #20bdb7;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	}
+.div span{
+	text-align: top !important;
+}
+.doct-ulli{
+	float: right;
+}
+ul li {
+	font-family: 'Roboto';
+}
+.apply{
+	border:4px solid #20bdb7;
+	height: 60px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+.appoinment{
+	background-color: #20bdb7;
+	color:white;
+	width: 170px;
+	height: 40px;
+	border-radius: 30px;
+	float: right;
+	margin-top: 10px;
+}
+.profile_gor{
+	color: blue;
+	background-color: #20bdb7;
+	width: 180px;
+	height: 40px;
+	border-radius: 30px;
+	float: left;
+	margin-top: 10PX;
+}
+.radio{
+	width: 100%;
+	float: left;
+}
+
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+
+.rating {
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; }
+.rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label {
+  color: #20bdb7;
+ float: right;
+}
+.banner{
+	margin-top: 20px
+	}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+#myBar {
+    width: 57%;
+    height: 30px;
+    background-color: #FFD700;
+    text-align: center; /* To center it horizontally (if you want) */
+    line-height: 30px; /* To center it vertically */
+    color: white;
+}
+
+ .time{
+	margin-top: 40px;
+	text-align: right;
+}
+.time button{
+	font-family: times;
+	font-size: 17px;
+	border-radius: 5px;
+	background-color: #20bdb7;
+}ul li{
+	list-style: none;
+}
+.query{
+	margin-top: 50px;
+}
+.text{
+	width: 200px;
+	margin:10px 0 0 0;
+}
+.ziyaret{
+	margin:30px 0 0 0;
+}
+.text-column{
+	margin-top: 30px;
+}
+.gorus span{
+	text-align: center;
+	font-size: 15px;
+}
+.bord{
+	border:1px solid #20bdb7;
+	height: 110px;
+}
+
+.ust{
+	background: #20bdb7;
+}
+.b{
+	font-size: 2em;
+	color:white;
+	text-align: center;
+	}
+
+.cont{
+	margin-top: 50px;
+}
+.inp{
+	width: 100%;
+	height: 50px;
+	border:1px solid black;
+
+}
+.profile{
+	border:5px solid #20bdb7;
+	border-radius: 100px;
+	background-color: #eee;
+	font-family: 'roboto';
+}
+ul li {
+	list-style: none;
+	text-align: center;
+}
+.sms{
+	float: left;
+}
+.zeng{
+	float: left;
+}
+.hekimigor select{
+	background-color: #ddd;
+	border:1px solid #20bdb7;
+	text-align: center;
+	border-radius: 4px;
+}
+.alert{
+	color:red;
+}
+
+h6{
+	text-align: center;
+	font-family: sans-serif;
+}
+h3{
+	text-align: center;
+	font-family: sans-serif;
+}
+.ziyaret{
+	border-radius: 5px;
+	border:2px solid #20bdb7;
+}
+.pay select{
+	background-color: #ddd;
+	border:1px solid #20bdb7;
+	text-align: center;
+	border-radius: 4px;
+}
+.odenis{
+	width: 100%;
+}
+
+/*.gorusal{
+	background-color: #20bdb7;
+	color:white;
+	font-size: 1em;
+}*/
+/*calendar*/
+h2{
+	text-align: center;
+}
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;}
+
+/* Month header */
+.month {
+    padding: 25px 25px;
+    width: 100%;
+    background: #20bdb7;
+    border-radius: 20px;
+
+}
+
+/* Month list */
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+
+.month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+/* Previous button inside month header */
+.month .prev {
+    float: left;
+    padding-top: 10px;
+}
+
+/* Next button */
+.month .next {
+    float: right;
+    padding-top: 10px;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color:#ddd;
+    border-radius: 20px;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 13%;
+    color: #666;
+    text-align: center;
+}
+
+/* Days (1-31) */
+.days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;
+    border-radius: 20px;
+}
+
+.days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size:12px;
+    color:#777;
+}
+
+/* Highlight the "current" day */
+.days li .active {
+    padding: 5px;
+    background: #20bdb7;
+    color: white !important
+}
+
+.dash{
+	margin-top: 50px;
+}
+.enter-btn{
+	border-radius: 20px;
+	height: auto;
+}
+.form-box{
+	margin: 15px 0 15px 0;
+}
+.per-inf{
+	width: 100%;
+	height: 100px !important;
+
+}
+.doctor-searc{
+	margin-top: 50px;
+	background-color: gray;
+	border-radius: 17px;
+}
+
+/*.modcont{
+	width: 100%;
+}*/
+.modal-header{
+	background-color: #20bdb7;
+}
+
+.input{
+	width: 100%;
+	height: 40px;
+	margin-top: 40px;
+	border:1px solid #20bdb7;
+
+}
+#hide{
+	display:none;
+}
+.doctor{
+	margin-left: 40px;
+}
+ul li {
+	list-style: none;
+}
+.foot{
+	margin-top: 20px;
+}
+/*.foot button{
+
+	border-radius: 5px;
+}*/
+/*.geri button{
+	width: 100px;
+	height: 40px;
+	background: #F4FBD8;
+	color:#1D8EB5;
+	font-family: tahoma;
+}*/
+/*.davam{
+	text-align: right;
+}*/
+/*.davam button{
+	background-color: #1D8EB5;
+	width: 100px;
+	height: 40px;
+	color:white;
+	font-family: tahoma;
+}*/
+.btnPrevious{
+	text-align: left;
+	font-size: 2em !important;
+}
+.btnNext{
+	font-size: 2em;
+}

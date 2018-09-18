@@ -1,0 +1,543 @@
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% load static %}
+{#{% load  do%}#}
+{% load doctor_tags %}
+{% block title %} Tezsagal.az || {{ object.get_full_name }} {% endblock %}
+{% block facebook %}
+    <meta property="og:url" content="https://{{ request.get_host }}{{ request.path }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ object.get_full_name }}"/>
+    <meta property="og:description" content="{{ object_base.description|striptags|safe }}"/>
+    <meta property="og:image" content="https://{{ request.get_host }}/media/{{ object.profile_picture }}"/>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'chart/rate/rate.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
+
+{% endblock %}
+
+{% block content %}
+    <style>
+        .patient-form-div textarea {
+            padding: 8px 0 8px 0;
+            border: 1px solid #20bdb7;
+            font-size: 20px;
+            width: 96% !important;
+            text-align: center;
+        }
+
+        /******************************************************************************/
+        input.star {
+            display: none;
+        }
+
+        label.star {
+            float: right;
+            padding: 10px;
+            font-size: 30px;
+            color: #20bdb7;
+            transition: all .2s;
+        }
+
+        input.star:checked ~ label.star:before {
+            content: '\f005';
+            color: #20bdb7;
+            transition: all .25s;
+        }
+
+        input.star-5:checked ~ label.star:before {
+            color: #20bdb7;
+            text-shadow: 0 0 20px #1beae2;
+        }
+
+        input.star-1:checked ~ label.star:before {
+            color: #F62;
+        }
+
+        label.star:hover {
+            transform: rotate(-15deg) scale(1.3);
+        }
+
+        label.star:before {
+            content: '\f006';
+            font-family: FontAwesome;
+        }
+
+        #patient-succes-message {
+            display: none;
+        }
+
+        .tab-content > .tab-pane {
+            text-align: left !important;
+            padding: 7px 5px;
+        }
+
+        .rate-titles {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        span.stars, span.stars span {
+            display: block;
+            background: url({% static 'images/resources/stars.png' %}) 0 -16px repeat-x;
+            width: 80px;
+            height: 16px;
+        }
+
+        span.stars span {
+            background-position: 0 0;
+        }
+</style>
+    {% comment %}<!--Page Title-->
+<section class="page-title">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-left">
+                <h1></h1>
+
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 pull-right text-right path"><a href="{% url 'base:index' %}">{%
+                trans 'Ana səhifə' %}</a>&ensp;/&ensp;<a href="#">{{ object_base.user.get_full_name }}</a></div>
+            <div class="overlay"></div>
+        </div>
+    </div>
+</section>{% endcomment %}
+    <!--Page Title Ends-->
+    <section class="doctor-profile">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>{{ object.get_full_name }} <br><h5 style="">
+                        {% if object_base.get_xestelik %}
+                            {% for z in object_base.get_xestelik %}{{ z.xestelik.name }}{% if forloop.last %}{% else %},
+                            {% endif %}{% endfor %}
+
+                        {% endif %}</h5></h3>
+                    <br>
+                    {% if object.profile_picture %}
+                        <img class="prof-doc" src="/media/{{ object.profile_picture }}" alt="">
+                    {% else %}
+                        <img src="{% static 'images/team/single-doctor.jpg' %}" alt="">
+                    {% endif %}
+
+                    <br>
+
+                    <br>
+                    <br>
+                    <ul>
+                        <li><span><b>{% trans 'Reytinq göstəricisi' %}: </b></span>
+                            <span style="color: #20bdb7; font-size: 30px">
+                                <span class="stars">{{ object_base.rate }}</span>
+                            </span>
+                        </li>
+                        <li><span><b>{% trans 'Danışdığı dillər' %}</b>: {{ object_base.language }}</span></li>
+                        <li><span><b>{% trans 'Qəbul qiyməti' %}</b>:</span><span
+                                class="reqem">{{ object_base.qebul_qiymeti }} {{ object_base.prize_type|default:"azn" }} </span>
+                        </li>
+                        <li><span><b>{% trans 'Telefon' %}</b>: </span><span
+                                class="reqem">{{ object_base.phone }}</span>
+                            <span></span></li>
+                        <li><span><b>{% trans 'İşlədiyi yer' %}</b>: {{ object_base.base_name }}</span></li>
+                        {% comment %}
+                    <li><span><a href="{{ object_base.facebook_link }}">Facebook</a></span></li>
+                    {% endcomment %}
+
+                    </ul>
+                    <br>
+                    <button class="thm-btn btn-success" {% if not request.user.is_authenticated %}
+                            onclick="location.href='{% url 'account:login' %}'"
+                            {% else %}onclick="location.href='{% url 'base:doctor-meet' %}?doctor={{ object_base.id }}&user={{ request.user.id }}'"
+                    {% endif %}>{% trans 'Görüş istə' %}
+                    </button>
+
+                </div>
+                <div class="col-md-9 single-team-member">
+
+
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination nav nav-pills">
+                            <li>
+
+                            </li>
+                            <li><a data-toggle="pill" href="#ixtisas" class="active">{% trans 'Haqqımda' %}</a></li>
+                            <li><a data-toggle="pill" href="#tehsil">{% trans 'Təhsil' %}</a></li>
+                            <li><a data-toggle="pill" href="#nealiyyet">{% trans 'Nailiyyətləri' %}</a></li>
+                            <li><a data-toggle="pill" href="#istecrubesi">{% trans 'İş təcrübəsi' %}</a></li>
+                            <li><a data-toggle="pill" href="#hansi">{% trans 'Müalicə etdiyi xəstəliklər' %}</a></li>
+                            <li><a data-toggle="pill" href="#pasiyent">{% trans 'Rəylər' %}</a></li>
+                            <li><a data-toggle="pill" href="#mekan">{% trans 'Məkan' %}</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="tab-content">
+
+                        <div id="ixtisas" class="tab-pane fade in active">
+                        <span>
+                        {% autoescape off %}
+                            {{ object_base.description|safe|default:"" }}
+                        {% endautoescape %}
+                        </span>
+                        </div>
+                        <div id="tehsil" class="tab-pane fade">
+                        <span>
+                            {% autoescape off %}
+                                {{ object_base.education|safe|default:"" }}
+                            {% endautoescape %}
+                        </span>
+                        </div>
+                        <div id="nealiyyet" class="tab-pane fade">
+                        <span>
+                            {% autoescape off %}
+                                {{ object_base.goals|safe|default:"" }}
+                            {% endautoescape %}
+                        </span>
+                        </div>
+                        <div id="istecrubesi" class="tab-pane fade">
+                        <span>
+                            {% autoescape off %}
+                                {{ object_base.job_description|safe|default:"" }}
+                            {% endautoescape %}
+                        </span>
+                        </div>
+                        <div id="hansi" class="tab-pane fade">
+                            {% autoescape off %}
+                                {{ object_base.pasient_types|safe|default:"" }}
+                            {% endautoescape %}
+                        </div>
+                        <div id="pasiyent" class="tab-pane fade">
+                            <h3 style="text-align: center;">{% trans 'Rəylər' %}</h3>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <hr>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <p class="rate-titles">{% trans 'Ortalama reytinq' %}</p>
+                                    <p>
+                                    <span style="color: #20bdb7; font-size: 30px">
+                                        <span class="stars">{{ object_base.rate }}</span>
+                                    </span>
+                                    </p>
+                                </div>
+
+                                <div class="col-md-6 col-xs-12">
+                                    <p class="rate-titles">{% trans 'Ofis və personal dəyərləndirmə' %}</p>
+                                    <p>
+                                    <span style="color: #20bdb7; font-size: 30px">
+                                        <span class="stars">{{ object_base.rate_office_status }}</span>
+                                    </span>
+                                    </p>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <p class="rate-titles">{% trans 'Ödəmə hesabının hazırlanması prosesi' %}</p>
+                                    <p>
+                                    <span style="color: #20bdb7; font-size: 30px">
+                                        <span class="stars">{{ object_base.rate_prepare_paying_process }}</span>
+                                    </span>
+                                    </p>
+                                </div>
+
+                                <div class="col-md-6 col-xs-12">
+                                    <p class="rate-titles">{% trans 'Ziyarətdən sonrakı izləmə' %}</p>
+                                    <p>
+                                    <span style="color: #20bdb7; font-size: 30px">
+                                        <span class="stars">{{ object_base.rate_follow_after_examination }}</span>
+                                    </span>
+                                    </p>
+                                </div>
+
+                                <div class="col-md-6 col-xs-12">
+                                    <p class="rate-titles">{% trans 'Təcrübə qərargahında nəzakət' %}</p>
+                                    <p>
+                                    <span style="color: #20bdb7; font-size: 30px">
+                                        <span class="stars">{{ object_base.rate_working_politeness }}</span>
+                                    </span>
+                                    </p>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <p class="rate-titles">{% trans 'Sizə vaxt ayırmağa istəkli olmaq' %}</p>
+                                    <p>
+                                    <span style="color: #20bdb7; font-size: 30px">
+                                        <span class="stars">{{ object_base.rate_spend_time }}</span>
+                                    </span>
+                                    </p>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <p class="rate-titles">{% trans 'Diaqnozun düzgünlüyü' %}</p>
+                                    <p>
+                                    <span style="color: #20bdb7; font-size: 30px">
+                                        <span class="stars">{{ object_base.rate_diagnosis }}</span>
+                                    </span>
+                                    </p>
+                                </div>
+                                {#                            <div class="col-md-6 col-xs-12">#}
+                                {#                                <p class="rate-titles">{% trans 'Ümumi' %}</p>#}
+                                {#                                <p>#}
+                                {#                                    <span style="color: #20bdb7; font-size: 30px">#}
+                                {#                                        {% for i in loop_stars %}#}
+                                {#                                            {% if i <= object_base.rate_general_rate|dec_round %}#}
+                                {#                                                ★#}
+                                {#                                            {% endif %}#}
+                                {#                                        {% endfor %}#}
+                                {#                                    </span>#}
+                                {#                                </p>#}
+                                {#                            </div>#}
+                                {##}
+                                {##}
+                                {##}
+                                {##}
+                                {##}
+                                {##}
+                                {#                            <div class="col-md-6 col-xs-12">#}
+                                {#                                <p class="rate-titles">{% trans 'Görüşə alınmanın sadəliyi qeydə' %}</p>#}
+                                {#                                <p>#}
+                                {#                                    <span style="color: #20bdb7; font-size: 30px">#}
+                                {#                                        {% for i in loop_stars %}#}
+                                {#                                            {% if i <= object_base.rate_registration_status|dec_round %}#}
+                                {#                                                ★#}
+                                {#                                            {% endif %}#}
+                                {#                                        {% endfor %}#}
+                                {#                                    </span>#}
+                                {#                                </p>#}
+                                {#                            </div>#}
+
+
+                            </div>
+
+                            <hr>
+
+                            <h3 style="text-align: center;">{% trans 'Rəylər' %}</h3>
+                            <hr>
+                            <div class="row" id="comment-list-id">
+                                {% if review %}
+                                    {% for x in review %}
+                                        <div class="col-md-5 col-md-offset-1  col-xs-12 review-li">
+                                            <div class="review">
+                                                <p>
+                                                    <h3>
+                                                        <span style="color: #afafaf;">{{ x.date|date:"m/d/Y " }}</span>{{ x.user.get_full_name }}
+                                                    </h3>
+                                                </p>
+                                                <br>
+                                                <br>
+                                                <p>
+                                                    <span style="color: #20bdb7; font-size: 30px">
+                                                        <span class="stars">{{ x.star }}</span>
+                                                    </span>
+                                                </p>
+                                                <br>
+                                                <br>
+                                                <p style="text-align: left;">{{ x.text }}</p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div id="mekan" class="tab-pane fade">
+                            <span><b>{% trans 'İşlədiyi yer' %}</b>: {{ object_base.base_name|default:"" }}</span>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-12 patient-form-div">
+                                    <a class="btn btn-info" id="patient-btn"
+                                       style="width: 100% !important;cursor: pointer;"
+                                       onclick="initMap()"><i class="icon-map-marker"></i>{% trans 'Xəritədə Bax' %}</a>
+                                </div>
+                            </div>
+                            <hr>
+                            {#                        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12153.600726298764!2d{{ object_base.position.latitude }}!3d{{ object_base.position.longitude }}!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1504981470754"#}
+                            {#                                width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>#}
+                            {#                      #}
+                            {#                        <iframe#}
+                            {#                        #}
+                            {# width="600"#}
+                            {# height="450"#}
+                            {# frameborder="0" style="border:0"#}
+
+                            {#                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB2r8HbK3ePBFtfkmS4D3VWyzDjEFNOJ6A&q=Space+Needle,Seattle+WA"#}
+                            {#                        allowfullscreen>#}
+                            {#</iframe>#}
+
+                            {#                        <iframe width="100%" height="450" frameborder="0" style="border:0"#}
+                            {#                                src="https://www.google.com/maps/embed/v1/place?q={{ object_base.position.latitude }},{{ object_base.position.longitude }}&key=AIzaSyAc2KAE8d9QEtMDLQTLayqzba7yFT-uO6o;"></iframe>#}
+                            {#                        #}
+                            <div style="height: 430px" id="map"></div>
+                        </div>
+
+
+                    </div>
+                    <br><br><br><br><br><br><br><br>
+                    <ul class="social">
+                        <li><a style="background: #3b5998;" href="{{ object_base.facebook_link|default:" #" }}"><i
+                                class="fa fa-facebook"></i></a></li>
+                        <li><a style="background: #0084b4;" href="{{ object_base.twitter_link|default:" #" }}"><i
+                                class="fa fa-twitter"></i></a></li>
+                        <li><a style="background: #fb3958;" href="{{ object_base.instagram_link|default:" #" }}"><i
+                                class="fa fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+
+    {% comment %}
+<section class="doctor-profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                {% if object.profile_picture %}
+                <img src="/media/{{ object.profile_picture }}" alt="">
+                {% else %}
+                <img src="{% static 'images/team/single-doctor.jpg' %}" alt="">
+                {% endif %}
+            </div>
+            <div class="col-md-7 single-team-member">
+                <h3>{{ object.get_full_name }}</h3>
+                <span></span>
+                <div class="awards-wrapper clearfix">
+                    <div class="single-award">
+                        <div class="inner">
+                            <i class="fa fa-trophy" aria-hidden="true"></i>
+                            <p><span class="block">Best</span> Doctor Awards</p>
+                            <span class="number">
+									05
+								</span>
+                        </div>
+                    </div>
+                    <div class="single-award">
+                        <div class="inner">
+                            <i class="fa fa-suitcase" aria-hidden="true"></i>
+                            <p><span class="block">Best</span> Doctor Awards</p>
+                            <span class="number">
+									05
+								</span>
+                        </div>
+                    </div>
+                    <div class="single-award">
+                        <div class="inner">
+                            <i class="fa fa-map-marker"></i>
+                            <p><span class="block">Best</span> Doctor Awards</p>
+                            <span class="number">
+									05
+								</span>
+                        </div>
+                    </div>
+                    <div class="single-award">
+                        <div class="inner">
+                            <i class="fa fa-graduation-cap"></i>
+                            <p><span class="block">Best</span> Doctor Awards</p>
+                            <span class="number">
+									05
+								</span>
+                        </div>
+                    </div>
+                </div>
+                <h3>{% trans 'Haqqımda məlumatlar' %}</h3>
+                <p>{{ object_base.description|default:"" }}</p>
+                <ul class="infos">
+                    <li><span>{% trans 'İxtisası' %}</span> <span>&nbsp;{{ object_base.education|truncatewords:10|default:"" }}</span>
+                    </li>
+                    <li><span>{% trans 'Dərəcəsi' %}</span>
+                        <span> {{ object_base.goals|truncatewords:10|default:"" }}</span></li>
+                    <li><span>{% trans 'İş təcrübəsi' %}</span> <span>{{ object_base.job_description|truncatewords:10|default:"" }} </span>
+                    </li>
+                    <li><span>{% trans 'Hansı pasiyentlər qəbul edir' %}</span> <span>{{ object_base.pasient_types|truncatewords:10|default:"" }}</span>
+                    </li>
+                    <li><span>{% trans 'Telefon' %}</span> <span>{{ object_base.phone }}</span></li>
+                    <li><span>{% trans 'Qəbul qiyməti' %}</span> <span>{{ object_base.qebul_qiymeti }}</span></li>
+                    <li><span>{% trans 'Danışdığı dillər' %}</span> <span>{{ object_base.language }}</span></li>
+                    <li><span>{% trans 'İş yeri' %}</span> <span> {{ object_base.work_place|default:""|truncatewords:10 }}</span>
+                    </li>
+                    <li><span>{% trans 'Görüş ' %}</span> <span></span></li>
+                </ul>
+                <div id="gorus-vaxti"></div>
+                <br>
+                <button class="thm-btn btn-success" {% if not request.user.is_authenticated %}
+                        onclick="alert('{% trans 'Görüş üçün saytda qeydiyyatdan keçin' %}')" {% else
+                        %}onclick="location.href='{% url 'base:doctor-meet' %}?doctor={{ object_base.id }}&user={{ request.user.id }}'"
+                        {% endif %}>{% trans 'Görüş istə' %}
+                </button>
+                <ul class="social">
+                    <li><a href="{{ object_base.facebook_link|default:" #" }}"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="{{ object_base.twitter_link|default:" #" }}"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="{{ object_base.instagram_link|default:" #" }}"><i class="fa fa-instagram"></i></a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>{% endcomment %}
+
+{% endblock %}
+
+{% block footer-script %}
+    {{ block.super }}
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css"></script>
+
+    {#<script async defer#}
+    {# src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc2KAE8d9QEtMDLQTLayqzba7yFT-uO6o">#}
+    {#    </script>#}
+
+    <script>
+        function initMap() {
+            {% if object_base.position.latitude  and object_base.position.longitude %}
+
+
+                var uluru = {
+                        lat: {{ object_base.position.latitude|stringformat:"f"}},
+                        lng: {{object_base.position.longitude|stringformat:"f"}}
+                    }
+                ;
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 10,
+                    center: uluru
+                });
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                });
+            {% endif %}
+        }
+    </script>
+    <script type="text/javascript">
+        var date = new Date();
+        $(document).ready(function () {
+            $('#gorus-vaxti').multiDatesPicker({
+                addDates: [{% for x in object_base.get_doctor_time %}
+                    date.setDate({{x|slice:"3:5"}})
+                    {% if forloop.last %}
+                    {% else %}
+                        ,
+                    {% endif %}
+                {% endfor %}
+                ],
+            })
+            ;
+        });
+
+        $.fn.stars = function() {
+            return $(this).each(function() {
+                // Get the value
+                var val = parseFloat($(this).html());
+                // Make sure that the value is in 0 - 5 range, multiply to get width
+                var size = Math.max(0, (Math.min(5, val))) * 16;
+                // Create stars holder
+                var $span = $('<span />').width(size);
+                // Replace the numerical value with stars
+                $(this).html($span);
+            });
+        };
+        $(function() {
+            $('span.stars').stars();
+        });
+    </script>
+{% endblock %}

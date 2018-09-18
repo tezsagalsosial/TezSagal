@@ -1,0 +1,55 @@
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} Tezsagal.az || {% trans 'My Kabinet' %} {% endblock %}
+
+
+{% block content %}
+        <!--Page Title-->
+        <section style="margin-top: 20px;">
+			<div class="container">
+                <div class="sec-title text-center">
+                    <h2><span>{% trans 'My Kabinet' %}</span></h2>
+					<p>{% trans 'Hörmətli' %} {{ request.user.first_name }} {% trans 'həkim' %}, {% trans 'zəhmət olmasa asağıdakı bölmələri doldurun.' %}</p>
+                </div>
+            </div>
+        </section>
+        <!--Page Title Ends-->
+
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-sm-12 col-xs-12">
+						<div class="service-sidebar">
+							<ul class="service-catergory">
+								<li><a href="{% url 'base:dashboard' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Şəxsi məlumatlar' %}</a>{% if doctor.step_1 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-education' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Təhsil' %}</a>{% if doctor.step_2 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-work' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'İş təcrübəsi' %}</a>{% if doctor.step_3 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-activity' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Nailiyyətlər' %}</a>{% if doctor.step_4 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-meet-date' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Görüş vaxtı cədvəl' %}</a>{% if doctor.step_5 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+								<li><a href="{% url 'base:dashboard-pasient' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Pasientlər' %}</a></li>
+                                <li><a href="{% url 'base:dashboard-sponsor' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Sponsor ödənişi' %}</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-8 col-sm-12 col-xs-12">
+						<div class="outer-box">
+							<!-- <div class="img-box"><img src="images/resources/Map.png" alt=""></div> -->
+							<div class="form-box default-form">
+
+                                    {% csrf_token %}
+                                <h3>{% trans 'Ödəniş statusu' %}</h3>
+                                <br>
+                                <img style="width: 100px;" src="https://previews.123rf.com/images/deimosz/deimosz1502/deimosz150201080/36532860-Blue-Premium-Icon-Badge-Label-or-Sticker-Isolated-on-White-Background-Stock-Photo.jpg" alt="">
+                                <p style="color:green">{% trans 'Ödənişiniz uğurla tamamlandı' %}</p>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+{% endblock %}

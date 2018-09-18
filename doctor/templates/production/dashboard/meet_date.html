@@ -1,0 +1,340 @@
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} Tezsagal.az || {% trans 'My Kabinet' %} {% endblock %}
+
+{% block aditional-css %}
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css">
+{#    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>#}
+    <link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/86701580/mypersonalcdn/renda/renda-icon-font.css">
+    <style>
+        select {
+            color: black !important;
+            background-color: white !important;
+        }
+    </style>
+    <style>
+        .buying-selling.active {
+            background: #20bdb7;
+        }
+
+        .buying-selling {
+            width: 130px;
+            padding: 10px;
+            position: relative;
+        }
+
+        .buying-selling-word,.buying-selling-word p{
+            font-size: 15px;
+            font-weight: 600;
+            color: #333333;
+        }
+
+        .radio-dot:before, .radio-dot:after {
+            content: "";
+            display: block;
+            position: absolute;
+            background: #fff;
+            border-radius: 100%;
+        }
+
+        .radio-dot:before {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+            top: 10px;
+            left: 16px;
+        }
+
+        .radio-dot:after {
+            width: 12px;
+            height: 12px;
+            border-radius: 100%;
+            top: 14px;
+            left: 20px;
+        }
+
+        .buying-selling.active .buying-selling-word {
+            color: #fff;
+        }
+
+        .buying-selling.active .radio-dot:after {
+            background: #0f8883;
+        }
+
+        .buying-selling.active .radio-dot:before {
+            background: #fff;
+            border-color: #699D17;
+        }
+
+        .buying-selling:hover .radio-dot:before {
+            border-color: #adadad;
+        }
+
+        .buying-selling.active:hover .radio-dot:before {
+            border-color: #699D17;
+        }
+
+        .buying-selling.active .radio-dot:after {
+            background: #0f8883;
+        }
+
+        .buying-selling:hover .radio-dot:after {
+            background: #e6e6e6;
+        }
+
+        .buying-selling.active:hover .radio-dot:after {
+            background: #0f8883;
+
+        }
+
+        .buying-selling-group .btn-default:hover {
+            color: #333;
+        }
+
+        @media (max-width: 400px) {
+
+            .mobile-br {
+                display: none;
+            }
+
+            .buying-selling {
+                width: 49%;
+                padding: 10px;
+                position: relative;
+            }
+
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <!--Page Title-->
+    <section style="margin-top: 20px;">
+        <div class="container">
+            <div class="sec-title text-center">
+                <h2><span>{% trans 'My Kabinet' %}</span></h2>
+                <p>{% trans 'Hörmətli' %} {{ request.user.first_name }} {% trans 'həkim' %}, {% trans 'zəhmət olmasa asağıdakı bölmələri doldurun.' %}</p>
+            </div>
+        </div>
+    </section>
+    <!--Page Title Ends-->
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="service-sidebar">
+                        <ul class="service-catergory">
+                            <li><a href="{% url 'base:dashboard' %}"><span
+                                    class="icon-left fa fa-chevron-right"></span>{% trans 'Şəxsi məlumatlar' %}</a>
+                                {% if doctor.step_1 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+                            <li><a href="{% url 'base:dashboard-education' %}"><span
+                                    class="icon-left fa fa-chevron-right"></span>{% trans 'Təhsil' %}</a>
+                                {% if doctor.step_2 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+                            <li><a href="{% url 'base:dashboard-work' %}"><span
+                                    class="icon-left fa fa-chevron-right"></span>{% trans 'İş təcrübəsi' %}</a>
+                                {% if doctor.step_3 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+                            <li><a href="{% url 'base:dashboard-activity' %}"><span
+                                    class="icon-left fa fa-chevron-right"></span>{% trans 'Nailiyyətlər' %}</a>
+                                {% if doctor.step_4 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+                            <li class="active"><a href="{% url 'base:dashboard-activity' %}"><span
+                                    class="icon-left fa fa-chevron-right"></span>{% trans 'Görüş vaxtı cədvəl' %}</a>
+                                {% if doctor.step_5 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+                            <li><a href="{% url 'base:dashboard-pasient' %}"><span
+                                    class="icon-left fa fa-chevron-right"></span>{% trans 'Pasientlər' %}</a></li>
+                            <li><a href="{% url 'base:dashboard-sponsor' %}"><span
+                                    class="icon-left fa fa-chevron-right"></span>{% trans 'Sponsor ödənişi' %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="outer-box">
+                        <!-- <div class="img-box"><img src="images/resources/Map.png" alt=""></div> -->
+                        <div class="form-box default-form">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <h3>{% trans 'Görüş vaxtı cədvəli' %}</h3>
+                                <br>
+                                <label for="mdp-demo">{% trans 'Sizə uyğun olan tarixləri seçin' %} </label>
+                                <br>
+                                <input id="mdp-demo" name="date" placeholder="{% trans 'tarix seçin' %}">
+                                <br>
+                                <label for="start_date">{% trans 'saatdan' %}</label>
+                                <br>
+                                <select name="start" class="start_date">
+                                    {% if doctor.start_date %}
+                                        <option value="{{ doctor.start_date }}" selected
+                                                hidden>{{ doctor.start_date }}</option>
+
+                                    {% else %}
+                                        <option value="06:00" selected>06:00</option>
+                                    {% endif %}
+                                    <option value="06:30">06:30</option>
+                                    <option value="07:00">07:00</option>
+                                    <option value="07:30">07:30</option>
+                                    <option value="08:00">08:00</option>
+                                    <option value="08:30">08:30</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="09:30">09:30</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="10:30">10:30</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="11:30">11:30</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="12:30">12:30</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="13:30">13:30</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="14:30">14:30</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="15:30">15:30</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="16:30">16:30</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="17:30">17:30</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="18:30">18:30</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="19:30">19:30</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="20:30">20:30</option>
+                                    <option value="21:00">21:00</option>
+                                    <option value="21:30">21:30</option>
+                                    <option value="22:00">22:00</option>
+                                    <option value="22:30">22:30</option>
+                                    <option value="23:00">23:00</option>
+                                    <option value="23:30">23:30</option>
+                                    <option value="00:00">00:00</option>
+                                </select>
+                                <br>
+                                <label for="end_date">{% trans 'saatadək' %}</label>
+                                <br>
+                                <select name="end" class="end_date">
+
+                                    <option value="06:00">06:00</option>
+                                    <option value="06:30">06:30</option>
+                                    <option value="07:00">07:00</option>
+                                    <option value="07:30">07:30</option>
+                                    <option value="08:00">08:00</option>
+                                    <option value="08:30">08:30</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="09:30">09:30</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="10:30">10:30</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="11:30">11:30</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="12:30">12:30</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="13:30">13:30</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="14:30">14:30</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="15:30">15:30</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="16:30">16:30</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="17:30">17:30</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="18:30">18:30</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="19:30">19:30</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="20:30">20:30</option>
+                                    <option value="21:00">21:00</option>
+                                    <option value="21:30">21:30</option>
+                                    <option value="22:00">22:00</option>
+                                    <option value="22:30">22:30</option>
+                                    <option value="23:00">23:00</option>
+                                    <option value="23:30">23:30</option>
+                                    {% if doctor.end_date %}
+                                        <option value="{{ doctor.end_date }}" selected
+                                                hidden>{{ doctor.end_date }}</option>
+                                    {% else %}
+                                        <option value="00:00" selected>00:00</option>
+                                    {% endif %}
+                                </select>
+                                {% if doctor.payment_status %}
+
+                                {% else %}
+                                    {% if doctor_country_payments %}
+                                        <br>
+                                        <label>{% trans 'Ödəniş paketini seçin' %}</label>
+                                        <br>
+                                        <div class="buying-selling-group" id="buying-selling-group" data-toggle="buttons">
+                                            {% for doctor_country_payment in doctor_country_payments %}
+                                                <label class="btn btn-default buying-selling">
+                                                    <input type="radio" required name="doctor_country_payment" value="{{ doctor_country_payment.id }}" id="option1" autocomplete="off">
+                                                    <span class="radio-dot"></span>
+                                                    <span class="buying-selling-word">
+                                                        {{ doctor_country_payment.title }}
+                                                        <br/>
+                                                        {{ doctor_country_payment.quantity }} {{ doctor_country_payment.currency.name }}
+                                                    </span>
+                                                </label>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                    <br>
+                                {% endif %}
+                                {% comment %}<label for="">{% trans 'Qeydiyyat üçün ödənişin məbləği' %}: 81 AZN</label>{% endcomment %}
+                                <br>
+                                <input type="checkbox" required value="" style="float: left;">
+                                {% for static_page in static_pages %}
+                                    {% if static_page.url == 'doctor-terms' %}
+                                        <li><a target="_blank"
+                                               href="{% url 'base:custom-page' static_page.url %}">{{ static_page.title }}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                                <br>
+
+                                <div class="col-md-6 col-6 col-xs-12 next-button">
+                                    <input type="submit" class="thm-btn btn btn-primary" value="{% trans 'Tamamla' %}">
+                                </div>
+                                <br>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
+{% block footer-script %}
+    {{ block.super }}
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css"></script>
+    <script>
+        $(document).ready(function () {
+            {% if doctor.get_doctor_time %}
+                var date = new Date();
+                $('#mdp-demo').multiDatesPicker({
+                    // preselect the 14th and 19th of the current month
+                    addDates: [{% for x in doctor.get_doctor_time %}date.setDate({{ x|slice:"3:5" }}){% if forloop.last %}{% else %}, {% endif %}{% endfor %}],
+                });
+
+            {% else %}
+                $('#mdp-demo').multiDatesPicker();
+            {% endif %}
+        });
+    </script>
+
+    <script>
+        $(window).resize(function () {
+            if ($(window).width() <= 600) {
+                $('#prop-type-group').removeClass('btn-group');
+                $('#prop-type-group').addClass('btn-group-vertical');
+            } else {
+                $('#prop-type-group').addClass('btn-group');
+                $('#prop-type-group').removeClass('btn-group-vertical');
+            }
+        });
+
+    </script>
+{% endblock %}

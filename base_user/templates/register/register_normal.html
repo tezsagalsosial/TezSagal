@@ -1,0 +1,99 @@
+{% extends 'development/base/index.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} Tezsagal.az || {% trans 'Daxil ol' %} {% endblock %}
+
+
+{% block content %}
+        <!--Page Title-->
+        <section class="page-title">
+        	<div class="container">
+            	<div class="row clearfix">
+                    <div class="col-md-12 col-sm-12 col-xs-12 pull-left">
+                        <h1 class="text-center"><a class="color-white" href="{% url 'account:login' %}">{% trans 'Daxil ol' %}</a> /  <a class="color-white" href="{% url 'account:register-normal' %}">{% trans 'Qeydiyyatdan keç' %}</a></h1>
+                    </div>
+                    <div class="overlay"></div>
+                </div>
+            </div>
+        </section>
+        <!--Page Title Ends-->
+
+
+		<section class="feature-style-three">
+			<div class="container">
+				<div class="item-list">
+					<div class="row">
+						<div class="item">
+							<div class="column col-md-4 col-sm-6 col-xs-12">
+								<div class="inner-box">
+									<div class="icon-box"><span class="icon flaticon-pin-1"></span></div>
+									<h3>Location</h3>
+									<div class="text"><p>PO Box 16122 Collins Street West Victoria 8007 Canada</p></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="item">
+							<div class="column col-md-4 col-sm-6 col-xs-12">
+								<div class="inner-box">
+									<div class="icon-box"><span class="icon flaticon-cell-phone"></span></div>
+									<h3>Phone Number</h3>
+									<div class="text"><p>(+48) 564-334-21-22-34 <br>(+48) 564-334-21-22-38</p></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="item">
+							<div class="column col-md-4 col-sm-6 col-xs-12">
+								<div class="inner-box">
+									<div class="icon-box"><span class="icon flaticon-message"></span></div>
+									<h3>E-Mail Us</h3>
+									<div class="text"><p>Supportinfo@frankfurt.com <br>Supportinfo@archit.com</p></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="contact_us">
+			<div class="container">
+                {% comment %}<div class="sec-title text-center">
+                    <h2></span></h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>{% endcomment %}
+                <div class="default-form-area">
+                    {% block login-form %}
+					<form id="contact-form" name="contact_form" class="default-form" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row clearfix">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3 col-lg-offset-3">
+
+                                    <div class="form-group style-two">
+                                        <input type="email" name="form_name" class="form-control" value="" placeholder="{% trans 'Email' %}" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3 col-lg-offset-3">
+
+                                    <div class="form-group style-two">
+                                        <input type="password" name="form_name" class="form-control" value="" placeholder="{% trans 'Şifrə' %}" required="">
+                                    </div>
+                                </div>
+                            </div>
+
+						<div class="contact-section-btn text-center">
+							<div class="form-group style-two">
+								<input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
+								<button class="thm-btn thm-color" type="submit" data-loading-text="Please wait...">{% trans 'Daxil ol' %}</button>
+                                <a href="#" style="margin-top: 10px;" >Şifrəni unutmusuz?</a>
+							</div>
+						</div>
+					</form>
+                    {% endblock %}
+				</div>
+			</div>
+		</section>
+{% endblock %}

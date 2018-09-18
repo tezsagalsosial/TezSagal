@@ -1,0 +1,490 @@
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} Tezsagal.az || {% trans 'My Kabinet' %} {% endblock %}
+
+
+{% block content %}
+
+    <link href="{% static 'geoposition/geoposition.css' %}" type="text/css" media="all" rel="stylesheet" />
+    <!--Page Title-->
+    <section style="margin-top: 20px;">
+        <div class="container">
+            <div class="sec-title text-center">
+                <h2><span>{% trans 'My Kabinet' %}</span></h2>
+                <p>{% trans 'Hörmətli' %} {{ request.user.first_name }} {% trans 'həkim' %}, {% trans 'zəhmət olmasa asağıdakı bölmələri doldurun.' %}</p>
+            </div>
+        </div>
+    </section>
+
+    <!--Page Title Ends-->
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="service-sidebar">
+                        <ul class="service-catergory">
+                            <li class="active"><a href="{% url 'base:dashboard' %}"><span
+                                    class="icon-left fa fa-chevron-right"></span>{% trans 'Şəxsi məlumatlar' %}</a>
+                                {% if doctor.step_1 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+                            <li><a href="{% url 'base:dashboard-education' %}"><span
+                                    class="icon-left fa fa-chevron-right"></span>{% trans 'Təhsil' %}</a>
+                                {% if doctor.step_2 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+                            <li><a href="{% url 'base:dashboard-work' %}"><span
+                                    class="icon-left fa fa-chevron-right"></span>{% trans 'İş təcrübəsi' %}</a>
+                                {% if doctor.step_3 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+                            <li><a href="{% url 'base:dashboard-activity' %}"><span
+                                    class="icon-left fa fa-chevron-right"></span>{% trans 'Nailiyyətlər' %}</a>
+                                {% if doctor.step_4 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+                            <li><a href="{% url 'base:dashboard-meet-date' %}"><span
+                                    class="icon-left fa fa-chevron-right"></span>{% trans 'Görüş vaxtı cədvəl' %}</a>
+                                {% if doctor.step_5 %}<i class="icon-right fa fa-check-circle-o"></i>{% endif %}</li>
+                            <li><a href="{% url 'base:dashboard-pasient' %}"><span
+                                    class="icon-left fa fa-chevron-right"></span>{% trans 'Pasientlər' %}</a></li>
+                            <li><a href="{% url 'base:dashboard-sponsor' %}"><span
+                                    class="icon-left fa fa-chevron-right"></span>{% trans 'Sponsor ödənişi' %}</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="outer-box">
+                        <!-- <div class="img-box"><img src="images/resources/Map.png" alt=""></div> -->
+                        <div class="form-box default-form">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <h3>{% trans 'Əsas məlumatlar' %}</h3>
+
+
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-4">
+                                        <div class="thumbnail">
+                                            <input type="file" name="profile_image" onchange="change_img(this);"
+                                                   class="settings-image hidden">
+                                            <img class="change_src_img"
+                                                 src="{% if request.user.profile_picture %}/media/{{ request.user.profile_picture }}{% else %}https://dummyimage.com/374x527/#eeeee/0011ff.png{% endif %}"
+                                                 alt="...">
+                                            <div class="caption">
+                                                <h3>{% trans 'Profil şəkli' %} 1</h3>
+                                                <p>...</p>
+                                                <p><a href="#" class="thm-btn shekil1 btn btn-primary"
+                                                      role="button">{% trans 'Şəkil yüklə' %}</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                        <div class="thumbnail">
+                                            <input type="file" name="profile_image" onchange="change_img_one(this);"
+                                                   class="settings-image2 hidden">
+                                            <img class="change_src_img1"
+                                                 src="{% if request.user.profile_picture_1 %}/media/{{ request.user.profile_picture_1 }}{% else %}https://dummyimage.com/374x527/#eeeee/0011ff.png{% endif %}"
+                                                 alt="...">
+                                            <div class="caption">
+                                                <h3>{% trans 'Profil şəkli' %} 2</h3>
+                                                <p>...</p>
+                                                <p><a href="#" class="thm-btn shekil2 btn btn-primary"
+                                                      role="button">{% trans 'Şəkil yüklə' %}</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                        <div class="thumbnail">
+                                            <input type="file" name="profile_image" onchange="change_img_two(this);"
+                                                   class="settings-image3 hidden">
+                                            <img class="change_src_img2"
+                                                 src="{% if request.user.profile_picture_2 %}/media/{{ request.user.profile_picture_2 }}{% else %}https://dummyimage.com/374x527/#eeeee/0011ff.png{% endif %}"
+                                                 alt="...">
+                                            <div class="caption">
+                                                <h3>{% trans 'Profil şəkli' %} 2</h3>
+                                                <p>...</p>
+                                                <p><a href="#" class="thm-btn shekil3 btn btn-primary"
+                                                      role="button">{% trans 'Şəkil yüklə' %}</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-6 col-xs-12 padd-0">
+                                    <select class="js-example-basic-single xestelik doct" name="ilness"
+                                            multiple="multiple">
+                                        {% if doctor.get_xestelik %}
+                                            {% for foo in doctor.get_xestelik %}
+                                                <option value="{{ foo.xestelik.id }}" selected
+                                                        hidden>{{ foo.xestelik.name }}</option>
+                                            {% endfor %}
+
+                                        {% endif %}
+                                        {% if ill %}
+                                            {% for xestelik in ill %}
+                                                <option value="{{ xestelik.id }}">{{ xestelik.name }}</option>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </select>
+                                </div>
+
+
+                                <div class="col-md-6 col-6 col-xs-12">
+                                    <select class="js-example-basic-single erazi doct" name="area" multiple="multiple">
+                                        {% if doctor.get_country_list %}
+                                            {% for foo in doctor.get_country_list %}
+                                                <option value="{{ foo.country.id }}" selected
+                                                        hidden>{{ foo.country.name }}</option>
+                                            {% endfor %}
+
+                                        {% endif %}
+                                        {% if country %}
+                                            {% for city in country %}
+                                                <option value="{{ city.id }}">{{ city.name }}</option>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <input type="text" value="{{ doctor.phone|default:"" }}" name="phone"
+                                       placeholder="{% trans 'Əlaqə nömrəsi' %}">
+                                <br>
+                                <input required type="number" value="{{ doctor.qebul_qiymeti|default:"0" }}" name="qebul_qiymeti"
+                                       placeholder="{% trans 'Qəbul qiyməti' %}">
+                                <br>
+                                <select name="prize_type" id="">
+                                    <option value="azn">AZN</option>
+                                    <option value="usd">USD</option>
+                                    <option value="eur">EUR</option>
+                                    <option value="gel">GEL</option>
+                                    <option value="try">TRY</option>
+                                    <option value="rub">RUB</option>
+                                </select>
+                                <br>
+                                <input type="text" value="{{ doctor.facebook_link|default:"" }}" name="facebook_link"
+                                       placeholder="{% trans 'Facebook linki' %}">
+                                <br>
+                                <br>
+                                <input type="text" value="{{ doctor.twitter_link|default:"" }}" name="twitter_link"
+                                       placeholder="{% trans 'Twitter linki' %}">
+                                <br>
+                                <br>
+                                <input type="text" value="{{ doctor.instagram_link|default:"" }}" name="instagram_link"
+                                       placeholder="{% trans 'Instagram linki' %}">
+                                <br>
+
+                                <br>
+                                <input type="text" value="{{ doctor.language|default:"" }}" name="language"
+                                       placeholder="{% trans 'Danışdığı dillər' %}">
+                                <br>
+                                <br>
+                                <ul class="nav nav-pills">
+                                    <li class="active"><a data-toggle="pill" href="#home">Aze</a></li>
+                                    <li><a data-toggle="pill" href="#menu1">Rus</a></li>
+                                    <li><a data-toggle="pill" href="#menu2">Geo</a></li>
+                                </ul>
+                                <br>
+                                <br>
+                                <div class="tab-content">
+                                    <div id="home" class="tab-pane fade in active">
+                                        <br>
+                                            <label>{% trans 'Müalicə etdiyi xəstəliklər' %}</label>
+                                            <textarea name="pasient_types_az"
+                                                      class="form-control textarea required dash per-inf"
+                                                      placeholder="{% trans 'Müalicə etdiyi xəstəliklər' %}"
+                                                      aria-required="true">{{ doctor.pasient_types_az|default:"" }}</textarea>
+                                        <br>
+                                        <label>{% trans 'Özünüz haqqında qısa məlumat' %}</label>
+                                        <br>
+
+                                        <textarea name="personal_info_az"
+                                                  class="form-control textarea required dash per-inf"
+                                                  placeholder="{% trans 'Özünüz haqqında qısa məlumat' %}"
+                                                  aria-required="true">{{ doctor.description_az|default:"" }}</textarea>
+                                        <br>
+                                        <br>
+                                    </div>
+                                    <div id="menu1" class="tab-pane fade">
+                                        {% language "ru" %}
+
+                                            <label>{% trans 'Müalicə etdiyi xəstəliklər' %}</label>
+                                            <textarea name="pasient_types_ru"
+                                                      class="form-control textarea required dash per-inf"
+                                                      placeholder="{% trans 'Müalicə etdiyi xəstəliklər' %}"
+                                                      aria-required="true">{{ doctor.pasient_types_ru|default:"" }}</textarea>
+
+                                            <br>
+                                            <label>{% trans 'Özünüz haqqında qısa məlumat' %}</label>
+                                            <br>
+
+                                            <textarea name="personal_info_ru"
+                                                      class="form-control textarea required dash per-inf"
+                                                      placeholder="{% trans 'Özünüz haqqında qısa məlumat' %}"
+                                                      aria-required="true">{{ doctor.description_ru|default:"" }}</textarea>
+                                            <br>
+                                            <br>
+                                        {% endlanguage %}
+                                    </div>
+                                    <div id="menu2" class="tab-pane fade">
+                                        {% language 'ka' %}
+
+
+
+                                            {##}
+                                            {#                                    <input type="text" value="{{ doctor.pasient_types_ka|default:"" }}" name="pasient_types_ka" placeholder="{% trans 'Müalicə etdiyi xəstəliklər' %}">#}
+                                            <label>{% trans 'Müalicə etdiyi xəstəliklər' %}</label>
+                                            <textarea name="pasient_types_ka"
+                                                      class="form-control textarea required dash per-inf"
+                                                      placeholder="{% trans 'Müalicə etdiyi xəstəliklər' %}"
+                                                      aria-required="true">{{ doctor.pasient_types_ka|default:"" }}</textarea>
+                                            <br>
+                                            <label>{% trans 'Özünüz haqqında qısa məlumat' %}</label>
+                                            <br>
+
+                                            <textarea name="personal_info_ka"
+                                                      class="form-control textarea required dash per-inf"
+                                                      placeholder="{% trans 'Özünüz haqqında qısa məlumat' %}"
+                                                      aria-required="true">{{ doctor.description_ka|default:"" }}</textarea>
+                                            <br>
+                                            <br>
+                                        {% endlanguage %}
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row clearfix">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group style-two">
+                                            <label for="code">{% trans 'İşlədiyiniz ərazi' %}</label>
+                                            <input type="text" value="{{ doctor.base_name|default:"" }}"
+                                                   name="base_name" id="code"
+                                                   placeholder="{% trans 'Medikal Hospital Nəsrəddin Tusi küç.' %}"
+                                                   class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <br>
+                                <div class="col-md-12 col-12 col-xs-12">
+                                    {{ positionform.position }}
+                                </div>
+                                <br>
+                                <div class="col-md-6 col-6 col-xs-12 next-button" style="margin-bottom: 15px;">
+                                    <input type="submit" class="thm-btn btn btn-primary" value="{% trans 'Sonrakı' %}">
+                                </div>
+                                <br>
+                                <br>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
+{% block footer-script %}
+    {{ block.super }}
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=i8k5q1vmbxa6lk22kwq5c8d73uqzq9tkmytirpqe2bsyqp62"></script>
+    <script>tinymce.init({
+        selector:'textarea' ,
+        menubar: false,
+        plugins: [
+        'advlist autolink lists link image charmap print preview anchor textcolor',
+        'searchreplace visualblocks code fullscreen'
+        ],
+        toolbar: ' undo redo | bold italic  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+        content_css: [
+            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+            '//www.tinymce.com/css/codepen.min.css']
+        })
+    </script>
+    <script type="text/javascript" src="{% static 'geoposition/geoposition.js' %}"></script>
+    <script>
+        $('.xestelik').select2({
+            placeholder: "{% trans 'İxtisas' %}",
+        });
+        $('.erazi').select2({
+            placeholder: "{% trans 'Yaşadığınız ərazi' %}",
+        });
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+        $('.shekil1').click(function (e) {
+            e.preventDefault();
+            $('.settings-image').click();
+        });
+        $('.shekil2').click(function (e) {
+            e.preventDefault();
+            $('.settings-image2').click();
+        });
+        $('.shekil3').click(function (e) {
+            e.preventDefault();
+            $('.settings-image3').click();
+        });
+        function change_img(image_path) {
+            if (image_path.files && image_path.files[0]) { // if have input file
+                var reader = new FileReader(); // read file
+
+                reader.onload = function (e) {
+                    $('.change_src_img').attr('src', e.target.result); // Append file to obj src
+                };
+
+                reader.readAsDataURL(image_path.files[0]);
+            }
+            var form = new FormData();
+            var file = image_path.files[0]; // Get user profile image avatar
+            console.log(image_path.getAttribute("name"));
+            form.append(image_path.getAttribute("name"), file); // Append image file
+            $.ajax({
+                url: "{% url 'base:upload-picture' %}",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: form,
+                success: function (data) {
+                    //$('.messages').removeClass('hide').addClass('show');
+                    //  $('.msg').append(data.message);
+                    $('.message').text("");
+                    /*if (data != '/?reg_suc=True') {
+                     $.each(JSON.parse(data),function(key,input){
+                     $('.'+key).html(input[0]);
+                     });
+                     }
+                     else  {
+                     window.location.href = '/?reg_suc=True';
+                     }*/
+                    console.log(data);
+                    /*$('#register input').val('');
+                     $('#ajaxloader').hide();*/
+                },
+                error: function (xhr, errmsg, err) {
+                    /*$('.messages').removeClass('hide').addClass('show');
+                     $('.msg').append(xhr.responseText);
+                     $('#register input').val('');
+                     $('#ajaxloader').hide();*/
+
+                    console.log(xhr.status + ": " + xhr.responseText);
+
+                } // end error: function
+            }); // end ajax func
+        } // change_img end
+        function change_img_one(image_path) {
+            if (image_path.files && image_path.files[0]) { // if have input file
+                var reader = new FileReader(); // read file
+
+                reader.onload = function (e) {
+                    $('.change_src_img1').attr('src', e.target.result); // Append file to obj src
+                };
+
+                reader.readAsDataURL(image_path.files[0]);
+            }
+            var form = new FormData();
+            var file = image_path.files[0]; // Get user profile image avatar
+            console.log(image_path.getAttribute("name"));
+            form.append(image_path.getAttribute("name"), file); // Append image file
+            $.ajax({
+                url: "{% url 'base:upload-picture1' %}",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: form,
+                success: function (data) {
+                    //$('.messages').removeClass('hide').addClass('show');
+                    //  $('.msg').append(data.message);
+                    $('.message').text("");
+                    /*if (data != '/?reg_suc=True') {
+                     $.each(JSON.parse(data),function(key,input){
+                     $('.'+key).html(input[0]);
+                     });
+                     }
+                     else  {
+                     window.location.href = '/?reg_suc=True';
+                     }*/
+                    console.log(data);
+                    /*$('#register input').val('');
+                     $('#ajaxloader').hide();*/
+                },
+                error: function (xhr, errmsg, err) {
+                    /*$('.messages').removeClass('hide').addClass('show');
+                     $('.msg').append(xhr.responseText);
+                     $('#register input').val('');
+                     $('#ajaxloader').hide();*/
+
+                    console.log(xhr.status + ": " + xhr.responseText);
+
+                } // end error: function
+            }); // end ajax func
+        }
+        function change_img_two(image_path) {
+            if (image_path.files && image_path.files[0]) { // if have input file
+                var reader = new FileReader(); // read file
+
+                reader.onload = function (e) {
+                    $('.change_src_img2').attr('src', e.target.result); // Append file to obj src
+                };
+
+                reader.readAsDataURL(image_path.files[0]);
+            }
+            var form = new FormData();
+            var file = image_path.files[0]; // Get user profile image avatar
+            console.log(image_path.getAttribute("name"));
+            form.append(image_path.getAttribute("name"), file); // Append image file
+            $.ajax({
+                url: "{% url 'base:upload-picture2' %}",
+                type: "POST",
+                processData: false,
+                contentType: false,
+                data: form,
+                success: function (data) {
+                    //$('.messages').removeClass('hide').addClass('show');
+                    //  $('.msg').append(data.message);
+                    $('.message').text("");
+                    /*if (data != '/?reg_suc=True') {
+                     $.each(JSON.parse(data),function(key,input){
+                     $('.'+key).html(input[0]);
+                     });
+                     }
+                     else  {
+                     window.location.href = '/?reg_suc=True';
+                     }*/
+                    console.log(data);
+                    /*$('#register input').val('');
+                     $('#ajaxloader').hide();*/
+                },
+                error: function (xhr, errmsg, err) {
+                    /*$('.messages').removeClass('hide').addClass('show');
+                     $('.msg').append(xhr.responseText);
+                     $('#register input').val('');
+                     $('#ajaxloader').hide();*/
+
+                    console.log(xhr.status + ": " + xhr.responseText);
+
+                } // end error: function
+            }); // end ajax func
+        }
+
+    </script>
+{% endblock %}

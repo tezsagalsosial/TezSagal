@@ -1,0 +1,13 @@
+<li>
+    <div class="col-md-6 review">
+        <h3><span
+                style="color: #afafaf;">{{ x.date|date:"m/d/Y " }}</span>{{ x.user.get_full_name }}
+        </h3>
+        <br>
+        <br>
+        <p style="color:#20bdb7; font-size: 30px;"> {{ star_s }}</p>
+        <br>
+        <br>
+        <p style="text-align: left;">{{ x.text }}</p>
+    </div>
+</li>

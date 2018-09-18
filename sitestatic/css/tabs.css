@@ -1,0 +1,152 @@
+.ust{
+	background: #20bdb7;
+}
+.b{
+	font-size: 2em;
+	color:white;
+	text-align: center;
+	}
+
+.cont{
+	margin-top: 50px;
+}
+.inp{
+	width: 100%;
+	height: 50px;
+	border:1px solid black;
+
+}
+.profile{
+	border:5px solid #20bdb7;
+	border-radius: 100px;
+	background-color: #eee;
+	font-family: 'roboto';
+}
+ul li {
+	list-style: none;
+	text-align: center;
+}
+.sms{
+	float: left;
+}
+.zeng{
+	float: left;
+}
+.hekimigor select{
+	background-color: #ddd;
+	border:1px solid #20bdb7;
+	text-align: center;
+	border-radius: 4px;
+}
+.alert{
+	color:red;
+}
+
+h6{
+	text-align: center;
+	font-family: sans-serif;
+}
+h3{
+	text-align: center;
+	font-family: sans-serif;
+}
+.ziyaret{
+	border-radius: 5px;
+	border:2px solid #20bdb7;
+}
+.pay select{
+	background-color: #ddd;
+	border:1px solid #20bdb7;
+	text-align: center;
+	border-radius: 4px;
+}
+.odenis{
+	width: 100%;
+}
+
+/*.gorusal{
+	background-color: #20bdb7;
+	color:white;
+	font-size: 1em;
+}*/
+/*calendar*/
+h2{
+	text-align: center;
+}
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;}
+
+/* Month header */
+.month {
+    padding: 25px 25px;
+    width: 100%;
+    background: #20bdb7;
+    border-radius: 20px;
+    
+}
+
+/* Month list */
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+
+.month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+/* Previous button inside month header */
+.month .prev {
+    float: left;
+    padding-top: 10px;
+}
+
+/* Next button */
+.month .next {
+    float: right;
+    padding-top: 10px;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color:#ddd;
+    border-radius: 20px;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 13%;
+    color: #666;
+    text-align: center;
+}
+
+/* Days (1-31) */
+.days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;
+    border-radius: 20px;
+}
+
+.days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size:12px;
+    color:#777;
+}
+
+/* Highlight the "current" day */
+.days li .active {
+    padding: 5px;
+    background: #20bdb7;
+    color: white !important
+}

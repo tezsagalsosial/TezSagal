@@ -1,0 +1,31 @@
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} Tezsagal.az || {% trans 'Qeydiyyat et' %} {% endblock %}
+
+
+{% block content %}
+<section class="contact_us">
+			<div class="container">
+                <div class="sec-title text-center">
+                   <h2>{% trans 'Bölmələr' %}</h2>
+					<div class="row">
+                        <div class="col-md-6 mb20">
+                            <div>
+                               <div class="link_btn">
+                                   <a href="{% url 'account:register-doctor' %}" class="thm-btn">{% trans 'Həkim qeydiyyatı' %}</a>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                               <div class="link_btn">
+                                   <a href="{% url 'account:register-normal' %}" class="thm-btn">{% trans 'İstifadəçi qeydiyyatı' %}</a>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>
+{% endblock %}

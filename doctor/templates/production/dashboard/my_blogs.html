@@ -1,0 +1,58 @@
+ {% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} Tezsagal.az || {% trans 'Blog yarat' %} {% endblock %}
+
+
+{% block content %}
+        <!--Page Title-->
+        <section style="margin-top: 20px;">
+			<div class="container">
+                <div class="sec-title text-center">
+                    <h2><span>{% trans 'Forum yarat' %}</span></h2>
+
+                </div>
+            </div>
+        </section>
+        <!--Page Title Ends-->
+
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 col-sm-12 col-xs-12">
+						<div class="service-sidebar">
+							<ul class="service-catergory">
+								<li><a href="{% url 'base:doctor-add-blog' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Blog yarat' %}</a></li>
+							    <li class="active"><a href="{% url 'base:doctor-blog-list' %}"><span class="icon-left fa fa-chevron-right"></span>{% trans 'Mənim bloglarım' %}</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-8 col-sm-12 col-xs-12">
+						<div class="outer-box">
+							<!-- <div class="img-box"><img src="images/resources/Map.png" alt=""></div> -->
+							<div class="form-box default-form">
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                               {% comment %} <h3>{% trans 'Blog yarat' %}</h3>{% endcomment %}
+                                    <input type="hidden" name="author" value="{{ doctor.id }}">
+                                        <ul>
+                                        {% for blog in doctor_blogs %}
+                                            <li>{{ forloop.counter }}) <a href="{% url 'base:doctor-blog' slug=blog.slug %}">{{ blog.title }}</a></li>
+                                        {% endfor %}
+                                        </ul>
+                                     <br>
+                                    <br>
+                                    {% comment %}<div class="col-md-6 col-6 col-xs-12 next-button">
+                                    <input type="submit" class="thm-btn btn btn-primary" value="{% trans 'Paylaş' %}">
+                                    </div>{% endcomment %}
+                                    <br>
+                                </form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+{% endblock %}

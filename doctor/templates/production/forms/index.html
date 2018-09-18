@@ -1,0 +1,59 @@
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% block title %} Tezsagal.az || {% trans 'Forum' %} {% endblock %}
+ {% block content %}
+
+     <!--Page Title-->
+        {% comment %}<section class="page-title">
+        	<div class="container">
+            	<div class="row clearfix">
+                    <div class="col-md-6 col-sm-6 col-xs-12 pull-left">
+						<h1>{% trans 'Həkimlərin bloqu' %}</h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit </p>
+					</div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 pull-right text-right path"><a href="{% url 'base:index' %}">{% trans 'Ana səhifə' %}</a>&ensp;/&ensp;<a href="#">{% trans 'Forum' %}</a></div>
+					<div class="overlay"></div>
+                </div>
+            </div>
+        </section>{% endcomment %}
+        <!--Page Title Ends-->
+
+		<section class="blog-latest-news">
+			<div class="container">
+				<div class="row">
+                    {% for doctor in object_list %}
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+						<div class="item">
+							<figure class="image-box">
+                                <a href="{% url 'base:doctor-blog' slug=doctor.slug %}">
+								<img src="/media/{{ doctor.image }}" alt="Awesome Image">
+                                </a>
+							</figure>
+							<div class="date">
+								<h5>{{ doctor.date|date:'d' }}</h5>
+								<p>{{ doctor.date|date:'M' }}</p>
+							</div>
+							<h4><a href="{% url 'base:doctor-blog' slug=doctor.slug %}">{{ doctor.title }}</a></h4>
+							<ul class="admin-comments">
+								<li><i class="icon flaticon-black">{{ doctor.author.get_author_name }}</i></li>
+								<li><i class="icon flaticon-comments"></i></li>
+							</ul>
+							<p>{{ doctor.text|striptags|safe|slice:"35" }}</p>
+						</div>
+					</div>
+                    {% endfor %}
+
+
+					{% comment %}<ul class="page_pagination">
+                        <li><a href="#" class="tran3s"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                        <li><a href="#" class="active tran3s">1</a></li>
+                        <li><a href="#" class="tran3s">2</a></li>
+                        <li><a href="#" class="tran3s">3</a></li>
+                        <li><a href="#" class="tran3s">4</a></li>
+                        <li><a href="#" class="tran3s">5</a></li>
+                        <li><a href="#" class="tran3s"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                    </ul>{% endcomment %}
+				</div>
+			</div>
+		</section>
+{% endblock %}

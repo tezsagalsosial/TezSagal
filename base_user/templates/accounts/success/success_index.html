@@ -1,0 +1,18 @@
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} Tezsagal.az || {% trans 'Təşəkkür edirik' %} {% endblock %}
+
+
+{% block content %}
+<section class="contact_us">
+			<div class="container">
+                <div class="sec-title text-center">
+                    {% for message in messages %}
+                    {% comment %}<h2>Təşəkkür edirik</h2>{% endcomment %}
+					<p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+</section>
+{% endblock %}

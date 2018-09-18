@@ -1,0 +1,35 @@
+{% extends 'accounts/login/login.html' %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% block login-form %}
+<form name="contact_form" class="default-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+            {% if field.html_name == 'code' %}
+                <div class="row clearfix">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3 col-lg-offset-3">
+                        <div class="form-group style-two">
+                            <input type="number" name="code" id="code" value="{{ code }}" maxlength="6" autocomplete="off" placeholder="{% trans 'Təhlükəsizlik kodu' %}" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row clearfix">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3 col-lg-offset-3">
+                        <div class="form-group style-two">
+                            {{ field|add_class:"form-control" }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+       {% endfor %}
+
+
+    <div class="contact-section-btn text-center">
+        <div class="form-group style-two">
+            <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
+            <button class="thm-btn thm-color" type="submit" data-loading-text="{% trans 'Zəhmət olmasa gözləyin..' %}">{% trans 'Şifrəni dəyiş' %}</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

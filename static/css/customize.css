@@ -1,0 +1,351 @@
+/*!
+ * Munis-Customize-Desing-Css v1.11.0 (https://github.com/munisisazade/)
+ *
+ * Copyright 2015-2017 Munis Isazade
+ *
+ * My Style css file
+ */
+
+body,html,h1,h2,h3,h4,h5,h6, span,div,a, li, p {
+    font-family:  'Roboto', sans-serif !important;
+}
+
+.tezsagal-logo {
+    color: #20bdb7;
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+}
+.base-logo-img {
+    width: 53px;
+    margin-right: 10px;
+}
+
+.base-logo-img-footer {
+    position: relative;
+    top: 10px;
+}
+
+.tezsagal-logo:hover {
+    color: #20bdb7 !important;
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+}
+
+.color-white {
+    color: #fff;
+}
+
+.color-white:hover {
+    color: #fff;
+}
+
+.login-image {
+    border-radius: 50%;
+    width: 30px;
+    margin-right: 10px;
+}
+.avatar-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.dash{
+	margin-top: 50px;
+}
+.enter-btn{
+	border-radius: 20px;
+	height: auto;
+}
+.form-box{
+	margin: 15px 0 15px 0;
+}
+.per-inf{
+	width: 100%;
+	height: 100px !important;
+
+}
+.doctor-searc{
+	margin-top: 50px;
+	background-color: gray;
+	border-radius: 17px;
+}
+.icon-right {
+    position: absolute;
+    top: 28%;
+    left: 87%;
+    font-size: 27px;
+    color: #52ab56;
+}
+
+.doct{
+	width: 100%;
+	height: 60px;
+}
+.search-map{
+	margin-top: 20px;
+}
+#map{
+	width:100%;
+	height: 370px;
+}
+.sozler{
+	color:black;
+	font-family: tahoma;
+}
+li{
+	list-style: none;
+	color:#222222;
+}
+i{
+	font-family: tahoma;
+}
+.doctor_list{
+	border: 1px solid gray !important;
+	height: 50px;
+	text-align: center;
+	margin-top: 30px;
+}
+.doctor_list b{
+	color:blue;
+	}
+.doct_border{
+	border: 1px solid black !important;
+}
+.div span{
+	text-align: top !important;
+}
+.doct-ulli{
+	float: right;
+}
+ul li {
+	font-family: 'Roboto', sans-serif;
+}
+.apply{
+	border:1px solid black;
+	height: 60px;
+}
+.appoinment{
+	background-color: blue;
+	color:white;
+	width: 170px;
+	height: 40px;
+	border-radius: 5px;
+	float: right;
+	margin-top: 10px;
+}
+.profile_gor{
+	color: blue;
+	background-color: gray;
+	width: 170px;
+	height: 40px;
+	border-radius: 5px;
+	float: left;
+	margin-top: 10PX;
+}
+@media (max-width: 780px) {
+	.mainmenu-area.stricky-fixed .main-logo {
+		display: none !important;
+	}
+	.mainmenu-area.login .menu-column:last-of-type {
+		display: none !important;
+	}
+	.mnf120 {
+		left: -120% !important;
+ 	}
+}
+
+@media only screen and (min-width: 680px) {
+	/* desctop screen */
+	.bg-over {
+		position: absolute;
+		width: 100%;
+		top: 67%;
+		z-index: 9999;
+		background: rgba(255, 255, 255, 0.10);
+		padding: 15px 0px;
+	}
+}
+
+@media only screen and (max-width: 680px) {
+	/* mobile screen */
+    .embed-responsive.embed-responsive-16by9 {
+        display: none;
+    }
+    .mb20 {
+        margin-bottom: 20px;
+    }
+    .pb97 {
+        padding-bottom: 97px;
+    }
+	.bg-over {
+		width: 100%;
+	}
+	.ban-mob {
+		display: none !important;
+	}
+	.appoinment {
+		width: 123px !important;
+
+	}
+	.profile_gor {
+		width: 118px !important;
+	}
+	.position-doctor {
+		margin: 0px !important;
+		padding: 0px !important;
+		height: 0px !important;
+
+	}
+	.position-doctor b {
+		    /*font-size: 10px;*/
+			position: relative;
+			top: -20px;
+			/*left: 74px;*/
+	}
+	.position-money {
+		margin: 0px !important;
+		height: 0px !important;
+		padding: 0px !important;
+	}
+	.position-money span {
+		    position: relative !important;
+			top: -35px !important;
+			left: -5px !important;
+	}
+	.textalingcenter {
+		text-align: center !important;
+	}
+	.appoinment i, .appoinment span, .profile_gor i, .profile_gor span {
+		font-size: 10px !important;
+	}
+	.prof-mob li {
+		font-size: 11px !important;
+	}
+}
+.thm-btn {
+	border-radius: 20px;
+}
+
+.reqem {
+	font-family: sans-serif !important;
+}
+.next-button {
+	margin: auto;
+    width: 21%;
+    float: right;
+}
+
+.padd-0 {
+	padding: 0 !important;
+}
+
+.background {
+	position:absolute;
+	width: 100%;
+	height: 600px;
+	margin: auto;
+}
+
+* { box-sizing: border-box; }
+.video-background {
+  background: #000;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -99;
+}
+.video-foreground,
+.video-background iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+#vidtop-content {
+	top: 0;
+	color: #fff;
+}
+.vid-info { position: absolute; top: 0; right: 0; width: 33%; background: rgba(0,0,0,0.3); color: #fff; padding: 1rem; font-family: 'Roboto', sans-serif; }
+.vid-info h1 { font-size: 2rem; font-weight: 700; margin-top: 0; line-height: 1.2; }
+.vid-info a { display: block; color: #fff; text-decoration: none; background: rgba(0,0,0,0.5); transition: .6s background; border-bottom: none; margin: 1rem auto; text-align: center; }
+@media (min-aspect-ratio: 16/9) {
+  .video-foreground { height: 100%; top: -100%; }
+}
+@media (max-aspect-ratio: 16/9) {
+  .video-foreground { width: 300%; left: -100%; }
+}
+@media all and (max-width: 600px) {
+.vid-info { width: 50%; padding: .5rem; }
+.vid-info h1 { margin-bottom: .2rem; }
+}
+@media all and (max-width: 500px) {
+.vid-info .acronym { display: none; }
+}
+
+.prof-doc{
+	width: 100%;
+	height: 300px;
+	border-radius: 100%;
+}
+.review-li {
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    padding: 13px;
+	margin-top:10px ;
+}
+.review {
+	margin-bottom: 20px;
+    /*border-radius: 20px;*/
+    /*border: 1px solid #ddd;*/
+    /*padding: 30px;*/
+    position: relative;
+}
+
+.review h3 {
+	color: #00c3b9;
+	float: left;
+}
+.review p {
+	float: left;
+}
+
+.single-team-member{
+	text-align:center;
+	}
+
+.single-team-member{
+	border-left: 2px solid #20bdb7;
+}
+ .nav li a {
+	border-right: 2px solid #ddd;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-left: 0px;
+ }
+
+/****** Style Star Rating Widget *****/
+
+.rating {
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; }
+.rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label {
+  color: #20bdb7;
+ float: right;
+}

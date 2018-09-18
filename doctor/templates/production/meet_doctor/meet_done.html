@@ -1,0 +1,66 @@
+{% extends 'production/base/base_index.html' %}
+
+{% load i18n %}
+{% load static %}
+{% block aditional-css %}
+    <link rel="stylesheet" href="{% static 'css/tabs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gorus.css' %}">
+{% endblock %}
+{% block content %}
+<br>
+    <br>
+    <br>
+    <br>
+
+               <!-- ikinci seyfe -->
+               <div class="container">
+               <div class="row ust">
+                     <div class="col-md-12 col-sm-12 col-xs-12 b">
+                        <b>Görüş sorğunuz göndərildi.<br> Zəhmət olmasa təsdiqi gözləyin.</b>
+                    </div>
+                  </div> <br> <br>
+                  <div class="row">
+               <div class="col-md-4 col-sm-4 col-xs-12">
+                        <ul class="profile">
+                            {% if doctor.user.profile_picture %}
+                                <li> <img style="width: 78px" src="/media/{{ doctor.user.profile_picture }}" alt=""></li>
+                               {% else %}
+                              <li><i class="fa fa-user-md" style="font-size:100px"></i></li>
+                               {% endif %}
+
+                           <li>{{ doctor.user.get_full_name }}</li>
+                           <li>{% for z in doctor.get_xestelik %}{{ z.xestelik.name }}{% if forloop.last %}{% else %},{% endif %}{% endfor %}</li>
+                           <li>{{ doctor.base_name }}</li>
+                        </ul>
+
+                     </div>
+                     <div class="col-md-4 col-sm-4 col-xs-12">
+                        <h4>{% trans 'Görüş təsdiqi üçün necə məlumat almaq istəyirsiniz?' %}</h4><br>
+                        <button class="email thm-btn"><i class="fa fa-envelope-open-o" style="font-size:16px;"> {% trans 'E-mail' %}</i></button>
+                        <button class="sms thm-btn"><i class="fa fa-comments-o" style="font-size:16px;"> {% trans 'SMS' %}</i></button>
+                        <button class="zeng thm-btn"><i class="fa fa-phone" style="font-size:16px;"> {% trans 'Zəng' %}</i></button>
+                     </div>
+                     <div class="col-md-4 col-sm-4 col-xs-12">
+                        <!-- pasient -->
+                         <ul class="profile">
+                           <li><i class="fa fa-user" style="font-size:100px"></i></li>
+                           <li>{% trans 'Pasient' %} <br> {{ request.user.get_full_name }}</li>
+
+                           </ul>
+                     </div>
+                     </div><br>
+               <div class="row">
+                  <div class="col-md-4 col-sm-4 col-xs-12 ">
+
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-12">
+                     <a class="thm-btn btn-primary btnNext" href="{% url 'base:index' %}" >{% trans 'Son' %}</a>
+                  </div>
+               </div>
+                     </div>
+    <br>
+    <br>
+    <br>
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% load base_account %}
+{% block title %} Tezsagal.az || {% trans 'Tv' %} {% endblock %}
+ {% block content %}
+
+<!--Page Title-->
+        {% comment %}<section class="page-title">
+        	<div class="container">
+            	<div class="row clearfix">
+                    <div class="col-md-6 col-sm-6 col-xs-12 pull-left">
+						<h1>{% trans 'TV' %}</h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit </p>
+					</div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 pull-right text-right path"><a href="index.html"></a>&ensp;/&ensp;<a href="#">gallery</a></div>
+					<div class="overlay"></div>
+                </div>
+            </div>
+        </section>{% endcomment %}
+        <!--Page Title Ends-->
+
+		<!--team section-->
+		<section class="our-gallery">
+			<div class="container">
+				<div class="row">
+                    {% for tv in object_list %}
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+						<div class="single-item">
+							<div class="img-holder">
+								<iframe width="344" height="251" src="{{ tv.url|get_youtube_embed_url }}" frameborder="0" allowfullscreen></iframe>
+
+							</div>
+
+						</div>
+					</div>
+                    {% endfor %}
+
+
+				</div>
+			</div>
+		</section>
+
+{% endblock %}

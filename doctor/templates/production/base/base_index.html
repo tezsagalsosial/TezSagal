@@ -1,0 +1,1136 @@
+{% load i18n %}
+{% load static %}
+{% load flatpages %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+
+<head>
+    {% get_flatpages as flatpages %}
+	<meta charset="UTF-8">
+	<title>{% block title %} Tezsagal.az || {% trans 'Ana səhifə' %} {% endblock %}</title>
+
+	<!-- mobile responsive meta -->
+    <meta name="google-site-verification" content="aZV27LIiqWUnCyGsNzlWKbd-0Kfq5UXk8TSwTjYc9Zc" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/customize.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/flaticon.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/select2.min.css' %}" />
+
+	<!--favicon-->
+	<link rel="apple-touch-icon" sizes="57x57" href="{% static 'favicon/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'favicon/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'favicon/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'favicon/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'favicon/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'favicon/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'favicon/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'favicon/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'favicon/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'favicon/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'favicon/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- facebook share headers -->
+    {% block facebook %}
+    <meta property="og:url" content="https://{{ request.get_host }}{{ object.get_absolute_url }}" />
+    <meta property="og:type" content="doctor" />
+    <meta property="og:title" content="tezsagal.az" />
+    <meta property="og:description" content="Pasientləri və həkimləri eyni məkanda birləşdirən Platforma" />
+    <meta property="og:image" content="https://{{ request.get_host }}/static/images/news/2.jpg" />
+    {% endblock %}
+    {% block aditional-css %}
+    {% endblock %}
+</head>
+
+<body>
+	<div class="boxed_wrapper">
+        {% block header %}
+		{% comment %}<div class="header-top">
+			<div class="container clearfix">
+				<!--Top Left-->
+				<div class="top-left pull-left">
+					<ul class="links-nav clearfix">
+						<li><a href="#"><span class="fa fa-phone"></span> {% trans 'Telefon' %}:  {{ base_menu_contact.phone }} </a></li>
+						<li><a href="#"><span class="fa fa-envelope"></span>{% trans 'Email' %}:   {{ base_menu_contact.email }}</a></li>
+					</ul>
+				</div>
+				<!--Top Right-->
+                    <div class="top-right pull-right">
+					<div class="social-links clearfix">
+                        {% if base_menu_contact.facebook %}
+						<a target="_blank" href="{{ base_menu_contact.facebook }}"><span class="fa fa-facebook-f"></span></a>
+                        {% endif %}
+                        {%  if base_menu_contact.twitter %}
+						<a target="_blank" href="{{ base_menu_contact.twitter }}"><span class="fa fa-twitter"></span></a>
+                        {% endif %}
+                        {% if base_menu_contact.linkedin %}
+						<a target="_blank" href="{{ base_menu_contact.linkedin }}"><span class="fa fa-linkedin"></span></a>
+                        {% endif %}
+                        {% if base_menu_contact.instagram %}
+						<a target="_blank" href="{{ base_menu_contact.instagram }}"><span class="fa fa-instagram"></span></a>
+                        {% endif %}
+                        {% if base_menu_contact.pinterest %}
+						<a href="{{ base_menu_contact.pinterest }}"><span class="fa fa-pinterest-p"></span></a>
+                        {% endif %}
+					</div>
+				</div>
+			</div>
+		</div><!-- Header Top End -->{% endcomment %}
+
+		<!-- Menu -->
+		<section class="mainmenu-area stricky {% if request.user.is_authenticated %}login{% endif %}">
+		    <div class="container">
+		    	<div class="row">
+		    		<div class="col-md-3">
+						<div class="main-logo">
+							<a href="{% url 'base:index' %}" class="tezsagal-logo">
+                                <img src="{% static 'images/logo/logo.png' %}" class="base-logo-img" alt="">Tezsagal
+                            </a>
+						</div>
+					</div>
+					<div class="{% if request.user.is_authenticated %}col-md-6{% else %}col-md-6{% endif %} menu-column">
+						<nav class="main-menu">
+				            <div class="navbar-header">
+				                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				                    <span class="icon-bar"></span>
+				                    <span class="icon-bar"></span>
+				                    <span class="icon-bar"></span>
+				                    <span class="icon-bar"></span>
+				                </button>
+				            </div>
+				            <div class="navbar-collapse collapse clearfix">
+				                <ul class="navigation clearfix">
+
+				                   {% comment %}<li class="current"><a href="{% url 'base:index' %}">{% trans 'Ana səhifə' %}</a></li>{% endcomment %}
+                                    {% for static_page in static_pages %}
+                                        {% if static_page.url == 'about-us' %}
+                                            <li><a href="{% url 'base:custom-page' static_page.url %}">{{ static_page.title }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+{#                                    {% for page in flatpages %}#}
+{#                                        {% if page.url == '/about-us/' %}#}
+{#                                            <li><a href="/{{ LANGUAGE_CODE }}/pages{{ page.url }}">{% trans 'Haqqımızda' %}</a></li>#}
+{#                                        {% endif %}#}
+{##}
+{#                                    {% endfor %}#}
+
+
+									<li><a href="{% url 'base:doctor-blog' %}">{% trans 'Forum' %}</a>
+									{% comment %}<ul>
+										<li><a href="service.html">Services</a></li>
+										<li><a href="dental-implants.html">Dental Implants</a></li>
+										<li><a href="heart-specialist.html">Heart Specialist</a></li>
+										<li><a href="lab-reports.html">Lab Reports</a></li>
+										<li><a href="laboratory-tests.html">Laboratory Tests</a></li>
+										<li><a href="out-patient-service.html">Out Patient Service</a></li>
+
+
+									</ul>{% endcomment %}
+									</li>
+
+									<li class="dropdown"><a href="{% url 'base:doctor-tv' %}">{% trans 'Tv' %}</a>
+									{% comment %}<ul>
+										<li><a href="gallery.html">Gallery</a></li>
+										<li><a href="gallery-two.html">Gallery Two</a></li>
+										<li><a href="team.html">Our Doctors</a></li>
+										<li><a href="doctor-details.html">Doctor Details</a></li>
+										<li><a href="faq.html">Faq</a></li>
+										<li><a href="error.html">Error</a></li>
+
+									 </ul>{% endcomment %}
+									</li>
+
+									{% comment %}<li class="dropdown"><a href="#">{% trans 'Bloqlar' %}</a>
+									<ul>
+
+										<li><a href="blog-grid.html">Blog Grid</a></li>
+										<li><a href="blog-with-sidebar.html">Blog With Sidebar</a></li>
+										<li><a href="blog-details.html">Blog Details</a></li>
+
+									 </ul>
+									</li>{% endcomment %}
+{#                                    {% for page in flatpages %}#}
+{#                                        {% if page.url == '/contact-us/' %}#}
+{#                                            <li><a href="/{{ LANGUAGE_CODE }}/pages{{ page.url }}" id="contact">{% trans 'Əlaqə' %}</a></li>#}
+{#                                        {% endif %}#}
+{##}
+{#                                    {% endfor %}#}
+
+                                    {% for static_page in static_pages %}
+                                        {% if static_page.url == 'contact-us' %}
+                                            <li><a href="{% url 'base:custom-page' static_page.url %}">{{ static_page.title }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <li class="dropdown"><a href="#"><img src="/static/images/flags/lang_{{ LANGUAGE_CODE }}.png" alt="{{ LANGUAGE_CODE }}"></a>
+									<ul>
+                                        {% for lang in LANGUAGES %}
+                                            <li><a href="/{{ lang.0 }}{{ request.path|slice:"3:" }}">{{ lang.1 }}</a></li>
+                                          {% endfor %}
+                                    </ul>
+                                    </li>
+				                </ul>
+                               <!--  Mobile Menu -->
+				                <ul class="mobile-menu clearfix">
+
+				                   <li class="current"><a href="{% url 'base:index' %}">{% trans 'Ana səhifə' %}</a></li>
+
+
+                                    {% for static_page in static_pages %}
+                                        {% if static_page.url == '/contact-us/' %}
+                                            <li><a href="/{{ LANGUAGE_CODE }}/pages{{ static_page.url }}">{{ static_page.title }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+
+								<li><a href="{% url 'base:doctor-blog' %}">{% trans 'Forum' %}</a>
+								</li>
+
+								<li><a href="{% url 'base:doctor-tv' %}">{% trans 'Tv' %}</a>
+								</li>
+                                    {% for static_page in static_pages %}
+                                        {% if static_page.url == '/contact-us/' %}
+                                            <li><a href="/{{ LANGUAGE_CODE }}/pages{{ static_page.url }}">{{ static_page.title }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+								<li class="dropdown"><a href="#"><img style="width: 20px" src="/static/images/flags/lang_{{ LANGUAGE_CODE }}.png" alt="{{ LANGUAGE_CODE }}"></a>
+									<ul>
+                                        {% for lang in LANGUAGES %}
+                                            <li><a href="/{{ lang.0 }}{{ request.path|slice:"3:" }}">{{ lang.1 }}</a></li>
+                                          {% endfor %}
+                                    </ul>
+                                </li>
+                                {% if request.user.is_authenticated %}
+                                    <li class="dropdown">
+                                       {% if request.user.profile_picture %}
+                                          <img class="avatar-img" src="/media/{{ request.user.profile_picture }}" style="width: 35px;height: 35px" alt="">
+                                        {% else %}
+                                         <img class="avatar-img" src="{% static 'images/team/avatar.png' %}" alt="">
+                                       {% endif %}
+                                       <a href="">{{ request.user.get_full_name }}</a>
+									<ul>
+                                        {% if request.user.usertype == 1 %}
+                                        <li><a href="{% url 'base:dashboard' %}">{% trans 'My Kabinet' %}</a></li>
+										<li><a href="{% url 'base:doctor-detail' slug=request.user.slug %}">{% trans 'Profilinizi görün' %}</a></li>
+                                        <li><a href="{% url 'base:doctor-add-blog' %}">{% trans 'Blog yarat' %}</a></li>
+                                        {% endif %}
+                                        <li><a href="{% url 'account:logout' %}">{% trans 'Çıxış' %}</a></li>
+                                    </ul>
+                                   </li>
+                                {% endif %}
+				                </ul>
+				            </div>
+				        </nav>
+					</div>
+                    {% if request.user.is_authenticated %}
+                    <div class="col-md-3 menu-column">
+						<nav class="main-menu">
+				            <div class="navbar-header">
+				                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				                    <span class="icon-bar"></span>
+				                    <span class="icon-bar"></span>
+				                    <span class="icon-bar"></span>
+				                    <span class="icon-bar"></span>
+				                </button>
+				            </div>
+				            <div class="navbar-collapse collapse clearfix">
+				                <ul class="navigation clearfix">
+                                   <li class="dropdown">
+                                        {% if request.user.profile_picture %}
+                                          <img class="avatar-img" src="/media/{{ request.user.profile_picture }}" style="width: 35px;height: 35px" alt="">
+                                        {% else %}
+                                         <img class="avatar-img" src="{% static 'images/team/avatar.png' %}" alt="">
+                                       {% endif %}
+                                       <a href="">{{ request.user.get_full_name }}</a>
+									<ul>
+                                        {% if request.user.usertype == 1 %}
+										<li><a href="{% url 'base:dashboard' %}">{% trans 'My Kabinet' %}</a></li>
+                                        <li><a href="{% url 'base:doctor-detail' slug=request.user.slug %}">{% trans 'Profilinizi görün' %}</a></li>
+                                        <li><a href="{% url 'base:doctor-add-blog' %}">{% trans 'Blog yarat' %}</a></li>
+                                        {% endif %}
+                                        <li><a href="{% url 'account:logout' %}">{% trans 'Çıxış' %}</a></li>
+                                    </ul>
+                                   </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    {% else %}
+					<div class="col-md-3" style="padding-left: 0;padding-right: 0;">
+						<div class="right-area">
+						   <div class="link_btn float_right">
+							   <a href="{% url 'account:login' %}" class="thm-btn">{% trans 'Daxil ol' %}</a>
+
+							   <a href="{% url 'account:register' %}" class="thm-btn">{% trans 'Qeydiyyat' %}</a>
+						   </div>
+						</div>
+					</div>
+{#                    <div class="col-md-2">#}
+{#						<div class="right-area">#}
+{#						   <div class="link_btn float_right">#}
+{#						   </div>#}
+{#						</div>#}
+{#					</div>#}
+                    {% endif %}
+
+		    	</div>
+
+		    </div>
+		</section>
+        {% endblock %}
+        {% block content %}
+		<!--Start rev slider wrapper-->
+	{% comment %}	<section class="rev_slider_wrapper">
+			<div id="slider1" class="rev_slider" style="height: 200px !important;" data-version="5.0">
+				<ul>
+                    {% for image in slider %}
+                        <li data-transition="fade">
+						<img src="/media/{{ image.image }}"  alt="{{ image.title }}" width="1920" height="650" data-bgposition="top center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1" >
+
+						<div class="tp-caption  tp-resizeme"
+							data-x="left" data-hoffset="15"
+							data-y="top" data-voffset="31"
+							data-transform_idle="o:1;"
+							data-transform_in="x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
+							data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+							data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
+							data-splitin="none"
+							data-splitout="none"
+							data-start="700">
+							<div class="slide-content-box">
+								<h1>{{ image.title }}</h1>
+							</div>
+						</div>
+						<div class="tp-caption  tp-resizeme"
+							data-x="left" data-hoffset="15"
+							data-y="top" data-voffset="140"
+							data-transform_idle="o:1;"
+							data-transform_in="x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
+							data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+							data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
+							data-splitin="none"
+							data-splitout="none"
+							data-start="700">
+							<div class="slide-content-box">
+								<h2>{{ image.sub_title }}</h2>
+							</div>
+						</div>
+						<div class="tp-caption  tp-resizeme"
+							data-x="left" data-hoffset="15"
+							data-y="top" data-voffset="150"
+							data-transform_idle="o:1;"
+							data-transform_in="x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
+							data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+							data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
+							data-splitin="none"
+							data-splitout="none"
+							data-start="700">
+							<div class="slide-content-box">
+								<p>{{ image.description }}</p>
+							</div>
+						</div>
+
+
+					</li>
+                    {% endfor %}
+
+				</ul>
+			</div>
+		</section>{% endcomment %}
+		<!--End rev slider wrapper-->
+
+		{% comment %}<section class="feature">
+			<div class="container">
+				<div class="item-list">
+					<div class="row">
+
+						<div class="col-md-4 col-sm-6 col-xs-12">
+							<div class="item">
+                                <select class="select-tag form-control input-project" name="teacher_list" multiple>
+                                    <option value="sd">asdasd</option>
+                                </select>
+								<figure class="image-box">
+									<img src="images/feature/2.jpg" alt="" />
+									<div class="overlay">
+										<div class="content-box">
+											<h3>Professional Doctors</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et</p>
+										</div>
+									</div>
+								</figure>
+
+
+								<div class="feature-btn text-center">
+									<a href="#" class="button-style-two">read more</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4 col-sm-6 col-xs-12">
+							<div class="item">
+								<figure class="image-box">
+									<img src="images/feature/3.jpg" alt="" />
+									<div class="overlay">
+										<div class="content-box">
+											<h3>Emergency Departments</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et</p>
+										</div>
+									</div>
+								</figure>
+
+								<div class="feature-btn text-center">
+									<a href="#" class="button-style-two">read more</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4 col-sm-6 col-xs-12">
+							<div class="item">
+								<figure class="image-box">
+									<img src="images/feature/1.jpg" alt="" />
+									<div class="overlay">
+										<div class="content-box">
+											<h3>Dental care</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et</p>
+										</div>
+									</div>
+								</figure>
+
+								<div class="feature-btn text-center">
+									<a href="#" class="button-style-two">read more</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>{% endcomment %}
+
+		{% comment %}<section class="about">
+			<div class="container">
+				<div class="item-list">
+					<div class="row">
+						<div class="col-md-4 col-sm-10 col-xs-12">
+							<div class="item">
+								<figure class="image-box">
+									<img class="wow slideInUp  animated" src="images/about/1.jpg" alt="" />
+								</figure>
+							</div>
+						</div>
+						<div class="col-md-8 col-sm-12 col-xs-12">
+							<div class="item clearfix">
+								<div class="sec-title">
+									<h2>About <span>Medical+</span></h2>
+								</div>
+								<div class="content-box">
+									<h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </h4>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+								</div>
+
+								<!--Fact Counter-->
+								<div class="fact-counter">
+									<div class="row">
+										<div class="counter-outer">
+											<!--Column-->
+											<article class="column counter-column col-md-4 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="300ms">
+												<div class="item">
+													<div class="inner-box">
+														<div class="icon-box">
+															<i class="icon flaticon-people"></i>
+														</div>
+														<div class="count-outer">
+															<span class="count-text" data-speed="3000" data-stop="2500">0</span>
+															<p>Happy Clients</p>
+														</div>
+													</div>
+												</div>
+											</article>
+
+											<!--Column-->
+											<article class="column counter-column col-md-4 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="600ms">
+												<div class="item">
+													<div class="inner-box">
+														<div class="icon-box">
+															<i class="icon flaticon-trophy"></i>
+														</div>
+														<div class="count-outer">
+															<span class="count-text" data-speed="3000" data-stop="950">0</span>
+															<p>Awards Win</p>
+														</div>
+													</div>
+												</div>
+											</article>
+
+											<!--Column-->
+											<article class="column counter-column col-md-4 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="900ms">
+												<div class="item">
+													<div class="inner-box">
+														<div class="icon-box">
+															<i class="icon fa fa-building-o"></i>
+														</div>
+														<div class="count-outer">
+															<span class="count-text" data-speed="3000" data-stop="350">0</span>
+															<p>Hospital rooms</p>
+														</div>
+													</div>
+												</div>
+											</article>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="our-services">
+			<div class="container">
+				<div class="sec-title">
+					<h2>our <span>Services</span></h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+				</div>
+				<div class="row clearfix">
+					<!--Start single service icon-->
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="single-service-item">
+
+							<span class="top-border"></span>
+                            <span class="right-border"></span>
+                            <span class="bottom-border"></span>
+
+							<div class="service-left-bg"></div>
+							<div class="service-icon">
+								<i class="icon fa fa-stethoscope"></i>
+							</div>
+							<div class="service-text">
+								<h4><a href="service-single.html">Health care</a></h4>
+								<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, sed do</p>
+								<div class="link_btn">
+									<a href="service-single.html" class="button-style-one">Read More</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--End single service icon-->
+					<!--Start single service icon-->
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="single-service-item">
+
+							<span class="top-border"></span>
+                            <span class="right-border"></span>
+                            <span class="bottom-border"></span>
+
+							<div class="service-left-bg"></div>
+							<div class="service-icon">
+								<i class="icon fa fa-user"></i>
+							</div>
+							<div class="service-text">
+								<h4><a href="service-single.html">Qualified doctors</a></h4>
+								<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, sed do</p>
+								<div class="link_btn">
+									<a href="service-single.html" class="button-style-one">Read More</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--End single service icon-->
+					<!--Start single service icon-->
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="single-service-item">
+
+							<span class="top-border"></span>
+                            <span class="right-border"></span>
+                            <span class="bottom-border"></span>
+
+							<div class="service-left-bg"></div>
+							<div class="service-icon">
+								<i class="icon fa fa-user-plus"></i>
+							</div>
+							<div class="service-text">
+								<h4><a href="service-single.html">Out patient service</a></h4>
+								<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, sed do</p>
+								<div class="link_btn">
+									<a href="service-single.html" class="button-style-one">Read More</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--End single service icon-->
+					<!--Start single service icon-->
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="single-service-item">
+							<span class="top-border"></span>
+                            <span class="right-border"></span>
+                            <span class="bottom-border"></span>
+
+							<div class="service-left-bg"></div>
+							<div class="service-icon">
+								<i class="icon fa fa-heartbeat"></i>
+							</div>
+							<div class="service-text">
+								<h4><a href="service-single.html">Emergency unit</a></h4>
+								<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, sed do</p>
+								<div class="link_btn">
+									<a href="service-single.html" class="button-style-one">Read More</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--End single service icon-->
+					<!--Start single service icon-->
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="single-service-item">
+							<span class="top-border"></span>
+                            <span class="right-border"></span>
+                            <span class="bottom-border"></span>
+
+							<div class="service-left-bg"></div>
+							<div class="service-icon">
+								<i class="icon fa fa-line-chart"></i>
+							</div>
+							<div class="service-text">
+								<h4><a href="service-single.html">Lab test reports</a></h4>
+								<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, sed do</p>
+								<div class="link_btn">
+									<a href="service-single.html" class="button-style-one">Read More</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--End single service icon-->
+					<!--Start single service icon-->
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="single-service-item">
+							<span class="top-border"></span>
+                            <span class="right-border"></span>
+                            <span class="bottom-border"></span>
+
+							<div class="service-left-bg"></div>
+							<div class="service-icon">
+								<i class="icon fa fa-clock-o"></i>
+							</div>
+							<div class="service-text">
+								<h4><a href="service-single.html">Visiting Hours</a></h4>
+								<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, sed do</p>
+								<div class="link_btn">
+									<a href="service-single.html" class="button-style-one">Read More</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--End single service icon-->
+
+				</div>
+			</div>
+		</section>
+
+		<!--feature-two-->
+        <section class="portfolio-section">
+
+            <div class="portfolio-carousel">
+                <div class="single-item">
+                    <div class="image-holder">
+                        <img src="images/specialized/1.jpg" alt="Awesome Image" />
+                        <div class="overlay">
+                            <div class="inner">
+
+                                <ul class="social">
+                                    <li><a href="images/specialized/1.jpg" data-fancybox-group="example-gallery" class="view lightbox-image"><i class="icon fa fa-plus"></i></a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="single-item">
+                    <div class="image-holder">
+                        <img src="images/specialized/2.jpg" alt="Awesome Image" />
+                        <div class="overlay">
+                            <div class="inner">
+                                <ul class="social">
+                                    <li><a href="images/specialized/2.jpg" data-fancybox-group="example-gallery" class="view lightbox-image"><i class="icon fa fa-plus"></i></a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="single-item">
+                    <div class="image-holder">
+                        <img src="images/specialized/3.jpg" alt="Awesome Image" />
+                        <div class="overlay">
+                            <div class="inner">
+                                <ul class="social">
+                                    <li><a href="images/specialized/3.jpg" data-fancybox-group="example-gallery" class="view lightbox-image"><i class="icon fa fa-plus"></i></a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="single-item">
+                    <div class="image-holder">
+                        <img src="images/specialized/4.jpg" alt="Awesome Image" />
+                        <div class="overlay">
+                            <div class="inner">
+                                <ul class="social">
+                                    <li><a href="images/specialized/4.jpg" data-fancybox-group="example-gallery" class="view lightbox-image"><i class="icon fa fa-plus"></i></a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+        <!--feature-two end-->
+
+		<!--call-to-action section-->
+		<section class="call-to-action subscribe-intro">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-9">
+						<h3>Provide Best Medical Treatment</h3>
+						<p>Lorem ipsum dolor sit amet, con sectetur adipisicing elit, sed do. </p>
+					</div>
+					<div class="col-md-3">
+						<a href="#" class="thm-btn inverse pull-right">appointment</a>
+					</div>
+				</div>
+			</div>
+		</section>{% endcomment %}
+
+		<section class="two-column">
+			<div class="container">
+                <div class="sec-title text-center">
+                    <h2><span>{% trans 'Axtarış' %}</span></h2>
+
+                </div>
+                <div class="row">
+                    <form action="{% url 'base:search' %}" method="get" enctype="multipart/form-data" id="searchForm">
+                        <div class="col-md-5 col-5 col-xs-12">
+                            <select class="js-example-basic-single search1 doct" name="ilness" multiple="multiple">
+                                <option value="AL"></option>
+                                <option value="WY">qrip</option>
+                                <option value="WY">bas agrisi</option>
+                                <option value="WY">qurd</option>
+                                <option value="WY">mede agrisi</option>
+                                <option value="WY">soyug deyme</option>
+                                <option value="WY">urek</option>
+                                <option value="WY">revmatizma</option>
+                                <option value="WY">iflic</option>
+                                <option value="WY"></option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-4 col-xs-12">
+                            <select class="js-example-basic-single search2 doct" name="area" multiple="multiple">
+                                <option value="AL" placeholder="Olke, seher ,rayon"></option>
+                                 <option value="WY">Sumqayit</option>
+                                 <option value="WY">Seki</option>
+                                 <option value="WY">Gence</option>
+                                 <option value="WY">Baki</option>
+                                 <option value="WY">Batumi</option>
+                                 <option value="WY">Tiflis</option>
+                                 <option value="WY">Tbilisi</option>
+                                 <option value="WY">Marneuli</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-3 col-xs-12">
+                            <div class="link_btn float_right">
+                                <a href="#" class="thm-btn enter-btn" onclick="$('#searchForm').submit()">
+                                    <i class="fa fa-search" aria-hidden="true" ></i>{% trans 'Həkimini tap' %}</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br><br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+			</div>
+		</section>
+
+		<!--team section-->
+		{% comment %}<section class="our-team">
+			<div class="container">
+				<div class="sec-title">
+					<h2>Our<span> Doctors</span></h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+				</div>
+				<div class="team-carousel">
+					<div class="single-team">
+						<div class="img-holder">
+							<img src="images/team/team-1.jpg" alt="Awesome Image"/>
+							<div class="overlay">
+								<div class="inner">
+									<ul class="social">
+										<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+										<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="content-holder">
+							<h4><a href="doctor-details.html">Dr.Sarah Becka</a></h4>
+							<h5>Dental Specialist</h5>
+							<p>Lorem ipsum dolor sit amet, consecte tur adipisicing elit</p>
+						</div>
+					</div>
+					<div class="single-team">
+						<div class="img-holder">
+							<img src="images/team/team-2.jpg" alt="Awesome Image"/>
+							<div class="overlay">
+								<div class="inner">
+									<ul class="social">
+										<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+										<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="content-holder">
+							<h4><a href="doctor-details.html">Dr.Addison Alexander</a></h4>
+							<h5>Neuro Specialist</h5>
+							<p>Lorem ipsum dolor sit amet, consecte tur adipisicing elit</p>
+						</div>
+					</div>
+					<div class="single-team">
+						<div class="img-holder">
+							<img src="images/team/team-3.jpg" alt="Awesome Image"/>
+							<div class="overlay">
+								<div class="inner">
+									<ul class="social">
+										<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+										<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="content-holder">
+							<h4><a href="doctor-details.html">Dr.Kim Sultana</a></h4>
+							<h5>Precnancy Specialist</h5>
+							<p>Lorem ipsum dolor sit amet, consecte tur adipisicing elit</p>
+						</div>
+					</div>
+					<div class="single-team">
+						<div class="img-holder">
+							<img src="images/team/team-4.jpg" alt="Awesome Image"/>
+							<div class="overlay">
+								<div class="inner">
+									<ul class="social">
+										<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+										<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="content-holder">
+							<h4><a href="doctor-details.html">Dr.Austin Ali</a></h4>
+							<h5>Medicine Specialist</h5>
+							<p>Lorem ipsum dolor sit amet, consecte tur adipisicing elit</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>{% endcomment %}
+
+		{% comment %}<!--Paralax Style One-->
+		<section class="parallax-style-one" style="background-image:url(images/background/bg-4.jpg);">
+			<div class="container">
+				<div class="sec-title">
+					<h2>Need to<br> take care of your<span> family health </span></h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+				</div>
+				<ul class="link_btn text-center">
+					<li><a href="service.html" class="thm-btn style-two">View Services</a></li>
+					<li><a href="contact.html" class="thm-btn style-two">Contact us</a></li>
+				</ul>
+			</div>
+		</section>
+{% endcomment %}
+		{% comment %}<section class="latest-news">
+			<div class="container">
+				<div class="sec-title">
+					<h2>latest <span>news</span></h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+				</div>
+				<div class="latest-news-carousel owl-carousel owl-theme">
+
+					<div class="item">
+						<figure class="image-box">
+							<img src="images/news/3.jpg" alt="Awesome Image">
+
+							<div class="date">
+								<h5>18</h5>
+								<p>sep</p>
+							</div>
+
+						</figure>
+
+						<h4><a href="blog-details.html">This is a standard post with thumbnail</a></h4>
+						<ul class="admin-comments">
+							<li><i class="icon flaticon-black">Jon Doie</i></li>
+							<li><i class="icon flaticon-comments">Comments 02</i></li>
+						</ul>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+					</div>
+					<div class="item">
+						<figure class="image-box">
+							<img src="images/news/2.jpg" alt="Awesome Image">
+							<div class="date">
+								<h5>21</h5>
+								<p>sep</p>
+							</div>
+						</figure>
+
+						<h4><a href="blog-details.html">This is a standard post with thumbnail</a></h4>
+						<ul class="admin-comments">
+							<li><i class="icon flaticon-black">Jon Doie</i></li>
+							<li><i class="icon flaticon-comments">Comments 02</i></li>
+						</ul>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+					</div>
+					<div class="item">
+						<figure class="image-box">
+							<img src="images/news/1.jpg" alt="Awesome Image">
+							<div class="date">
+								<h5>26</h5>
+								<p>sep</p>
+							</div>
+						</figure>
+
+						<h4><a href="blog-details.html">This is a standard post with thumbnail</a></h4>
+						<ul class="admin-comments">
+							<li><i class="icon flaticon-black">Jon Doie</i></li>
+							<li><i class="icon flaticon-comments">Comments 02</i></li>
+						</ul>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+					</div>
+				</div>
+			</div>
+		</section>{% endcomment %}
+        {% endblock %}
+        {% block footer %}
+		<footer class="footer bg-style" style="background-image:url({% static 'images/background/bg4.jpg' %});">
+			<div class="container">
+				<div class="footer-upper">
+
+					<div class="row">
+						<div class="item col-md-6 col-sm-6">
+							<div class="footer-widget about-widget">
+								<a href="{% url 'base:index' %}" class="tezsagal-logo">
+                                    <img src="{% static 'images/logo/logo.png' %}" class="base-logo-img base-logo-img-footer" alt="">Tezsagal
+                                </a>
+								{% comment %}<p>Lorem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmod tempor incididunt ut labore et dolore magna aliqua Lorem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmod tempor.consectetur adipisicing elitsed do eiusmod tempor consectetur adipisicing elitsed.</p>{% endcomment %}
+								{% comment %}<div class="link_btn">
+								   <a href="#" class="button-style-one">{% trans 'Bizimlə əlaqə' %}</a>
+								</div>{% endcomment %}
+							</div>
+						</div>
+
+
+						{% comment %}<div class="item col-md-4 col-sm-6">
+							<div class="footer-widget contact-widget">
+								<h3 class="title second">{% trans 'Bizimlə Əlaqə' %}</h3>
+								 <div class="default-form-area">
+									<form id="contact-form" name="contact_form" class="default-form" method="post">
+										<div class="row-10 clearfix">
+											<div class="column col-md-6 col-sm-6 col-xs-12">
+												<div class="form-group">
+													<input type="text" name="form_name" class="form-control" value="" placeholder="{% trans 'Adınız' %}" required="">
+												</div>
+											</div>
+
+											<div class="column col-md-6 col-sm-6 col-xs-12">
+												<div class="form-group">
+													<input type="text" name="form_phone" class="form-control" value="" placeholder="{% trans 'Əlaqə nömrəsi' %}">
+												</div>
+											</div>
+
+											<div class="column col-md-12 col-sm-12 col-xs-12">
+												<div class="form-group">
+													<textarea name="form_message" class="form-control textarea required" placeholder="{% trans 'İsmarıc' %}"></textarea>
+												</div>
+											</div>
+											<div class="column col-md-12 col-sm-12 col-xs-12">
+												<div class="form-group">
+													<input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
+													<button class="thm-btn thm-color" type="submit" data-loading-text="Please wait...">{% trans 'Göndər' %}</button>
+												</div>
+											</div>
+
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>{% endcomment %}
+					</div>
+				</div>
+                <br>
+                <br>
+                <br>
+                <br>
+				<!--Footer Bottom-->
+				<div class="footer-bottom">
+                    <div class="pull-left"><div class="copyright-text">{% trans 'Müəllif hüquqları qorunur' %}. "TUKOSA" MMC <span style="font-family: 'Roboto', sans-serif !important;">{% now 'Y' %}</span>.</div></div>
+{#					<div class="pull-right">#}
+{#						<div class="social-links pull-right">#}
+{#                            {% if base_menu_contact.facebook %}#}
+{#                            <a target="_blank" href="{{ base_menu_contact.facebook }}"><span class="fa fa-facebook-f"></span></a>#}
+{#                            {% endif %}#}
+{#                            {% if base_menu_contact.twitter %}#}
+{#                            <a target="_blank" href="{{ base_menu_contact.twitter }}"><span class="fa fa-twitter"></span></a>#}
+{#                            {% endif %}#}
+{#                            {% if base_menu_contact.linkedin %}#}
+{#                            <a target="_blank" href="{{ base_menu_contact.linkedin }}"><span class="fa fa-linkedin"></span></a>#}
+{#                            {% endif %}#}
+{#                            {% if base_menu_contact.instagram %}#}
+{#                            <a target="_blank" href="{{ base_menu_contact.instagram }}"><span class="fa fa-instagram"></span></a>#}
+{#                            {% endif %}#}
+{#                            {% if base_menu_contact.pinterest %}#}
+{#                            <a href="{{ base_menu_contact.pinterest }}"><span class="fa fa-pinterest-p"></span></a>#}
+{#                            {% endif %}#}
+{#						</div>#}
+{#					</div>#}
+				</div>
+			</div>
+
+		</footer>
+        {% endblock %}
+
+
+
+	<!-- Scroll Top Button -->
+	<button class="scroll-top tran3s color2_bg">
+		<span class="fa fa-angle-up"></span>
+	</button>
+	<!-- pre loader  -->
+	<div class="preloader"></div>
+        {% block footer-script %}
+		<!-- jQuery js -->
+		<script src="{% static 'js/jquery.js' %}"></script>
+		<!-- bootstrap js -->
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<!-- jQuery ui js -->
+		<script src="{% static 'js/jquery-ui.js' %}"></script>
+		<!-- owl carousel js -->
+		<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+		<!-- jQuery validation -->
+		<script src="{% static 'js/jquery.validate.min.js' %}"></script>
+		<!-- google map -->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRvBPo3-t31YFk588DpMYS6EqKf-oGBSI"></script>
+		<script src="{% static 'js/gmap.js' %}"></script>
+		<!-- mixit up -->
+		<script src="{% static 'js/wow.js' %}"></script>
+		<script src="{% static 'js/jquery.mixitup.min.js' %}"></script>
+		<script src="{% static 'js/jquery.fitvids.js' %}"></script>
+		<script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+		<script src="{% static 'js/menuzord.js' %}"></script>
+        <!-- select To js -->
+        <script src="{% static 'js/select2.min.js' %}"></script>
+
+		<!-- revolution slider js -->
+		<script src="{% static 'assets/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+		<script src="{% static 'assets/revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
+		<script src="{% static 'assets/revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
+		<script src="{% static 'assets/revolution/js/extensions/revolution.extension.carousel.min.js' %}"></script>
+		<script src="{% static 'assets/revolution/js/extensions/revolution.extension.kenburn.min.js' %}"></script>
+		<script src="{% static 'assets/revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
+		<script src="{% static 'assets/revolution/js/extensions/revolution.extension.migration.min.js' %}"></script>
+		<script src="{% static 'assets/revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
+		<script src="{% static 'assets/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
+		<script src="{% static 'assets/revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
+		<script src="{% static 'assets/revolution/js/extensions/revolution.extension.video.min.js' %}"></script>
+
+		<!-- fancy box -->
+		<script src="{% static 'js/jquery.fancybox.pack.js' %}"></script>
+		<script src="{% static 'js/jquery.polyglot.language.switcher.js' %}"></script>
+		<script src="{% static 'js/nouislider.js' %}"></script>
+		<script src="{% static 'js/jquery.bootstrap-touchspin.js' %}"></script>
+		<script src="{% static 'js/SmoothScroll.js' %}"></script>
+		<script src="{% static 'js/jquery.appear.js' %}"></script>
+		<script src="{% static 'js/jquery.countTo.js' %}"></script>
+		<script src="{% static 'js/jquery.flexslider.js' %}"></script>
+		<script src="{% static 'js/imagezoom.js' %}"></script>
+		<script src="{% static 'js/validation.js' %}"></script>
+        <script id="map-script" src="{% static 'js/default-map.js' %}"></script>
+		<script src="{% static 'js/custom.js' %}"></script>
+        {% endblock %}
+	</div>
+    <script type="application/javascript">
+        $(document).ready(function () {
+            $("#contact").click(function() {
+                $('html,body').animate({
+                    scrollTop: $(".second").offset().top},
+                    'slow');
+            });
+            $('.search1').select2({
+                placeholder: "{% trans 'Xəstəliyə görə axtarış' %}",
+            });
+            $('.search2').select2({
+                placeholder: "{% trans 'Məkan/Şəhər/Ölkə' %}",
+            });
+        });
+
+
+    </script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/599b5b7f1b1bed47ceb05dfc/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+
+</html>
+
+
+

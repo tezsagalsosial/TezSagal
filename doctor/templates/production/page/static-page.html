@@ -1,0 +1,38 @@
+{% extends 'production/base/base_index.html' %}
+{% load i18n %}
+{% block title %} Tezsagal.az || {{ flatpage.title }} {% endblock %}
+ {% block content %}
+
+     <!--Page Title-->
+       {% comment %} <section class="page-title">
+        	<div class="container">
+            	<div class="row clearfix">
+                    <div class="col-md-6 col-sm-6 col-xs-12 pull-left">
+						<h1>{{ flatpage.title }}</h1>
+						<p>{{ flatpage.content|safe|slice:"23" }}</p>
+					</div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 pull-right text-right path"><a href="{% url 'base:index' %}">{% trans 'Ana səhifə' %}</a>&ensp;/&ensp;<a href="#">{% trans 'Haqqımızda' %}</a></div>
+					<div class="overlay"></div>
+                </div>
+            </div>
+        </section>{% endcomment %}
+        <!--Page Title Ends-->
+
+
+      <div class="container">
+        <section class="col-md-8 col-sm-12 col-xs-12">
+
+            <div class="item clearfix">
+                <br>
+                <div class="sec-title">
+                 <h2>{{ v_static_page.title }}</h2>
+                </div>
+                <p>{{ v_static_page.content|safe }}</p>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </section>
+      </div>
+{% endblock %}
